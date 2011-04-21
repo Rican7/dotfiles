@@ -8,12 +8,12 @@
 for filename in /usr/local/bin/*
 do
 	# Get the symlink target
-	target=$(readlink /usr/local/bin/ssh-psu)
+	target=$(readlink "$filename")
 
 	# Check if file exists or not, if not, correct the link
 	if [[ ! -f "$target" ]] && [[ ! -d "$target" ]] ; then
 		# Get the links home path first
-		baseName=$($target | egrep -o "/.sh/(.*?)")
+		baseName=$(echo "$target" | egrep -o "/.sh/(.*?)")
 
 		# If the symbolic link's home directory doesn't match our HOME, change it
 		if [[ "$linkHome" != "$HOME" ]] ; then
