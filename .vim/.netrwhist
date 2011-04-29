@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='C:/Users/Trevor N. Suarez/Documents/Web/svn_parser/scripts'
 let g:netrw_dirhist_2='C:/Users/Trevor N. Suarez/Documents/Web/tsdc/javascript'
 let g:netrw_dirhist_3='C:/Users/Trevor N. Suarez/Documents/Web/tsdc/ajax'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='C:/Users/Trevor N. Suarez/Documents/Web/tsdc/ajax'
 let g:netrw_dirhist_6='/cygdrive/c/Users/TREVOR~1.SUA/.sh'
 let g:netrw_dirhist_7='/cygdrive/c/Users/TREVOR~1.SUA/.vim'
 let g:netrw_dirhist_8='/etc/bash_completion.d'
+let g:netrw_dirhist_9='/cygdrive/c/Users/TREVOR~1.SUA/.git_box'

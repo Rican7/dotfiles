@@ -5,9 +5,9 @@ set guioptions-=T
 
 " Windows SWAP files
 if has("win32") || has("win64")
-   set directory=$TMP
+	set directory=$TMP
 else
-   set directory=/tmp
+	set directory=/tmp
 end
 
 set backspace=2 sts=0 ts=5 sw=5 smarttab noet ai nocp wrap
@@ -51,7 +51,7 @@ abbr Firephp PSU::get('firephp')
 
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
-autocmd BufRead,BufNewFile *.html set filetype=php
+" autocmd BufRead,BufNewFile *.html set filetype=php
 
 filetype indent on
 
