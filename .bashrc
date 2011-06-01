@@ -20,4 +20,4 @@ do
 done;
 
 # User specific aliases and functions
-#umask 002;
+umask 002;

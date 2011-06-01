@@ -10,7 +10,7 @@ else
 	set directory=/tmp
 end
 
-set backspace=2 sts=0 ts=5 sw=5 smarttab noet ai nocp wrap
+set backspace=2 sts=5 ts=5 sw=5 smarttab noet ai nocp wrap
 set ruler nowrap backspace=2 hidden showmatch matchtime=3
 set wrap incsearch ignorecase hlsearch mouse=a
 set updatecount=50 showmatch matchtime=3
