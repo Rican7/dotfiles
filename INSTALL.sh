@@ -15,13 +15,13 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 	rm ~/.bashrc
 	rm ~/.gitconfig
 	rm ~/.minttyrc
-	rm ~/-r .sh
-	rm ~/-r .ssh
+	rm -r ~/ .sh
+	rm -r ~/ .ssh
 	rm ~/.vim
-	rm ~/-r .vimrc
-	rm ~/-r /etc/bash_completion.d
-	rm ~/-r /usr/local/bin
-	rm ~/-r vimfiles
+	rm -r ~/ .vimrc
+	rm -r ~/ /etc/bash_completion.d
+	rm -r ~/ /usr/local/bin
+	rm -r ~/ vimfiles
 	rm ~/_vimrc
 
 
