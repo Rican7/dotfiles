@@ -16,7 +16,6 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 	rm ~/.gitconfig
 	rm ~/.minttyrc
 	rm -r ~/.sh
-	rm -r ~/.ssh
 	rm -r ~/.vim
 	rm ~/.vimrc
 	rm -r /etc/bash_completion.d
@@ -31,7 +30,6 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 	ln -s ~/.git_box/.gitconfig ~/.gitconfig
 	ln -s ~/.git_box/.minttyrc ~/.minttyrc
 	ln -s ~/.git_box/.sh ~/.sh
-	ln -s ~/.git_box/.ssh ~/.ssh
 	ln -s ~/.git_box/.vim ~/.vim
 	ln -s ~/.git_box/.vimrc ~/.vimrc
 	ln -s ~/.git_box/bash_completion.d /etc/bash_completion.d
