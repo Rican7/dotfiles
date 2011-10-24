@@ -21,3 +21,8 @@ done;
 
 # User specific aliases and functions
 umask 002;
+
+# Change bash prompt
+#export PS1="[\u \W]\$ "
+#export PS1="[\u \W]\$ "
+export PS1="\[\e[0;36m\]\u\[\e[m\] \[\e[0;32m\]\W\[\e[m\] $ "
