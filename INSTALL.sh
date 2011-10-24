@@ -11,18 +11,17 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 	windowsStyleHome=$(cygpath -w $HOME);
  
 	# First, remove all references of original files
-	rm .bash_profile
-	rm .bashrc
-	rm .gitconfig
-	rm .minttyrc
-	rm -r .sh
-	rm -r .ssh
-	rm .vim
-	rm -r .vimrc
+	rm ~/.bash_profile
+	rm ~/.bashrc
+	rm ~/.gitconfig
+	rm ~/.minttyrc
+	rm -r ~/.sh
+	rm -r ~/.vim
+	rm ~/.vimrc
 	rm -r /etc/bash_completion.d
 	rm -r /usr/local/bin
-	rm -r vimfiles
-	rm _vimrc
+	rm -r ~/vimfiles
+	rm ~/_vimrc
 
 
 	# Now, create symlinks
@@ -31,7 +30,6 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 	ln -s ~/.git_box/.gitconfig ~/.gitconfig
 	ln -s ~/.git_box/.minttyrc ~/.minttyrc
 	ln -s ~/.git_box/.sh ~/.sh
-	ln -s ~/.git_box/.ssh ~/.ssh
 	ln -s ~/.git_box/.vim ~/.vim
 	ln -s ~/.git_box/.vimrc ~/.vimrc
 	ln -s ~/.git_box/bash_completion.d /etc/bash_completion.d

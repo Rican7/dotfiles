@@ -96,7 +96,9 @@ set includeexpr=substitute(v:fname,'-$','','g')
 
 syntax on
 set background=dark
+
 colorscheme railscasts
+
 "colorscheme ir_black
 
 "set t_Co=256
