@@ -11,7 +11,7 @@ do
 	target=$(readlink "$filename")
 
 	# Check if file exists or not, if not, correct the link
-	if [[ ! -f "$target" ]] && [[ ! -d "$target" ]] ; then
+	if [[ "$target" != "" ]] && [[ ! -f "$target" ]] && [[ ! -d "$target" ]] ; then
 		# Get the links home path first
 		baseName=$(echo "$target" | egrep -o "/.sh/(.*?)")
 
