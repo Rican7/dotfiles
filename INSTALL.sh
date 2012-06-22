@@ -4,42 +4,120 @@
 #
 #
 
-# Check if we're running CYGWIN, otherwise this could be a very dangerous script
-if [[ $OSTYPE == "cygwin" ]] ; then
+# Declare variables
+possibleParameters="v"
+verbose=false;
 
+# Let's set some values based on the parameters
+while getopts "$possibleParameters" opt; do
+	case $opt in
+		v)	verbose=true;;
+		\?)	echo "Invalid option: -$OPTARG"; exit;;
+	esac
+done
+
+# Get the current directory
+gitboxDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Define an array of files/directories
+filesDirectories=(
+	"$HOME/.bash_profile"
+	"$HOME/.bashrc"
+	"$HOME/.gitconfig"
+	"$HOME/.minttyrc"
+	"$HOME/.vim"
+	"$HOME/.vimrc"
+	"$HOME/local/bin"
+	"/etc/bash_completion.d"
+);
+
+# Define an array of Windows/Cygwin ONLY files/directories
+cygFileLocations=(
+	"$HOME/vimfiles"
+	"$HOME/_vimrc"
+);
+
+# Define an array containing the destination of the Windows/Cygwin ONLY files/directories for linking
+# MUST ALIGN WITH cygFilesSources
+cygFileDestinations=(
+	".vim"
+	".vimrc"
+);
+
+# Create a function to remove the passed target
+function removeTarget() {
+	# The target should be the first (only) argument
+	target=$1
+
+	# If the target is a file
+	if [ -f "$target" ] ; then
+		# Remove the original file... we're gonna link it instead
+		rm $target
+
+		# Verbose info
+		if $verbose ; then
+			echo -e "file \t\t$target removed"
+		fi
+	# If the target is a directory
+	elif [ -d "$target" ] ; then
+		# Remove the original directory... we're gonna link it instead
+		rm -r $target
+
+		# Verbose info
+		if $verbose ; then
+			echo -e "directory \t$target removed"
+		fi
+	fi
+}
+
+# Let's loop through each file/directory
+for target in "${filesDirectories[@]}"
+do
+	# Get the basename
+	baseName=$(basename "$target")
+
+	# Use the removeTarget function and pass the target as an argument
+	removeTarget $target
+
+	# Relink the file
+	ln -s $gitboxDir/$baseName $target
+
+	# Verbose info
+	if $verbose ; then
+		echo -e " $gitboxDir/$baseName has been linked to $target"
+	fi
+done;
+
+# Check if we're running CYGWIN
+if [[ $OSTYPE == "cygwin" ]] ; then
 	# Get the windows style home directory
 	windowsStyleHome=$(cygpath -w $HOME);
- 
-	# First, remove all references of original files
-	rm ~/.bash_profile
-	rm ~/.bashrc
-	rm ~/.gitconfig
-	rm ~/.minttyrc
-	rm -r ~/.sh
-	rm -r ~/.vim
-	rm ~/.vimrc
-	rm -r /etc/bash_completion.d
-	rm -r /usr/local/bin
-	rm -r ~/vimfiles
-	rm ~/_vimrc
 
+	# Create a quick counter, to keep our two cygFile arrays aligned
+	count=0
 
-	# Now, create symlinks
-	ln -s ~/.git_box/.bash_profile ~/.bash_profile
-	ln -s ~/.git_box/.bashrc ~/.bashrc
-	ln -s ~/.git_box/.gitconfig ~/.gitconfig
-	ln -s ~/.git_box/.minttyrc ~/.minttyrc
-	ln -s ~/.git_box/.sh ~/.sh
-	ln -s ~/.git_box/.vim ~/.vim
-	ln -s ~/.git_box/.vimrc ~/.vimrc
-	ln -s ~/.git_box/bash_completion.d /etc/bash_completion.d
-	ln -s ~/.git_box/bin /usr/local/bin
+	# Let's loop through each file/directory
+	for cygTarget in "${cygFileLocations[@]}"
+	do
+		# Get the windows target path
+		windowsTargetPath=$(cygpath -w $cygTarget);
 
-	# Use cmd (windows native command prompt) to setup Windows NT Symbolic Links
-	cmd /c mklink /D "$windowsStyleHome\vimfiles" "$windowsStyleHome\.git_box\.vim"
-	cmd /c mklink "$windowsStyleHome\_vimrc" "$windowsStyleHome\.git_box\.vimrc"
+		# Get the windows gitbox directory path
+		windowsGitboxPath=$(cygpath -w $gitboxDir);
 
-else
-	# Warn about possible danger
-	echo 'This script is only meant for use on CYGWIN. It could be potentially dangerous on another OS type.';
+		# Use the removeTarget function and pass the target as an argument
+		removeTarget $cygTarget
+
+		# Verbose info
+		if [ $verbose != true ] ; then
+			# Suppress the output
+			outputSuppressor='>nul'
+		fi
+
+		# Use cmd (windows native command prompt) to setup Windows NT Symbolic Links
+		cmd /c mklink "$windowsTargetPath" "$windowsGitboxPath\\${cygFileDestinations[$count]}" $outputSuppressor
+
+		# Increment the counter
+		count=$[$count+1]
+	done;
 fi
