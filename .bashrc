@@ -30,6 +30,11 @@ done;
 # Let's define our shell for continuity
 export SHELL="/bin/bash"
 
+# Export the EDITOR and VISUAL variables
+export EDITOR="vim"
+export VISUAL="vim"
+export SVN_EDITOR="vim"
+
 # Change bash prompt and color
 #export PS1="[\u \W]\$ "
 #export PS1="\e[0;36m\u\e[m \e[0;32m\W\e[m \$ "
@@ -59,10 +64,8 @@ if $dircolors ; then
 	alias ls="ls --color"
 fi
 
-# Export the EDITOR and VISUAL variables
-export EDITOR="vim"
-export VISUAL="vim"
-export SVN_EDITOR="vim"
+# Let's define some other aliases
+alias vi="vim"
 
 # Enable java command line usage by adding the Cygpath equivalent of the windows classpath
 if $cygpath ; then
