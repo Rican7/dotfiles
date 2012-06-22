@@ -7,6 +7,14 @@ elif [ -f /etc/bash.bashrc ]; then
      . /etc/bash.bashrc
 fi
 
+# User specific aliases and functions
+umask 002;
+
+##########################
+## Modify PATH Variable ##
+##########################
+export PATH="/usr/local/bin:/usr/local/sbin/:/usr/local/mysql/bin/:/opt/local/bin:/opt/local/sbin:~/local/bin:$PATH"
+
 # Grab smart autocompletion functions
 if [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
@@ -18,14 +26,6 @@ do
 	# Source the file (add the autocompletion scheme to bash "complete")
 	. $filename
 done;
-
-# User specific aliases and functions
-umask 002;
-
-##########################
-## Modify PATH Variable ##
-##########################
-export PATH="/usr/local/bin:/usr/local/sbin/:/usr/local/mysql/bin/:/opt/local/bin:/opt/local/sbin:~/local/bin:$PATH"
 
 # Let's define our shell for continuity
 export SHELL="/bin/bash"
