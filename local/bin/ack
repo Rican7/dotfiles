@@ -1,4 +1,4 @@
-#!//usr/bin/env perl
+#!/usr/bin/env perl
 #
 # This file, ack, is generated code.
 # Please DO NOT EDIT or send patches for it.
@@ -834,7 +834,7 @@ so short and simple to type.
 
 To do that, run this with F<sudo> or as root:
 
-   ln -s //usr/bin/ack-grep //usr/bin/ack
+   ln -s /usr/bin/ack-grep /usr/bin/ack
 
 =head2 What does F<ack> mean?
 

@@ -1,4 +1,4 @@
-#! //usr/bin/env bash
+#! /usr/bin/env bash
 #
 # Script to connect to PSU's dev servers, so I don"t have to type the long domains in... or remember my password
 #
