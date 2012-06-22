@@ -1,3 +1,29 @@
-# Files #
-#########
-.minttyrc
+# -- MacOS X --
+.DS_Store?
+.DS_Store
+Icon?
+
+# -- TextMate --
+*.tmproj
+
+# -- XCode --
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+
+# Other SVC
+.hg
+.svn
+CVS
+
+# -- Generated files --
+*.log
+*.sqlite
+*.sql
+
+# -- temp --
+*.swp
+*~

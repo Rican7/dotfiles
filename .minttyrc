@@ -1,0 +1,15 @@
+BoldAsFont=no
+Font=Courier New
+FontHeight=10
+Transparency=low
+OpaqueWhenFocused=yes
+AllowBlinking=no
+Columns=126
+Rows=33
+CursorType=block
+CursorColour=0,190,255
+Scrollbar=none
+Term=xterm-256color
+BellSound=no
+BellFlash=no
+CursorBlinks=no
