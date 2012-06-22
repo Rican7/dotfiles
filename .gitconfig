@@ -1,3 +1,13 @@
 [user]
 	name = Trevor Suarez
-	email = Rican7@gmail.com
+	email = rican7@gmail.com
+[github]
+	user = Rican7
+	token = d47be2dff756d63313de4623fcfe10fc
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative

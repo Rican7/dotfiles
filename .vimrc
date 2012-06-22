@@ -41,7 +41,7 @@ nmap <leader>s :source ~/.vimrc<CR>
 map K <Nop>
 
 " http://vim.wikia.com/wiki/Open_SVN_diff_window
-map <leader>d :vnew<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>ggdd
+" map <leader>d :vnew<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>ggdd
 
 :nnoremap <leader>i :setl noai nocin nosi inde=<CR>
 
@@ -52,7 +52,10 @@ abbr Firephp PSU::get('firephp')
 
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
-" autocmd BufRead,BufNewFile *.html set filetype=php
+autocmd BufRead,BufNewFile *.html set filetype=php
+autocmd BufRead,BufNewFile *.sass set filetype=css
+autocmd BufRead,BufNewFile *.scss set filetype=css
+autocmd BufRead,BufNewFile .*rc set filetype=sh
 
 filetype indent on
 
@@ -106,11 +109,27 @@ colorscheme railscasts
 set ffs=unix,dos,mac
 
 function TogglePasteMode ()
-        if (&paste)
-        set nopaste
-        echo "paste mode off"
-        else
-        set paste
-        echo "paste mode on"
-        endif
-        endfunction
+	if (&paste)
+		set nopaste
+		echo "paste mode off"
+     else
+     	set paste
+     	echo "paste mode on"
+     endif
+endfunction
+
+" external copy paste -- saves selected buffer into your .viminfo file
+" so you can paste it into another vim instance
+vmap <silent> ,y "xy<CR>:wviminfo! ~/.viminfo<CR>
+vmap <silent> ,d "xd<CR>:wviminfo! ~/.viminfo<CR>
+nmap <silent> ,y "xyy<CR>:wviminfo! ~/.viminfo<CR>
+nmap <silent> ,d "xdd<CR>:wviminfo! ~/.viminfo<CR>
+nmap <silent> ,p :rviminfo! ~/.viminfo<CR>"xp
+nmap <silent> ,p :rviminfo! ~/.viminfo<CR>"xp
+nmap ,v :tabedit $MYVIMRC<CR>
+
+" Change highlight colors for vimdiff
+highlight DiffAdd cterm=none ctermfg=black ctermbg=Green gui=none guifg=black guibg=Green 
+highlight DiffDelete cterm=none ctermfg=black ctermbg=Red gui=none guifg=black guibg=Red 
+highlight DiffChange cterm=none ctermfg=black ctermbg=Yellow gui=none guifg=black guibg=Yellow 
+highlight DiffText cterm=none ctermfg=black ctermbg=Magenta gui=none guifg=black guibg=Magenta
