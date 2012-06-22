@@ -66,6 +66,7 @@ fi
 
 # Let's define some other aliases
 alias vi="vim"
+alias sudo="sudo " # Alias sudo so it can keep its subcommand's aliasing (http://blog.edwards-research.com/2010/07/keeping-aliases-with-sudo-sort-of/)
 
 # Enable java command line usage by adding the Cygpath equivalent of the windows classpath
 if $cygpath ; then
