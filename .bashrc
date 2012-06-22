@@ -64,6 +64,6 @@ export EDITOR="vim"
 export VISUAL="vim"
 
 # Enable java command line usage by adding the Cygpath equivalent of the windows classpath
-if $dircolors ; then
+if $cygpath ; then
 	export CLASSPATH=`cygpath -wp $CLASSPATH`
 fi
