@@ -27,7 +27,7 @@ filesDirectories=(
 	"$HOME/.minttyrc"
 	"$HOME/.vim"
 	"$HOME/.vimrc"
-	"$HOME/local/bin"
+	"$HOME/local"
 	"/etc/bash_completion.d"
 );
 
