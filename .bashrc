@@ -27,25 +27,43 @@ umask 002;
 ##########################
 export PATH="/usr/local/bin:/usr/local/sbin/:/usr/local/mysql/bin/:/opt/local/bin:/opt/local/sbin:~/local/bin:$PATH"
 
+# Let's define our shell for continuity
+export SHELL="/bin/bash"
+
 # Change bash prompt
 #export PS1="[\u \W]\$ "
 #export PS1="[\u \W]\$ "
 export PS1="\[\e[0;36m\]\u\[\e[m\] \[\e[0;32m\]\W\[\e[m\] $ "
 
+# Let's define what commands exist
+hash tmux		2>/dev/null && tmux=true || tmux=false
+hash sass		2>/dev/null && sass=true || sass=false
+hash dircolors 2>/dev/null && dircolors=true || dircolors=false
+hash cygpath	2>/dev/null && cygpath=true || cygpath=false
+
 # Make tmux try to reconnect/reattach to an existing session, yet fallback if none are running
-alias tmux="if tmux has; then tmux -2 attach; else tmux -2 new; fi"
+if $tmux ; then
+	alias tmux="if tmux has; then tmux -2 attach; else tmux -2 new; fi"
+fi
 
 # Make sass try to watch a default file (style.scss) by default
-alias sass="sass --watch style.scss:style.css"
+if $sass ; then
+	alias sass="sass --watch style.scss:style.css"
+fi
 
 # Enable ls to show folder/file colors
-export SHELL="/bin/bash"
-eval `dircolors ~/.dircolors`
-alias ls="ls --color"
+if $dircolors ; then
+	[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+	[ -e "$DIR_COLORS" ] || DIR_COLORS=""
+	eval "`dircolors -b $DIR_COLORS`"
+	alias ls="ls --color"
+fi
 
 # Export the EDITOR and VISUAL variables
 export EDITOR="vim"
 export VISUAL="vim"
 
 # Enable java command line usage by adding the Cygpath equivalent of the windows classpath
-export CLASSPATH=`cygpath -wp $CLASSPATH`
+if $dircolors ; then
+	export CLASSPATH=`cygpath -wp $CLASSPATH`
+fi
