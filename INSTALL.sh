@@ -67,6 +67,14 @@ function removeTarget() {
 		if $verbose ; then
 			echo -e "directory \t$target removed"
 		fi
+	elif [ -L "$target" ] && [ ! -e "$target" ] ; then
+		# Remove the broken link
+		rm $target
+
+		# Verbose info
+		if $verbose ; then
+			echo -e "broken link \t$target removed"
+		fi
 	fi
 }
 
@@ -76,15 +84,19 @@ do
 	# Get the basename
 	baseName=$(basename "$target")
 
-	# Use the removeTarget function and pass the target as an argument
-	removeTarget $target
+	# Let's make SURE that we have write permissions
+	# If the file doesn't exist, let's just go ahead and make the link anyway
+	if [ -w "$target" ] || [ ! -e "$target" ] ; then
+		# Use the removeTarget function and pass the target as an argument
+		removeTarget $target
 
-	# Relink the file
-	ln -s $gitboxDir/$baseName $target
+		# Relink the file
+		ln -s $gitboxDir/$baseName $target
 
-	# Verbose info
-	if $verbose ; then
-		echo -e " $gitboxDir/$baseName has been linked to $target"
+		# Verbose info
+		if $verbose ; then
+			echo -e " $gitboxDir/$baseName has been linked to $target"
+		fi
 	fi
 done;
 
