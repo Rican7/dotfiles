@@ -48,7 +48,7 @@ cygFileLocations=(
 # Define an array containing the destination of the Windows/Cygwin ONLY files/directories for linking
 # MUST ALIGN WITH cygFilesSources
 cygFileDestinations=(
-	".vimrc"
+	"$CONFIGDIR/.vimrc"
 	".vim"
 );
 
@@ -144,8 +144,8 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 		# Get the windows target path
 		windowsTargetPath=$(cygpath -w $cygTarget);
 
-		# Get the windows gitbox directory path
-		windowsGitboxPath=$(cygpath -w $gitboxDir);
+		# Get the windows destination path
+		windowsDestinationPath=$(cygpath -w $gitboxDir\\${cygFileDestinations[$count]});
 
 		# Use the removeTarget function and pass the target as an argument
 		removeTarget $cygTarget
@@ -157,7 +157,7 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 		fi
 
 		# Use cmd (windows native command prompt) to setup Windows NT Symbolic Links
-		cmd /c mklink "$windowsTargetPath" "$windowsGitboxPath\\${cygFileDestinations[$count]}" $outputSuppressor
+		cmd /c mklink "$windowsTargetPath" "$windowsDestinationPath" $outputSuppressor
 
 		# Increment the counter
 		count=$[$count+1]
