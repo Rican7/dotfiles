@@ -4,6 +4,9 @@
 #
 #
 
+# Define constants
+CONFIGDIR='./config-rc'
+
 # Declare variables
 possibleParameters="v"
 verbose=false;
@@ -21,33 +24,38 @@ gitboxDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Define an array of files/directories
 filesDirectories=(
-	"$HOME/.bash_profile"
-	"$HOME/.bashrc"
-	"$HOME/.gitconfig"
-	"$HOME/.minttyrc"
 	"$HOME/.vim"
-	"$HOME/.vimrc"
 	"$HOME/local"
 	"/etc/bash_completion.d"
 );
 
+# Define an array for all of the config-rc files
+configFiles=()
+# Let's go through all of the files in the config-rc directory
+shopt -s dotglob # Allow * to match hidden files
+for filename in $CONFIGDIR/*
+do
+	configFiles+=($filename)
+done;
+shopt -u dotglob # Undo the allowing of * to match hidden files
+
 # Define an array of Windows/Cygwin ONLY files/directories
 cygFileLocations=(
-	"$HOME/vimfiles"
 	"$HOME/_vimrc"
+	"$HOME/vimfiles"
 );
 
 # Define an array containing the destination of the Windows/Cygwin ONLY files/directories for linking
 # MUST ALIGN WITH cygFilesSources
 cygFileDestinations=(
-	".vim"
 	".vimrc"
+	".vim"
 );
 
 # Create a function to remove the passed target
 function removeTarget() {
 	# The target should be the first (only) argument
-	target=$1
+	local target=$1
 
 	# If the target is a file
 	if [ -f "$target" ] ; then
@@ -96,6 +104,28 @@ do
 		# Verbose info
 		if $verbose ; then
 			echo -e " $gitboxDir/$baseName has been linked to $target"
+		fi
+	fi
+done;
+
+# Let's loop through each config file
+for target in "${configFiles[@]}"
+do
+	# Get the basename
+	baseName=$(basename "$target")
+
+	# Let's make SURE that we have write permissions
+	# If the file doesn't exist, let's just go ahead and make the link anyway
+	if [ -w "$target" ] || [ ! -e "$target" ] ; then
+		# Use the removeTarget function
+		removeTarget $HOME/$baseName
+
+		# Relink the file
+		ln -s $gitboxDir/$target $HOME/$baseName
+
+		# Verbose info
+		if $verbose ; then
+			echo -e " $gitboxDir/$target has been linked to $HOME/$baseName"
 		fi
 	fi
 done;
