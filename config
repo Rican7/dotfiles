@@ -1,5 +1,9 @@
+Host *
+	ServerAliveInterval 120
+	ServerAliveCountMax 30
 Host linode
 	user rican7
 	HostName 50.116.62.132
-	ServerAliveInterval 120
-	ServerAliveCountMax 30
+Host psu
+	user tnsuarez
+	HostName uranus.dev.plymouth.edu
