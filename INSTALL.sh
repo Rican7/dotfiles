@@ -24,6 +24,7 @@ gitboxDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Define an array of files/directories
 filesDirectories=(
+	"$HOME/.ssh/config"
 	"$HOME/.vim"
 	"$HOME/local"
 	"/etc/bash_completion.d"

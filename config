@@ -1,0 +1,5 @@
+Host linode
+	user rican7
+	HostName 50.116.62.132
+	ServerAliveInterval 120
+	ServerAliveCountMax 30
