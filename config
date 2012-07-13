@@ -7,3 +7,6 @@ Host linode
 Host psu
 	user tnsuarez
 	HostName uranus.dev.plymouth.edu
+Host zoltan mainframe omr omar
+	user trevorsuarez
+	HostName zoltan.omrcloud.com
