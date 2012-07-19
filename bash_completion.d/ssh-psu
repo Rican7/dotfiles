@@ -1,2 +1,0 @@
-# Autocomplete the ssh-psu function
-complete -o nospace -W "$(ssh-psu -x)" ssh-psu
