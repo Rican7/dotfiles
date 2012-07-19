@@ -164,3 +164,6 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 		count=$[$count+1]
 	done;
 fi
+
+# Let's change the permissions of some files
+chmod 600 ./config
