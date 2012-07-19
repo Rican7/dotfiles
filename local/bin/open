@@ -1,0 +1,34 @@
+#! /usr/bin/env bash
+#
+# Script to open a file in windows from within cygwin
+#
+#
+
+# Check if we're running CYGWIN
+if [[ $OSTYPE == "cygwin" ]] ; then
+	
+	# Declare constants
+	startCommandPath="/bin/cygstart"
+
+	# Declare variables
+	possibleParameters="e";
+	explore=false;
+
+	# Let's set some values based on the parameters
+	while getopts "$possibleParameters" opt; do
+		case $opt in
+			e)	explore=true;;
+			\?)	echo "Invalid option: -$OPTARG"; exit;;
+		esac
+	done
+
+	# If explore is set, then add the explore argument
+	if $explore ; then
+		"$startCommandPath" "--explore" "${2:-.}";
+	else
+		"$startCommandPath" "${1:-.}";
+	fi
+
+else
+	echo -e "This script is meant only for Windows running Cygwin";
+fi
