@@ -20,12 +20,17 @@ if [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
-# For each file in the autocompletion directory
-for filename in /etc/bash_completion.d/*
-do
-	# Source the file (add the autocompletion scheme to bash "complete")
-	. $filename
-done;
+# If we're NOT running on Debian based distributions
+if [ ! -f /etc/debian_version ]; then
+	# Grab smart autocompletion functions
+
+	# For each file in the autocompletion directory
+	for filename in /etc/bash_completion.d/*
+	do
+		# Source the file (add the autocompletion scheme to bash "complete")
+		. $filename
+	done;
+fi
 
 # Let's define our shell for continuity
 export SHELL="/bin/bash"
