@@ -1,0 +1,80 @@
+#! /usr/bin/env bash
+#
+# Script to stream/show the apache server logs and color them
+#
+#
+
+# Define our apache log paths
+errorLogPaths=(
+	"/var/log/apache2/error.log"
+	"/var/log/apache/error.log"
+);
+accessLogPaths=(
+	"/var/log/apache2/access.log"
+	"/var/log/apache/access.log"
+);
+
+# Let's see what commands exist
+hash tail		2>/dev/null && tail=true || tail=false
+hash grep		2>/dev/null && grep=true || grep=false
+hash ccze		2>/dev/null && ccze=true || ccze=false
+hash lwatch	2>/dev/null && lwatch=true || lwatch=false
+
+# Create an iterator
+i=0
+
+# Let's loop through each error log file
+for target in "${errorLogPaths[@]}"
+do
+	# Let's make SURE that we have read permissions and that the file actually exists
+	if [ -r "$target" ] || [ -e "$target" ] ; then
+		existingLogs[i++]="$target"
+	fi
+done;
+
+# Let's loop through each access log file
+for target in "${accessLogPaths[@]}"
+do
+	# Let's make SURE that we have read permissions and that the file actually exists
+	if [ -r "$target" ] || [ -e "$target" ] ; then
+		existingLogs[i++]="$target"
+	fi
+done;
+
+# Are there actually any usable logs?
+if [ ${#existingLogs[@]} -gt 0 ] ; then
+	# Let's build our command call
+	# Define some vars
+	command=""
+
+	# If tail exists
+	if $tail ; then
+		command="tail -f"
+	else
+		command="cat"
+	fi
+
+	# Add the logs as the arguments
+	for target in "${existingLogs[@]}"
+	do
+		command="$command '$target'"
+	done;
+
+	# If grep exists
+	if $grep ; then
+		command="$command | grep --line-buffered -v -e favicon.ico"
+	fi
+
+	# If one of the colorizers exist
+	if $ccze ; then
+		command="$command | ccze"
+	elif $lwatch ; then
+		command="$command | lwatch -i-"
+	fi
+
+	# Finally, run the command
+	eval $command
+
+else
+	echo -e "Either the logs don't exist or you don't have access to them" 1>&2
+fi
