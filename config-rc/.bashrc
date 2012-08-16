@@ -81,3 +81,8 @@ fi
 
 # AutoJump!
 source ~/local/bash/autojump.bash
+
+# Let's source an optional device-specific bash config file
+if [ -f ~/.bash_device_rc ]; then
+     . ~/.bash_device_rc
+fi
