@@ -1,7 +1,13 @@
 " http://py.vaults.ca/~x/python_and_vim.html
 
-set guifont=Courier\ New:h10
-set guioptions-=T
+" Windows vs Mac GUI settings
+if has("win32") || has("win64")
+	set guifont=Courier\ New:h10
+	set guioptions-=T
+else
+	set guifont=Courier\ New:h14
+	set guioptions-=T
+end
 
 " Windows SWAP files
 if has("win32") || has("win64")
