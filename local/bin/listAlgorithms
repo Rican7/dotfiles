@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash -i
 
-SCRIPT_NAME=listAlgorithms.sh
+SCRIPT_NAME=listAlgorithms
 EXECUTABLE_CLASS=org.jasypt.intf.cli.AlgorithmRegistryCLI
 BIN_DIR=`dirname $0`
 DIST_DIR=$BIN_DIR/..
@@ -17,10 +17,15 @@ do
   EXEC_CLASSPATH=$EXEC_CLASSPATH:$a
 done
 
+# Does the "java" command exist?
+hash java 2>/dev/null && java_exists=true || java_exists=false
+
 JAVA_EXECUTABLE=java
-if [ -n "$JAVA_HOME" ]
-then
-  JAVA_EXECUTABLE=$JAVA_HOME/bin/java
+if [ ! $java_exists ] ; then
+	if [ -n "$JAVA_HOME" ]
+	then
+	  JAVA_EXECUTABLE=$JAVA_HOME/bin/java
+	fi
 fi
 
-$JAVA_EXECUTABLE -classpath $EXEC_CLASSPATH $EXECUTABLE_CLASS $SCRIPT_NAME "$@"
+eval $JAVA_EXECUTABLE -classpath $EXEC_CLASSPATH $EXECUTABLE_CLASS $SCRIPT_NAME "$@"
