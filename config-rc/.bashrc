@@ -76,8 +76,14 @@ alias explore="open -e"
 
 # Enable java command line usage by adding the Cygpath equivalent of the windows classpath
 if $cygpath ; then
-	export CLASSPATH=`cygpath -wp $CLASSPATH`
+	#export CLASSPATH=`cygpath -wp $CLASSPATH`
+	alias java="winrun java"
 fi
 
 # AutoJump!
 source ~/local/bash/autojump.bash
+
+# Let's source an optional device-specific bash config file
+if [ -f ~/.bash_device_rc ]; then
+     . ~/.bash_device_rc
+fi

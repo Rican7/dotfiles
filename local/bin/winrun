@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [[ $1 = "bg" ]];then
+   BG="&"
+   shift
+fi
+
+if [[ $# -eq 0 ]]; then
+   echo "usage: $0 [bg] <progarm> [args]"
+   exit 0
+fi
+
+CMD="$1"
+shift
+
+while [ -n "$1" ]; do
+   case "$1" in
+     [+-]*) ARG=$1;;
+     *) ARG=\"`cygpath -wp "$1"`\";;
+   esac
+   CMD="$CMD $ARG";
+   shift;
+done
+
+#echo $CMD $BG
+eval $CMD $BG
