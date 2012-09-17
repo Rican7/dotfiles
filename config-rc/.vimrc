@@ -46,6 +46,9 @@ nmap <leader>s :source ~/.vimrc<CR>
 
 map K <Nop>
 
+" Superuser Write! Woot! Thanks to @borkweb and reddit
+cnoremap w!! w !sudo dd of=%
+
 " http://vim.wikia.com/wiki/Open_SVN_diff_window
 " map <leader>d :vnew<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>ggdd
 
@@ -75,7 +78,7 @@ autocmd FileType make set noexpandtab
 
 let php_sql_query=1
 let php_htmlInStrings=1
-let php_noShortTags=1
+let php_noShortTags=0
 let php_folding=0
 
 autocmd FileType php set makeprg=php\ -l\ %

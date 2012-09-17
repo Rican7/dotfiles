@@ -30,3 +30,7 @@ CVS
 
 # -- VIM Files --
 .netrwhist
+
+# -- VIM Extension Caching --
+# TagBar
+tags
