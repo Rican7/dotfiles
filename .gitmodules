@@ -1,0 +1,3 @@
+[submodule "local/modules/swagger"]
+	path = local/modules/swagger
+	url = https://github.com/zircote/swagger-php.git
