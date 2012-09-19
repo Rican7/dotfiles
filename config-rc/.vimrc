@@ -29,9 +29,14 @@ set modeline modelines=5 nu spr
 set iskeyword-=_
 set t_Co=256
 
-let mapleader=","
+" Let the spacebar work as a leader without still moving forward a char
+nnoremap <SPACE> <Nop>
+
+let mapleader=" "
 " go back # words
 map <leader>b :b#<CR>
+nmap <silent> <leader>' /\v'[^']+'<CR>:nohl<CR>
+nmap <silent> <leader>" /\v"[^"]+"<CR>:nohl<CR>
 " paste and indent
 map <leader>P P'[v']=
 map <leader>p p'[v']=
@@ -121,7 +126,7 @@ colorscheme railscasts
 "set t_Co=256
 set ffs=unix,dos,mac
 
-function TogglePasteMode ()
+function! TogglePasteMode ()
 	if (&paste)
 		set nopaste
 		echo "paste mode off"
