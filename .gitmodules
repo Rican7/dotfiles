@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/tcomment"]
 	path = .vim/bundle/tcomment
 	url = https://github.com/vim-scripts/tComment.git
+[submodule ".vim/bundle/matchit"]
+	path = .vim/bundle/matchit
+	url = https://github.com/edsono/vim-matchit.git
