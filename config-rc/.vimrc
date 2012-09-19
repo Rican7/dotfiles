@@ -16,6 +16,10 @@ else
 	set directory=/tmp
 end
 
+" Pathogen! https://github.com/tpope/vim-pathogen
+call pathogen#infect()
+call pathogen#helptags()
+
 set backupcopy=yes " http://marc.info/?t=108316584200005&r=1&w=2
 set backspace=2 sts=5 ts=5 sw=5 smarttab noet ai nocp wrap
 set ruler nowrap backspace=2 hidden showmatch matchtime=3
