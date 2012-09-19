@@ -34,3 +34,6 @@ CVS
 # -- VIM Extension Caching --
 # TagBar
 tags
+
+# -- PHP Composer Dependencies --
+vendor/
