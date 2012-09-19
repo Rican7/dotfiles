@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/railscasts"]
 	path = .vim/bundle/railscasts
 	url = https://github.com/vim-scripts/Railscasts-Theme-GUIand256color.git
+[submodule ".vim/bundle/php-stuff"]
+	path = .vim/bundle/php-stuff
+	url = https://github.com/paulyg/Vim-PHP-Stuff.git
