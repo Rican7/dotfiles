@@ -13,3 +13,4 @@ Term=xterm-256color
 BellSound=no
 BellFlash=no
 CursorBlinks=no
+ZoomShortcuts=no
