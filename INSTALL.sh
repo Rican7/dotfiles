@@ -167,3 +167,7 @@ fi
 
 # Let's change the permissions of some files
 chmod 600 ./config
+
+# We're using Git Submodules now, so let's start those up
+git submodule init
+git submodule update
