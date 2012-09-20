@@ -154,3 +154,13 @@ highlight DiffText cterm=none ctermfg=black ctermbg=Magenta gui=none guifg=black
 
 " TagBar command hotkey
 nmap <F8> :TagbarToggle<CR>
+
+"
+" NERDTree commands
+"
+
+" Open NERDTree if no files were specified on opening VIM
+autocmd vimenter * if !argc() | NERDTree | endif
+
+" Close VIM if the only open buffer left is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
