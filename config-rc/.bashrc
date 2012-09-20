@@ -1,6 +1,8 @@
 # .bashrc
 
+#
 # Source global definitions
+#
 if [ -f /etc/bashrc ]; then
      . /etc/bashrc
 elif [ -f /etc/bash.bashrc ]; then
@@ -49,7 +51,6 @@ export PS1="\[\e[0;36m\]\u\[\e[m\]\[\e[0;34m\]@\h\[\e[m\] \[\e[0;32m\]\W\[\e[m\]
 hash tmux		2>/dev/null && tmux=true || tmux=false
 hash sass		2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
-hash cygpath	2>/dev/null && cygpath=true || cygpath=false
 
 # Make tmux try to reconnect/reattach to an existing session, yet fallback if none are running
 if $tmux ; then
@@ -74,9 +75,9 @@ alias vi="vim"
 alias sudo="sudo " # Alias sudo so it can keep its subcommand's aliasing (http://blog.edwards-research.com/2010/07/keeping-aliases-with-sudo-sort-of/)
 alias explore="open -e"
 
-# Enable java command line usage by adding the Cygpath equivalent of the windows classpath
-if $cygpath ; then
-	#export CLASSPATH=`cygpath -wp $CLASSPATH`
+# Check if we're running CYGWIN
+if [[ $OSTYPE == "cygwin" ]] ; then
+	# Enable java command line usage under Cygwin
 	alias java="winrun java"
 fi
 
