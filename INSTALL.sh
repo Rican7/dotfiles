@@ -15,7 +15,7 @@ verbose=false;
 while getopts "$possibleParameters" opt; do
 	case $opt in
 		v)	verbose=true;;
-		\?)	echo "Invalid option: -$OPTARG"; exit;;
+		\?)	echo "Invalid option: -$OPTARG"; exit 1;;
 	esac
 done
 
@@ -24,10 +24,10 @@ gitboxDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Define an array of files/directories
 filesDirectories=(
+	"/etc/bash_completion.d"
 	"$HOME/.ssh/config"
 	"$HOME/.vim"
 	"$HOME/local"
-	"/etc/bash_completion.d"
 );
 
 # Define an array for all of the config-rc files
@@ -53,38 +53,117 @@ cygFileDestinations=(
 	".vim"
 );
 
+# Create a function to echo out errors
+function error() {
+	# Let's get our arguments
+	local message=$1
+
+	# Echo out our message
+	echo -e "\033[00;31mERROR:\033[00m $message"
+}
+
 # Create a function to remove the passed target
 function removeTarget() {
 	# The target should be the first (only) argument
 	local target=$1
 
-	# If the target is a file
-	if [ -f "$target" ] ; then
-		# Remove the original file... we're gonna link it instead
-		rm $target
+	# Define some local variables
+	local status=1 # Let's have a variable to hold the return status
+	local possible=false # Keep track of whether its possible to remove
+	local message="" # Hold our message here
 
-		# Verbose info
-		if $verbose ; then
-			echo -e "file \t\t$target removed"
-		fi
-	# If the target is a directory
-	elif [ -d "$target" ] ; then
-		# Remove the original directory... we're gonna link it instead
-		rm -r $target
+	# Let's make SURE that we have write permissions
+	if [ -w "$target" ] ; then
+		# If the target is a symlink
+		if [ -L "$target" ] ; then
+			# Remove the original file... we're gonna link it instead
+			possible=true
 
-		# Verbose info
-		if $verbose ; then
-			echo -e "directory \t$target removed"
-		fi
-	elif [ -L "$target" ] && [ ! -e "$target" ] ; then
-		# Remove the broken link
-		rm $target
+			# Set the message
+			message="symlink \t$target removed"
 
-		# Verbose info
-		if $verbose ; then
-			echo -e "broken link \t$target removed"
+			# If we DON'T have access to the symlink's parent directory
+			if [ ! -w `dirname "$target"` ]; then
+				# Don't allow the file to be removed
+				possible=false
+
+			# If the target doesn't actually exist
+			elif [ ! -e "$target" ] ; then
+				# Set the message
+				message="broken link \t$target removed"
+
+			fi
+
+		# If the target is a file
+		elif [ -f "$target" ] ; then
+			# Remove the original file... we're gonna link it instead
+			possible=true
+
+			# Set the message
+			message="file \t\t$target removed"
+
+		# If the target is a directory
+		elif [ -d "$target" ] ; then
+			# Remove the original directory... we're gonna link it instead
+			possible=true
+
+			# Set the message
+			message="directory \t$target removed"
+
 		fi
 	fi
+
+	# If its possible to make the delete
+	if $possible ; then
+		# Remove the target
+		rm $target
+
+		# Save the return status
+		status=$?
+
+		# Verbose info
+		if $verbose && [ $status == 0 ] ; then
+			echo -e $message
+		fi
+	# I guess its not possible
+	else
+		# Display an error
+		error "insufficient permissions to delete $target"
+	fi
+
+	# Give a return code as an exit status
+	return $status
+}
+
+# Create a function to symbolically link the passed source to the passed target
+function symLink() {
+	# Let's have a variable to hold the return status
+	local status=1
+
+	# Let's get our arguments
+	local source=$1
+	local target=$2
+
+	# Let's make SURE that the target doesn't already exist... or we might make a recursive symlink (AH!)
+	if [ ! -e "$target" ] ; then
+		# Let's symbolically link them
+		ln -s $1 $2
+
+		# Save the return status
+		status=$?
+
+		# Verbose info
+		if $verbose && [ $status == 0 ] ; then
+			echo -e "  $source has been linked to $target"
+		fi
+	# The target must already exist
+	else
+		# Display an error
+		error "location $target already exists"
+	fi
+
+	# Give a return code as an exit status
+	return $status
 }
 
 # Let's loop through each file/directory
@@ -93,20 +172,12 @@ do
 	# Get the basename
 	baseName=$(basename "$target")
 
-	# Let's make SURE that we have write permissions
-	# If the file doesn't exist, let's just go ahead and make the link anyway
-	if [ -w "$target" ] || [ ! -e "$target" ] ; then
-		# Use the removeTarget function and pass the target as an argument
-		removeTarget $target
+	# Use the removeTarget function and pass the target as an argument
+	removeTarget $target #&& echo 'success!' || echo 'nope'; exit;
 
-		# Relink the file
-		ln -s $gitboxDir/$baseName $target
+	# Relink the file
+	symLink $gitboxDir/$baseName $target
 
-		# Verbose info
-		if $verbose ; then
-			echo -e " $gitboxDir/$baseName has been linked to $target"
-		fi
-	fi
 done;
 
 # Let's loop through each config file
@@ -115,20 +186,12 @@ do
 	# Get the basename
 	baseName=$(basename "$target")
 
-	# Let's make SURE that we have write permissions
-	# If the file doesn't exist, let's just go ahead and make the link anyway
-	if [ -w "$target" ] || [ ! -e "$target" ] ; then
-		# Use the removeTarget function
-		removeTarget $HOME/$baseName
+	# Use the removeTarget function
+	removeTarget $HOME/$baseName
 
-		# Relink the file
-		ln -s $gitboxDir/$target $HOME/$baseName
+	# Relink the file
+	symLink $gitboxDir/$target $HOME/$baseName
 
-		# Verbose info
-		if $verbose ; then
-			echo -e " $gitboxDir/$target has been linked to $HOME/$baseName"
-		fi
-	fi
 done;
 
 # Check if we're running CYGWIN
@@ -171,3 +234,6 @@ chmod 600 ./config
 # We're using Git Submodules now, so let's start those up
 git submodule init
 git submodule update
+
+# Exit gracefully (positive/good exit code)
+exit 0
