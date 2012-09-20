@@ -19,6 +19,12 @@ while getopts "$possibleParameters" opt; do
 	esac
 done
 
+# Not using verbose output?
+if [ $verbose != true ] ; then
+	# Suppress the output
+	outputSuppressor=`>/dev/null`
+fi
+
 # Get the current directory
 gitboxDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -214,14 +220,14 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 		# Use the removeTarget function and pass the target as an argument
 		removeTarget $cygTarget
 
-		# Verbose info
+		# Not using verbose output?
 		if [ $verbose != true ] ; then
 			# Suppress the output
-			outputSuppressor='>nul'
+			windowsOutputSuppressor='>nul'
 		fi
 
 		# Use cmd (windows native command prompt) to setup Windows NT Symbolic Links
-		cmd /c mklink "$windowsTargetPath" "$windowsDestinationPath" $outputSuppressor
+		cmd /c mklink "$windowsTargetPath" "$windowsDestinationPath" $windowsOutputSuppressor
 
 		# Increment the counter
 		count=$[$count+1]
@@ -232,8 +238,8 @@ fi
 chmod 600 ./config
 
 # We're using Git Submodules now, so let's start those up
-git submodule init
-git submodule update
+git submodule init $outputSuppressor
+git submodule update $outputSuppressor
 
 # Exit gracefully (positive/good exit code)
 exit 0
