@@ -51,6 +51,7 @@ export PS1="\[\e[0;36m\]\u\[\e[m\]\[\e[0;34m\]@\h\[\e[m\] \[\e[0;32m\]\W\[\e[m\]
 hash tmux		2>/dev/null && tmux=true || tmux=false
 hash sass		2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
+hash apt-cyg	2>/dev/null && aptcyg=true || aptcyg=false
 
 # Make tmux try to reconnect/reattach to an existing session, yet fallback if none are running
 if $tmux ; then
@@ -79,6 +80,13 @@ alias explore="open -e"
 if [[ $OSTYPE == "cygwin" ]] ; then
 	# Enable java command line usage under Cygwin
 	alias java="winrun java"
+
+	# Do we have apt-cyg?
+	if $aptcyg ; then
+		# Alias cygpath to a good mirror
+		alias apt-cyg="apt-cyg -m ftp://cygwin.mirrorcatalogs.com/cygwin/"
+		alias apt-cygports="apt-cyg -m ftp://ftp.cygwinports.org/pub/cygwinports/"
+	fi
 fi
 
 # AutoJump!
