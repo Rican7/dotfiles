@@ -159,6 +159,9 @@ nmap <F8> :TagbarToggle<CR>
 " NERDTree commands
 "
 
+" Toggle opening/closing of NERDTree
+nmap <F2> :NERDTreeToggle<CR>
+
 " Open NERDTree if no files were specified on opening VIM
 autocmd vimenter * if !argc() | NERDTree | endif
 
