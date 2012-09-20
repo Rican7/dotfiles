@@ -22,7 +22,7 @@ done
 # Not using verbose output?
 if [ $verbose != true ] ; then
 	# Suppress the output
-	outputSuppressor=`>/dev/null`
+	outputSuppressor='> /dev/null'
 fi
 
 # Get the current directory
@@ -238,8 +238,8 @@ fi
 chmod 600 ./config
 
 # We're using Git Submodules now, so let's start those up
-git submodule init $outputSuppressor
-git submodule update $outputSuppressor
+git submodule init | grep .$outputSuppressor
+git submodule update | grep .$outputSuppressor
 
 # Exit gracefully (positive/good exit code)
 exit 0
