@@ -32,16 +32,27 @@ set t_Co=256
 " Let the spacebar work as a leader without still moving forward a char
 nnoremap <SPACE> <Nop>
 
+" Define my leader
 let mapleader=" "
+
+" Tab mappings
+nmap <C-t> :tabnew<CR>
+nmap <S-t> :tabclose<CR>
+nmap <S-Tab> :tabnext<CR>
+"nmap <C-S-Tab> :tabprevious<CR>
+
 " go back # words
 map <leader>b :b#<CR>
 nmap <silent> <leader>' /\v'[^']+'<CR>:nohl<CR>
 nmap <silent> <leader>" /\v"[^"]+"<CR>:nohl<CR>
+
 " paste and indent
 map <leader>P P'[v']=
 map <leader>p p'[v']=
+
 " wordwraps a paragraph
 map <leader>q gqap
+
 " makes the current window wider by 10 characters
 map <leader>] 10<C-W>>
 " makes the current window smaller by 10 characters
