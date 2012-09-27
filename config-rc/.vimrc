@@ -65,9 +65,6 @@ cnoremap w!! w !sudo dd of=%
 
 "highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
-" abbr epoch <C-R>=strftime('%s')<CR>
-abbr Firephp PSU::get('firephp')
-
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 autocmd BufRead,BufNewFile *.html set filetype=php
@@ -94,7 +91,6 @@ autocmd FileType php set makeprg=php\ -l\ %
 autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 
 let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{}, 'Tag':{}, 'TaggedFile':{}}
-let g:FuzzyFinderOptions.Base.abbrev_map = { "^psu" : [ "/web/includes_psu/**/" ], "^igrad" : [ "/web/pscpages/webapp/igrad/**/" ], "^ape" : ["/web/pscpages/webapp/ape/**/"], }
 nnoremap <silent> <C-n>      :FuzzyFinderBuffer<CR>
 nnoremap <silent> <C-m>      :FuzzyFinderFile<CR>
 
@@ -110,11 +106,6 @@ function! MyTabOrComplete()
 	endif
 endfunction
 inoremap <Tab> <C-R>=MyTabOrComplete()<CR>
-
-" gf helpers (goto file)
-set path=includes/,,/web/includes_psu,/web/includes_psu/PSUModels,/web/pscpages/webapp/igrad/includes
-set suffixesadd=.php,.class.php,.inc.php
-set includeexpr=substitute(v:fname,'-$','','g')
 
 syntax on
 set background=dark
@@ -135,16 +126,6 @@ function! TogglePasteMode ()
      	echo "paste mode on"
      endif
 endfunction
-
-" external copy paste -- saves selected buffer into your .viminfo file
-" so you can paste it into another vim instance
-vmap <silent> ,y "xy<CR>:wviminfo! ~/.viminfo<CR>
-vmap <silent> ,d "xd<CR>:wviminfo! ~/.viminfo<CR>
-nmap <silent> ,y "xyy<CR>:wviminfo! ~/.viminfo<CR>
-nmap <silent> ,d "xdd<CR>:wviminfo! ~/.viminfo<CR>
-nmap <silent> ,p :rviminfo! ~/.viminfo<CR>"xp
-nmap <silent> ,p :rviminfo! ~/.viminfo<CR>"xp
-nmap ,v :tabedit $MYVIMRC<CR>
 
 " Change highlight colors for vimdiff
 highlight DiffAdd cterm=none ctermfg=black ctermbg=Green gui=none guifg=black guibg=Green 
