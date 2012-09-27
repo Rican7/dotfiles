@@ -97,16 +97,6 @@ nnoremap <silent> <C-m>      :FuzzyFinderFile<CR>
 set wildmenu
 set wildmode=list:longest,full
 
-function! MyTabOrComplete()
-	let col = col('.')-1
-		if !col || getline('.')[col-1] !~ '\k'
-		return "\<tab>"
-	else
-		return "\<C-N>"
-	endif
-endfunction
-inoremap <Tab> <C-R>=MyTabOrComplete()<CR>
-
 syntax on
 set background=dark
 
