@@ -74,6 +74,9 @@ function removeTarget() {
 	local target=$1
 
 	# Define some local variables
+	local recursive=false # Whether we should remove recursively or not
+	local force=false # Whether we should ignore "rm" errors or not
+	local argument="" # Our rm's argument
 	local status=1 # Let's have a variable to hold the return status
 	local possible=false # Keep track of whether its possible to remove
 	local message="" # Hold our message here
@@ -112,6 +115,9 @@ function removeTarget() {
 
 			# If the target is a directory
 			elif [ -d "$target" ] ; then
+				# Its a directory, so set this to remove recursively
+				recursive=true
+
 				# Remove the original directory... we're gonna link it instead
 				possible=true
 
@@ -121,10 +127,23 @@ function removeTarget() {
 			fi
 		fi
 
+		# Define our argument
+		if $recursive ; then
+			argument=$argument"r"
+		fi
+		if $force ; then
+			argument=$argument"f"
+		fi
+
+		# Was an argument defined?
+		if [ "$argument" != "" ] ; then
+			argument="-"$argument
+		fi
+
 		# If its possible to make the delete
 		if $possible ; then
 			# Remove the target
-			rm $target
+			rm $argument $target
 
 			# Save the return status
 			status=$?
