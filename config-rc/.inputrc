@@ -52,5 +52,17 @@ set output-meta on
 #
 # mappings for Ctrl+Backspace/Delete to remove whole words
 #
+# Cygwin/Bash
 "\e[3;5~": kill-word
 "\C-_": backward-kill-word
+
+# Mac OS X
+"\e\C-_": backward-kill-word
+
+
+#
+# mappings for Alt+Backspace/Delete to remove whole words
+#
+# Cygwin/Bash
+# "\e[3;5~": kill-word
+# "\C-_": backward-kill-word
