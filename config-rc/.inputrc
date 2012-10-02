@@ -9,27 +9,37 @@ set output-meta on
 # set bell-style none
 # set bell-style visible
 
+#
 # allow the use of the Home/End keys
+#
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
 
+#
 # allow the use of the Delete/Insert keys
+#
 "\e[3~": delete-char
 "\e[2~": quoted-insert
 
+
+#
 # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
+#
 # Cygwin/Bash
 "\e[1;5D": backward-word
 "\e[1;5C": forward-word
 
 # Mac OS X
-# "\e[5D": backward-word
-# "\e[5C": forward-word
+"\e[3D": beginning-of-line
+"\e[3C": end-of-line
 
 # "\e\e[D": backward-word
 # "\e\e[C": forward-word
 
+
+#
 # mappings for Alt-left-arrow and Alt-right-arrow for line end moving
+#
 # Cygwin/Bash
 "\e[1;3D": beginning-of-line
 "\e[1;3C": end-of-line
@@ -37,3 +47,10 @@ set output-meta on
 # Mac OS X
 "\e[5D": beginning-of-line
 "\e[5C": end-of-line
+
+
+#
+# mappings for Ctrl+Backspace/Delete to remove whole words
+#
+"\e[3;5~": kill-word
+"\C-_": backward-kill-word
