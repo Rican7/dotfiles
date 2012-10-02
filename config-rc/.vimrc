@@ -41,6 +41,9 @@ nmap <S-t> :tabclose<CR>
 nmap <S-Tab> :tabnext<CR>
 "nmap <C-S-Tab> :tabprevious<CR>
 
+" When entering a tab, set the wordking path to the buffers in the tab
+"autocmd TabEnter * lcd %:p:h
+
 " go back # words
 map <leader>b :b#<CR>
 nmap <silent> <leader>' /\v'[^']+'<CR>:nohl<CR>
