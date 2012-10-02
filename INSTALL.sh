@@ -78,63 +78,66 @@ function removeTarget() {
 	local possible=false # Keep track of whether its possible to remove
 	local message="" # Hold our message here
 
-	# Let's make SURE that we have write permissions
-	if [ -w "$target" ] ; then
-		# If the target is a symlink
-		if [ -L "$target" ] ; then
-			# Remove the original file... we're gonna link it instead
-			possible=true
+	# Make sure the target exists before we bother doing anything else
+	if [ -e "$target" ] ; then
+		# Let's make SURE that we have write permissions
+		if [ -w "$target" ] ; then
+			# If the target is a symlink
+			if [ -L "$target" ] ; then
+				# Remove the original file... we're gonna link it instead
+				possible=true
 
-			# Set the message
-			message="symlink \t$target removed"
-
-			# If we DON'T have access to the symlink's parent directory
-			if [ ! -w `dirname "$target"` ]; then
-				# Don't allow the file to be removed
-				possible=false
-
-			# If the target doesn't actually exist
-			elif [ ! -e "$target" ] ; then
 				# Set the message
-				message="broken link \t$target removed"
+				message="symlink \t$target removed"
+
+				# If we DON'T have access to the symlink's parent directory
+				if [ ! -w `dirname "$target"` ]; then
+					# Don't allow the file to be removed
+					possible=false
+
+				# If the target doesn't actually exist
+				elif [ ! -e "$target" ] ; then
+					# Set the message
+					message="broken link \t$target removed"
+
+				fi
+
+			# If the target is a file
+			elif [ -f "$target" ] ; then
+				# Remove the original file... we're gonna link it instead
+				possible=true
+
+				# Set the message
+				message="file \t\t$target removed"
+
+			# If the target is a directory
+			elif [ -d "$target" ] ; then
+				# Remove the original directory... we're gonna link it instead
+				possible=true
+
+				# Set the message
+				message="directory \t$target removed"
 
 			fi
-
-		# If the target is a file
-		elif [ -f "$target" ] ; then
-			# Remove the original file... we're gonna link it instead
-			possible=true
-
-			# Set the message
-			message="file \t\t$target removed"
-
-		# If the target is a directory
-		elif [ -d "$target" ] ; then
-			# Remove the original directory... we're gonna link it instead
-			possible=true
-
-			# Set the message
-			message="directory \t$target removed"
-
 		fi
-	fi
 
-	# If its possible to make the delete
-	if $possible ; then
-		# Remove the target
-		rm $target
+		# If its possible to make the delete
+		if $possible ; then
+			# Remove the target
+			rm $target
 
-		# Save the return status
-		status=$?
+			# Save the return status
+			status=$?
 
-		# Verbose info
-		if $verbose && [ $status == 0 ] ; then
-			echo -e $message
+			# Verbose info
+			if $verbose && [ $status == 0 ] ; then
+				echo -e $message
+			fi
+		# I guess its not possible
+		else
+			# Display an error
+			error "insufficient permissions to delete $target"
 		fi
-	# I guess its not possible
-	else
-		# Display an error
-		error "insufficient permissions to delete $target"
 	fi
 
 	# Give a return code as an exit status
