@@ -67,6 +67,9 @@ map <silent> <leader>l :nohl<CR>
 map <silent> <leader>L :se nu!<CR>
 nmap <leader>s :source ~/.vimrc<CR>
 
+" Search and replace for currently selected text
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+
 map K <Nop>
 
 " Superuser Write! Woot! Thanks to @borkweb and reddit
