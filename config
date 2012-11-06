@@ -4,6 +4,9 @@ Host *
 Host linode
 	user rican7
 	HostName 66.175.213.45
+Host metro metroserve metro.linode metroserve.me
+	user rican7
+	HostName metroserve.me
 Host zoltan mainframe omr omar
 	user trevorsuarez
 	HostName zoltan.omrcloud.com
