@@ -1,23 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
-# Server Status MOTD Script
-# Originally from: http://www.question-defense.com/2010/04/03/cent-os-how-to-make-a-custom-ssh-banner-with-current-system-statistics
- 
-CPUTIME=$(ps -eo pcpu | awk 'NR>1' | awk '{tot=tot+$1} END {print tot}')
-CPUCORES=$(cat /proc/cpuinfo | grep -c processor)
-UPTIME=$(echo `uptime` | awk '{ gsub(/,/, ""); print $3 }')
-echo "
-System Status as of `date`
- 
-Server Name:                `hostname`
-Host Name:                  `hostname -f`
-Public IP:                  `dig +short myip.opendns.com @resolver1.opendns.com`
-OS Version:                 `cat /etc/issue.net | head -1`
-System Uptime:              `echo $UPTIME`
-CPU Usage (average):        `echo $CPUTIME / $CPUCORES | bc`%
-Load Averages:              `cat /proc/loadavg`
-Memory free (real):         `free -m | head -n 2 | tail -n 1 | awk {'print $4'}` MB
-Memory free (cache):        `free -m | head -n 3 | tail -n 1 | awk {'print $3'}` MB
-Swap in use:                `free -m | tail -n 1 | awk {'print $3'}` MB
-Disk Space Used:            `df -h / | awk '{ size = $2 } { used = $5 } END { print used, "of", size }'`
-" > /etc/motd
+
+login_stats > /etc/motd
