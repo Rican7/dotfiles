@@ -1,5 +1,3 @@
-" http://py.vaults.ca/~x/python_and_vim.html
-
 " Windows vs Mac GUI settings
 if has("win32") || has("win64")
 	set guifont=Courier\ New:h10
@@ -20,7 +18,7 @@ end
 call pathogen#infect()
 call pathogen#helptags()
 
-set backupcopy=yes " http://marc.info/?t=108316584200005&r=1&w=2
+" Behavior settings
 set backspace=2 sts=5 ts=5 sw=5 smarttab noet ai nocp wrap
 set ruler nowrap backspace=2 hidden showmatch matchtime=3
 set wrap incsearch ignorecase hlsearch
@@ -28,6 +26,21 @@ set updatecount=50 showmatch matchtime=3
 set modeline modelines=5 nu spr
 set iskeyword-=_
 set t_Co=256
+set ffs=unix,dos,mac
+
+" http://marc.info/?t=108316584200005&r=1&w=2
+set backupcopy=yes
+
+set wildmenu
+set wildmode=list:longest,full
+
+syntax on
+
+" Colorscheme
+set background=dark
+colorscheme railscasts
+"colorscheme ir_black
+
 
 " Let the spacebar work as a leader without still moving forward a char
 nnoremap <SPACE> <Nop>
@@ -41,47 +54,65 @@ nmap <S-t> :tabclose<CR>
 nmap <S-Tab> :tabnext<CR>
 "nmap <C-S-Tab> :tabprevious<CR>
 
-" When entering a tab, set the wordking path to the buffers in the tab
+" When entering a tab, set the working path to the buffers in the tab
 "autocmd TabEnter * lcd %:p:h
 
-" go back # words
-map <leader>b :b#<CR>
+" Go to next quoted entry
 nmap <silent> <leader>' /\v'[^']+'<CR>:nohl<CR>
 nmap <silent> <leader>" /\v"[^"]+"<CR>:nohl<CR>
 
-" paste and indent
-map <leader>P P'[v']=
-map <leader>p p'[v']=
+" Enable and disable Paste Mode
+map <leader>v :call TogglePasteMode()<CR>
+
+" Paste and select the text
+map <leader>P P'[v']
+map <leader>p p'[v']
+
+" Toggle search highlighting
+map <silent> <leader>l :se hls!<CR>
+
+" Return highlighting to normal on search
+nnoremap / :set hlsearch<CR>/
+nnoremap <silent> n :set hlsearch<CR>n
+nnoremap <silent> N :set hlsearch<CR>N
+
+" Toggle line-numbering
+map <silent> <leader>n :se nu!<CR>
+
+" Search and replace for currently selected text
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+
+" Source our vimrc
+nmap <leader>s :source ~/.vimrc<CR>
+
+" Superuser Write! Woot! Thanks to @borkweb and reddit
+cnoremap w!! w !sudo dd of=%
 
 " wordwraps a paragraph
 map <leader>q gqap
+
+" go back # words
+map <leader>b :b#<CR>
 
 " makes the current window wider by 10 characters
 map <leader>] 10<C-W>>
 " makes the current window smaller by 10 characters
 map <leader>[ 10<C-W><
 
-map <leader>v :call TogglePasteMode()<CR>
-
-map <silent> <leader>l :nohl<CR>
-map <silent> <leader>L :se nu!<CR>
-nmap <leader>s :source ~/.vimrc<CR>
-
-" Search and replace for currently selected text
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
-
 map K <Nop>
 
-" Superuser Write! Woot! Thanks to @borkweb and reddit
-cnoremap w!! w !sudo dd of=%
+" Function for toggling paste mode on/off
+function! TogglePasteMode ()
+	if (&paste)
+		set nopaste
+		echo "paste mode off"
+     else
+     	set paste
+     	echo "paste mode on"
+     endif
+endfunction
 
-" http://vim.wikia.com/wiki/Open_SVN_diff_window
-" map <leader>d :vnew<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>ggdd
-
-:nnoremap <leader>i :setl noai nocin nosi inde=<CR>
-
-"highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
+" Filetypes based on file extension
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 autocmd BufRead,BufNewFile *.html set filetype=php
@@ -107,38 +138,12 @@ let php_folding=0
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 
-let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{}, 'Tag':{}, 'TaggedFile':{}}
-nnoremap <silent> <C-n>      :FuzzyFinderBuffer<CR>
-nnoremap <silent> <C-m>      :FuzzyFinderFile<CR>
-
-set wildmenu
-set wildmode=list:longest,full
-
-syntax on
-set background=dark
-
-colorscheme railscasts
-
-"colorscheme ir_black
-
-"set t_Co=256
-set ffs=unix,dos,mac
-
-function! TogglePasteMode ()
-	if (&paste)
-		set nopaste
-		echo "paste mode off"
-     else
-     	set paste
-     	echo "paste mode on"
-     endif
-endfunction
-
 " Change highlight colors for vimdiff
 highlight DiffAdd cterm=none ctermfg=black ctermbg=Green gui=none guifg=black guibg=Green 
 highlight DiffDelete cterm=none ctermfg=black ctermbg=Red gui=none guifg=black guibg=Red 
 highlight DiffChange cterm=none ctermfg=black ctermbg=Yellow gui=none guifg=black guibg=Yellow 
 highlight DiffText cterm=none ctermfg=black ctermbg=Magenta gui=none guifg=black guibg=Magenta
+
 
 "
 " TagBar commands
@@ -146,6 +151,7 @@ highlight DiffText cterm=none ctermfg=black ctermbg=Magenta gui=none guifg=black
 
 " TagBar command hotkey
 nmap <F8> :TagbarToggle<CR>
+
 
 "
 " NERDTree commands
