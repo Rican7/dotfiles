@@ -10,6 +10,10 @@
 	co = checkout
 	df = diff
 	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	diffc = diff --cached
+	s = status -s
+	files = diff --name-only
+	last = diff --name-only HEAD^!
 [core]
 	excludesfile = ~/.gitignore_global
 [color]

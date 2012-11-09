@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+
+login_stats > /etc/motd
