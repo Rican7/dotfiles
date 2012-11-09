@@ -14,8 +14,8 @@ else
 	set directory=/tmp
 end
 
-" Set nocompatible BEFORE trying to use Pathogen
-set nocompatible " Use Vim defaults (much better!)
+" Set nocompatible BEFORE trying to use Pathogen (Use Vim defaults = much better!)
+set nocompatible
 
 " Pathogen! https://github.com/tpope/vim-pathogen
 call pathogen#infect()
