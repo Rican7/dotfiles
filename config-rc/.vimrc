@@ -27,6 +27,7 @@ set ruler nowrap backspace=2 hidden showmatch matchtime=3
 set wrap incsearch ignorecase hlsearch
 set updatecount=50 showmatch matchtime=3
 set modeline modelines=5 nu spr
+set nofoldenable
 set iskeyword-=_
 set t_Co=256
 set ffs=unix,dos,mac
