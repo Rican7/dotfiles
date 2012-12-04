@@ -170,3 +170,20 @@ autocmd vimenter * if !argc() | NERDTree | endif
 
 " Close VIM if the only open buffer left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+
+"
+" Folding Options
+"
+
+" Make folding indent sensitive
+set foldmethod=indent
+
+" Don't autofold anything (but I can still fold manually)
+set foldlevel=100
+
+" Don't open folds when you search into them
+set foldopen-=search
+
+" Don't open folds when you undo stuff
+set foldopen-=undo
