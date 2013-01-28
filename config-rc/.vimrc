@@ -149,6 +149,11 @@ autocmd FileType php let php_folding=0
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 
+" PHP-Doc configuration and key-mappings
+autocmd FileType php inoremap <leader>c <ESC>:call PhpDocSingle()<CR>i
+autocmd FileType php nnoremap <leader>c :call PhpDocSingle()<CR>
+autocmd FileType php vnoremap <leader>c :call PhpDocRange()<CR>
+
 " Change highlight colors for vimdiff
 highlight DiffAdd cterm=none ctermfg=black ctermbg=Green gui=none guifg=black guibg=Green 
 highlight DiffDelete cterm=none ctermfg=black ctermbg=Red gui=none guifg=black guibg=Red 
