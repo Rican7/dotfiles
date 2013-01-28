@@ -132,16 +132,18 @@ filetype indent on
 
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc
 
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType make set noexpandtab
 
-let php_sql_query=1
-let php_htmlInStrings=1
-let php_noShortTags=0
-let php_folding=0
+autocmd FileType php let php_sql_query=1
+autocmd FileType php let php_htmlInStrings=1
+autocmd FileType php let php_noShortTags=0
+autocmd FileType php let php_folding=0
 
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
