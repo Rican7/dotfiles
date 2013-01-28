@@ -126,6 +126,7 @@ autocmd BufRead,BufNewFile *.html set filetype=php
 autocmd BufRead,BufNewFile *.sass set filetype=css
 autocmd BufRead,BufNewFile *.scss set filetype=css
 autocmd BufRead,BufNewFile .*rc set filetype=sh
+autocmd BufRead,BufNewFile .*virc,.*vimrc set filetype=vim
 autocmd BufRead,BufNewFile *.markdown,*.mdown,*.mkd,*.mkdn,*.md set filetype=mkd
 
 filetype indent on
