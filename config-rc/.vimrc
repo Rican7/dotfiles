@@ -65,6 +65,18 @@ nmap <S-Tab> :tabnext<CR>
 nmap <silent> <leader>' /\v'[^']+'<CR>:nohl<CR>
 nmap <silent> <leader>" /\v"[^"]+"<CR>:nohl<CR>
 
+" Go to next paren-surrounded entry
+nmap <silent> <leader>( /\v\([^\(]+\)<CR>:nohl<CR>
+nmap <silent> <leader>) /\v\([^\)]+\)/e<CR>:nohl<CR>
+
+" Go to next curly-brace-surrounded entry
+nmap <silent> <leader>{ /\v\{[^\{]+\}<CR>:nohl<CR>
+nmap <silent> <leader>} /\v\{[^\{]+\}/e<CR>:nohl<CR>
+
+" Go to next square-brace-surrounded entry
+nmap <silent> <leader>[ /\v\[[^\[]+\]<CR>:nohl<CR>
+nmap <silent> <leader>] /\v\[[^\]]+\]/e<CR>:nohl<CR>
+
 " Enable and disable Paste Mode
 map <leader>v :call TogglePasteMode()<CR>
 
@@ -102,9 +114,9 @@ map <leader>b :b#<CR>
 map <leader>w :w#<CR>
 
 " makes the current window wider by 10 characters
-map <leader>] 10<C-W>>
+map <leader><gt> 10<C-W>>
 " makes the current window smaller by 10 characters
-map <leader>[ 10<C-W><
+map <leader><lt> 10<C-W><
 
 map K <Nop>
 
