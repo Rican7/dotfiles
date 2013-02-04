@@ -1,5 +1,5 @@
 BoldAsFont=no
-Font=Courier New
+Font=Source Code Pro
 FontHeight=10
 Transparency=low
 OpaqueWhenFocused=yes
@@ -14,3 +14,4 @@ BellSound=no
 BellFlash=no
 CursorBlinks=no
 ZoomShortcuts=no
+FontSmoothing=default
