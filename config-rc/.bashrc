@@ -90,6 +90,13 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 	fi
 fi
 
+# Check if we're running OS X
+if [[ $OSTYPE == darwin* ]] ; then
+	# Don't use our custom "open" script; Fall back to stock
+	alias open="/usr/bin/open"
+	alias explore="/usr/bin/open ."
+fi
+
 # AutoJump!
 source ~/local/bash/autojump.bash
 
