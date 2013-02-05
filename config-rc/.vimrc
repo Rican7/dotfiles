@@ -3,7 +3,7 @@ if has("win32") || has("win64")
 	set guifont=Courier\ New:h10
 	set guioptions-=T
 else
-	set guifont=Courier\ New:h14
+	set guifont=Source\ Code\ Pro\ Light:h13
 	set guioptions-=T
 end
 
