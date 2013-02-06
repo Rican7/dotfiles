@@ -1,6 +1,6 @@
 " Windows vs Mac GUI settings
 if has("win32") || has("win64")
-	set guifont=Courier\ New:h10
+	set guifont=Source\ Code\ Pro:h10
 	set guioptions-=T
 else
 	set guifont=Source\ Code\ Pro\ Light:h13
