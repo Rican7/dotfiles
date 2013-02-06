@@ -9,14 +9,28 @@
 	br = branch
 	co = checkout
 	df = diff
-	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	dft = difftool
 	diffc = diff --cached
+	dfc = diff --cached
+	dftc = difftool --cached
 	s = status -s
 	files = diff --name-only
 	last = diff --name-only HEAD^!
+	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [core]
 	excludesfile = ~/.gitignore_global
+	pager = less -FRSX
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
 	ui = true
+	pager = true
 [merge]
 	ff = false
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
