@@ -37,3 +37,6 @@ tags
 
 # -- PHP Composer Dependencies --
 vendor/
+
+# -- PHPDoc's --
+php-docs/
