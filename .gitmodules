@@ -43,3 +43,6 @@
 [submodule ".vim/bundle/vim-numbertoggle"]
 	path = .vim/bundle/vim-numbertoggle
 	url = git://github.com/jeffkreeftmeijer/vim-numbertoggle.git
+[submodule ".vim/bundle/php-doc-modded"]
+	path = .vim/bundle/php-doc-modded
+	url = https://github.com/Rican7/php-doc-modded.git
