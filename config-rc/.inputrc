@@ -1,4 +1,8 @@
 # inputrc for readline
+
+# Set our CLI to accept VI keybindings
+set editing-mode vi
+
 # Trying to make the OS X, Linux, Cygwin, etc. experience cohesive
 
 # Be 8 bit clean.
