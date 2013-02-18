@@ -123,6 +123,7 @@ map <leader><Up> 10<C-W>+
 map <leader><Down> 10<C-W>-
 
 map K <Nop>
+map J <Nop>
 
 " Function for toggling paste mode on/off
 function! TogglePasteMode ()
