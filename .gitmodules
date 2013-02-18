@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/ctrlp"]
 	path = .vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "local/modules/z"]
+	path = local/modules/z
+	url = https://github.com/rupa/z.git
