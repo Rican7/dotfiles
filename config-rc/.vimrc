@@ -158,6 +158,7 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType make set noexpandtab
+autocmd FileType json set ts=3 sts=3 sw=3
 
 autocmd FileType php let php_sql_query=1
 autocmd FileType php let php_htmlInStrings=1
