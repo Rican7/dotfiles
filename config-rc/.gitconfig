@@ -17,6 +17,13 @@
 	files = diff --name-only
 	last = diff --name-only HEAD^!
 	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	pushhead = push origin HEAD
+	mergeflow = !git merge --no-ff
+	fall = fetch --all
+	pullbase = pull --rebase
+	remoteclean = remote prune # No shorter, but more semantic.... at least to me. :P
+	subupdate = submodule update --init --recursive
+	syncup = !git checkout master && git pullbase upstream master && git subupdate
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -FRSX
