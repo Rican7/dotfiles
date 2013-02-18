@@ -3,8 +3,6 @@
 # Set our CLI to accept VI keybindings
 set editing-mode vi
 
-# Trying to make the OS X, Linux, Cygwin, etc. experience cohesive
-
 # Be 8 bit clean.
 set input-meta on
 set output-meta on
@@ -12,6 +10,24 @@ set output-meta on
 # do not bell on tab-completion
 # set bell-style none
 # set bell-style visible
+
+# vi mode bindings
+$if mode=vi
+	set keymap vi-command
+	"gg": beginning-of-history
+	"G": end-of-history
+	"\e[A": history-search-backward
+	"\e[B": history-search-forward
+
+	set keymap vi-insert
+	"\C-l": clear-screen
+	"\C-p": dynamic-complete-history
+	"\C-n": menu-complete
+	"\e[A": history-search-backward
+	"\e[B": history-search-forward
+$endif
+
+# Trying to make the OS X, Linux, Cygwin, etc. experience cohesive
 
 #
 # allow the use of the Home/End keys
