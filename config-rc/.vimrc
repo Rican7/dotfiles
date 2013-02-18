@@ -106,6 +106,7 @@ cnoremap w!! w !sudo dd of=%
 
 " wordwraps a paragraph
 map <leader>q gqap
+vnoremap <leader>q gq
 
 " go back # words
 map <leader>b :b#<CR>
