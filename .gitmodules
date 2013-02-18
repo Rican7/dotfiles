@@ -52,3 +52,6 @@
 [submodule "local/modules/z"]
 	path = local/modules/z
 	url = https://github.com/rupa/z.git
+[submodule ".vim/bundle/vim-jquery"]
+	path = .vim/bundle/vim-jquery
+	url = https://github.com/itspriddle/vim-jquery.git
