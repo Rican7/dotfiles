@@ -1,1 +1,1 @@
-/cygdrive/d/Trevor/local/modules/z/z.sh
+../modules/z/z.sh
