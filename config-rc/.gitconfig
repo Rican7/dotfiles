@@ -24,6 +24,7 @@
 	remoteclean = remote prune # No shorter, but more semantic.... at least to me. :P
 	subupdate = submodule update --init --recursive
 	syncup = !git checkout master && git pullbase upstream master && git subupdate
+	syncthis = !git pullbase origin HEAD && git subupdate
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -FRSX
