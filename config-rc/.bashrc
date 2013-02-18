@@ -108,8 +108,8 @@ fi
 # source ~/local/bash/autojump.bash
 
 # Z command (similar to J/AutoJump)
+export _Z_CMD="j" # I'm used to j...
 source ~/local/bash/z.sh
-alias j="z" # I'm used to j...
 
 # Let's source an optional device-specific bash config file
 if [ -f ~/.bash_device_rc ]; then
