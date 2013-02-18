@@ -104,7 +104,11 @@ if [[ $OSTYPE == darwin* ]] ; then
 fi
 
 # AutoJump!
-source ~/local/bash/autojump.bash
+# source ~/local/bash/autojump.bash
+
+# Z command (similar to J/AutoJump)
+source ~/local/bash/z.sh
+alias j="z" # I'm used to j...
 
 # Let's source an optional device-specific bash config file
 if [ -f ~/.bash_device_rc ]; then
