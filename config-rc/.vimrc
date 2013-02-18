@@ -113,10 +113,14 @@ map <leader>b :b#<CR>
 " go forward # words
 map <leader>w :w#<CR>
 
-" makes the current window wider by 10 characters
-map <leader><gt> 10<C-W>>
-" makes the current window smaller by 10 characters
-map <leader><lt> 10<C-W><
+" makes the current vsplit window wider by 10 characters
+map <leader><Right> 10<C-W>>
+" makes the current vsplit window smaller by 10 characters
+map <leader><Left> 10<C-W><
+" makes the current hsplit window larger by 10 characters
+map <leader><Up> 10<C-W>+
+" makes the current hsplit window smaller by 10 characters
+map <leader><Down> 10<C-W>-
 
 map K <Nop>
 
