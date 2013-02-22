@@ -1,0 +1,104 @@
+#! /usr/bin/env bash
+#
+# Script to easily download a file with wget, extract it, and then remove the compressed download
+# (leaving the extracted files/directory in place)
+#
+#
+
+# Let's see what commands exist
+hash wget		2>/dev/null && wget=true || wget=false
+hash unzip		2>/dev/null && unzip=true || unzip=false
+hash tar		2>/dev/null && tar=true || tar=false
+hash gunzip		2>/dev/null && gunzip=true || gunzip=false
+hash basename	2>/dev/null && basename=true || basename=false
+
+# Not using verbose output?
+# if [ $verbose != true ] ; then
+	# Suppress the output
+	outputSuppressor='&>/dev/null'
+# fi
+
+# Loop over all of our passed arguments
+for var in "$@";
+do
+	# First, let's get our file name string
+	if $basename ; then
+		filename=$(basename "$var")
+
+		# Test our success
+		if [[ $? -ne 0 ]]; then
+			# Echo error and exit with a non-successful (non-zero) response
+			echo "Couldn't get the filename from the passed URL. I don't know how to do my job now. :/";
+			exit 1;
+		fi
+	fi
+
+	# First, let's download our file
+	if $wget ; then
+
+		bash -c "wget --no-check-certificate $var --output-document $filename $outputSuppressor";
+
+		# Test our success
+		if [[ $? -ne 0 ]]; then
+			# Echo error and exit with a non-successful (non-zero) response
+			echo "Couldn't download file $var";
+			exit 1;
+		fi
+	fi
+
+	# Do we have the unzip program?
+	if $unzip ; then
+		# Test the file. See if it is in fact a zip
+		bash -c "unzip -t $filename $outputSuppressor";
+
+		# Save the return status
+		iszip=$?
+	elif $gunzip ; then
+		# Test the file. See if it is in fact a g-zipped file
+		bash -c "gunzip -t $filename $outputSuppressor";
+
+		# Save the return status
+		isgzip=$?
+	elif $tar ; then
+		# Test the file. See if it is in fact a zip
+		bash -c "tar tf $filename $outputSuppressor";
+
+		# Save the return status
+		istar=$?
+	fi
+
+	# Decompress/extract based on the file-type
+	if [[ $iszip -eq 0 ]]; then
+		bash -c "unzip $filename $outputSuppressor";
+		extractSuccess=$?
+	elif [[ $istar -eq 0 && $isgzip -eq 0 ]]; then
+		bash -c "tar xzf $filename $outputSuppressor";
+		extractSuccess=$?
+	elif [[ $istar -eq 0 ]]; then
+		bash -c "tar xf $filename $outputSuppressor";
+		extractSuccess=$?
+	elif [[ $isgzip -eq 0 ]]; then
+		bash -c "gunzip $filename $outputSuppressor";
+		extractSuccess=$?
+	fi
+
+	# If our extraction succeeded
+	if [[ $extractSuccess -eq 0 ]]; then
+		bash -c "rm $filename $outputSuppressor";
+
+		# Test our success
+		if [[ $? -ne 0 ]]; then
+			# Echo error and exit with a non-successful (non-zero) response
+			echo "Couldn't remove file";
+			exit 1;
+		fi
+	else
+		# Echo error and exit with a non-successful (non-zero) response
+		echo "Couldn't extract or decompress file";
+		exit 1;
+	fi
+
+	# If we got here, we must have succeeded! :)
+	exit 0;
+
+done
