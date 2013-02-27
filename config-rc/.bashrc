@@ -17,7 +17,10 @@ umask 002;
 ##########################
 export PATH="/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin/:/usr/local/mysql/bin/:/opt/local/bin:/opt/local/sbin:~/local/bin:$PATH"
 
-# Grab smart autocompletion functions
+
+#
+# Autocompletion
+#
 if [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
@@ -40,6 +43,10 @@ if [ ! -f /etc/debian_version ]; then
 	done;
 fi
 
+
+#
+# Environment Variables
+#
 # Let's define our shell for continuity
 export SHELL="/bin/bash"
 
@@ -49,10 +56,15 @@ export VISUAL="vim"
 export SVN_EDITOR="vim"
 
 # Change bash prompt and color
-#export PS1="[\u \W]\$ "
-#export PS1="\e[0;36m\u\e[m \e[0;32m\W\e[m \$ "
 export PS1="\[\e[0;36m\]\u\[\e[m\]\[\e[0;34m\]@\h\[\e[m\] \[\e[0;32m\]\W\[\e[m\] $ "
 
+# Suppress our DOS file warnings when running Cygwin
+export CYGWIN="nodosfilewarning"
+
+
+#
+# Function aliases
+#
 # Let's define what commands exist
 hash tmux		2>/dev/null && tmux=true || tmux=false
 hash sass		2>/dev/null && sass=true || sass=false
@@ -104,12 +116,11 @@ if [[ $OSTYPE == darwin* ]] ; then
 	alias explore="/usr/bin/open ."
 fi
 
-# AutoJump!
-# source ~/local/bash/autojump.bash
-
 # Z command (similar to J/AutoJump)
 export _Z_CMD="j" # I'm used to j...
 source ~/local/bash/z.sh
+
+
 
 # Let's source an optional device-specific bash config file
 if [ -f ~/.bash_device_rc ]; then
