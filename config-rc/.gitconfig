@@ -16,6 +16,8 @@
 	s = status -s
 	files = diff --name-only
 	last = diff --name-only HEAD^!
+	showfiles = show --name-only
+	showlast = show --name-only HEAD^!
 	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	pushhead = push origin HEAD
 	mergeflow = !git merge --no-ff
