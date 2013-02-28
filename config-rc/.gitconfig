@@ -5,7 +5,7 @@
 	user = Rican7
 [alias]
 	st = status
-	ci = commit
+	ci = commit -v
 	br = branch
 	co = checkout
 	df = diff
@@ -25,6 +25,7 @@
 	subupdate = submodule update --init --recursive
 	syncup = !git checkout master && git pullbase upstream master && git subupdate
 	syncthis = !git pullbase origin HEAD && git subupdate
+	call = !git ci -a
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -FRSX
