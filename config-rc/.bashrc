@@ -71,11 +71,6 @@ hash sass		2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
 hash apt-cyg	2>/dev/null && aptcyg=true || aptcyg=false
 
-# Make tmux try to reconnect/reattach to an existing session, yet fallback if none are running
-if $tmux ; then
-	alias tmux="if tmux has; then tmux -2 attach; else tmux -2 new; fi"
-fi
-
 # Make sass try to watch a default file (style.scss) by default
 if $sass ; then
 	alias sass="sass --watch style.scss:style.css"
