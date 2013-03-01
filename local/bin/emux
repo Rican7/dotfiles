@@ -1,0 +1,57 @@
+#! /usr/bin/env bash
+#
+# Script to wrap the most common "tmux" functionality. Like a super-alias.
+#
+#
+
+# Create a function to echo out errors
+function error() {
+	# Let's get our arguments
+	local message=$1
+
+	# Echo out our message
+	echo -e "\033[00;31mERROR:\033[00m $message"
+}
+
+
+# Suppress the output
+# outputSuppressor='&>/dev/null'
+outputSuppressor=''
+
+# Grab our passed argument
+sessionId=$1
+
+# Let's define what commands exist
+hash tmux		2>/dev/null && tmux=true || tmux=false
+
+# Do we NOT have tmux?
+if ! $tmux ; then
+	# Echo error and exit with a non-successful (non-zero) response
+	error "\"tmux\" not installed or unable to be executed";
+	exit 1;
+fi
+
+
+# See if we have any existing sessions
+if `tmux has-session`; then
+	# Did we pass an argument?
+	if [ -n "$sessionId" ]; then
+		# See if we have an existing session matching our passed name
+		if `tmux has-session -t $sessionId $outputSuppresor`; then
+			tmux attach-session -t $sessionId
+
+		# We don't have an existing session with our passed name
+		else
+			tmux new-session -s $sessionId
+		fi
+	# No argument passed
+	else
+		# Just list our sessions
+		tmux list-sessions
+	fi
+
+# No existing sessions
+else
+	# Just create a new, default session
+	tmux new-session
+fi
