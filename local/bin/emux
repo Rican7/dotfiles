@@ -13,18 +13,6 @@ function error() {
 	echo -e "\033[00;31mERROR:\033[00m $message"
 }
 
-# Create an autocompletion function
-function _emux() {
-	# Grab all of our sessions and put them in an array
-	sessionsArray=( $( tmux list-sessions | awk '{print $1}' | tr -d \) | sed 's/:/ /' | tr -d '\n' ) )
-
-	# Print the entire array
-	echo ${sessionsArray[*]}
-
-	COMPREPLY=$sessionsArray
-	return 0
-}
-
 
 # Suppress the output
 # outputSuppressor='&>/dev/null'

@@ -1,0 +1,21 @@
+# Completion for my "emux" script (tmux wrapper)
+
+_emux() {
+	# Make sure our variables stay in our local scope
+    local cur prev cmd sessionsArray
+
+	# Setup our completion variables
+    COMPREPLY=()
+    cur=${COMP_WORDS[COMP_CWORD]}
+    prev=${COMP_WORDS[COMP_CWORD-1]}
+    cmd=${COMP_WORDS[0]}
+
+	if [[ "${prev}" == "${cmd}" ]] ; then
+		# Grab all of our sessions and put them in an array
+		sessionsArray=( $( \tmux list-sessions | awk '{print $1}' | tr -d \) | sed 's/:/ /' | tr -d '\n' ) )
+
+		COMPREPLY=( $( compgen -W "${sessionsArray[*]}" -- $cur ) )
+	fi
+}
+
+complete -o filenames -F _emux emux tmux
