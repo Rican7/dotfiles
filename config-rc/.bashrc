@@ -43,6 +43,13 @@ if [ ! -f /etc/debian_version ]; then
 	done;
 fi
 
+# Source my own custom bash completion scripts
+for filename in ${HOME}/bash_completion.d/*
+do
+	# Source the file (add the autocompletion scheme to bash "complete")
+	source $filename
+done;
+
 
 #
 # Environment Variables
