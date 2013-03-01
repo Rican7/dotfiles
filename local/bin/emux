@@ -13,6 +13,18 @@ function error() {
 	echo -e "\033[00;31mERROR:\033[00m $message"
 }
 
+# Create an autocompletion function
+function _emux() {
+	# Grab all of our sessions and put them in an array
+	sessionsArray=( $( tmux list-sessions | awk '{print $1}' | tr -d \) | sed 's/:/ /' | tr -d '\n' ) )
+
+	# Print the entire array
+	echo ${sessionsArray[*]}
+
+	COMPREPLY=$sessionsArray
+	return 0
+}
+
 
 # Suppress the output
 # outputSuppressor='&>/dev/null'
@@ -33,11 +45,11 @@ fi
 
 
 # See if we have any existing sessions
-if `tmux has-session`; then
+if $(tmux has-session); then
 	# Did we pass an argument?
 	if [ -n "$sessionId" ]; then
 		# See if we have an existing session matching our passed name
-		if `tmux has-session -t $sessionId $outputSuppresor`; then
+		if $(tmux has-session -t $sessionId $outputSuppresor); then
 			tmux attach-session -t $sessionId
 
 		# We don't have an existing session with our passed name
