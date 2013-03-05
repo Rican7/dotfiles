@@ -13,6 +13,9 @@
 	diffc = diff --cached
 	dfc = diff --cached
 	dftc = difftool --cached
+	diffpager = !git diff --color=always | less -R
+	diffp = !git diffpager
+	dfp = !git diffpager
 	s = status -s
 	files = diff --name-only
 	last = diff --name-only HEAD^!
