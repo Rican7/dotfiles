@@ -45,6 +45,13 @@ set background=dark
 colorscheme railscasts
 "colorscheme ir_black
 
+" Status line badassery
+set laststatus=2
+set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+
+" Set our status line's colors
+hi StatusLine ctermfg=LightGray ctermbg=Black guifg=LightGray guibg=Black
+
 
 " Let the spacebar work as a leader without still moving forward a char
 nnoremap <SPACE> <Nop>
@@ -123,8 +130,14 @@ map <leader><Up> 10<C-W>+
 " makes the current hsplit window smaller by 10 characters
 map <leader><Down> 10<C-W>-
 
+" Turn off the line-deleting functions. They're annoying when you make a mistake
 map K <Nop>
 map J <Nop>
+
+" Center our screen on the found item when moving through search results
+map N Nzz
+map n nzz
+
 
 " Function for toggling paste mode on/off
 function! TogglePasteMode ()
