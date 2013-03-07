@@ -104,6 +104,10 @@ alias sudo="sudo " # Alias sudo so it can keep its subcommand's aliasing (http:/
 alias explore="open -e"
 alias pack="ack --pager='less -R'"
 
+# Copy/remake of "http://rage.thewaffleshop.net/"
+# Originally found from @abackstrom (https://twitter.com/abackstrom/status/232898857837662208)
+alias fuck="curl -s rage.metroserve.me/?format=plain"
+
 # Check if we're running CYGWIN
 if [[ $OSTYPE == "cygwin" ]] ; then
 	# Enable java command line usage under Cygwin
