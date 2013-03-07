@@ -50,6 +50,11 @@ do
 	source $filename
 done;
 
+# Autocomplete my SSH hosts
+# Originally found here: https://coderwall.com/p/ezpvpa
+# Modified to not grab the catch-all "*" definition
+complete -o default -o nospace -W "$(awk '/^Host [^\*]/ {print $2}' < $HOME/.ssh/config)" scp sftp ssh
+
 
 #
 # Environment Variables
