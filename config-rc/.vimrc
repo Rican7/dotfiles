@@ -216,6 +216,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 
 "
+" VIM-Markdown
+"
+
+" Disable folding
+let g:vim_markdown_folding_disabled=1
+
+
+"
 " Folding Options
 "
 
