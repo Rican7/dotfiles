@@ -141,6 +141,13 @@ map J <Nop>
 map N Nzz
 map n nzz
 
+"
+" Insert mappings
+"
+
+" Insert the file's name
+inoremap \fn <C-R>=expand("%:t:r")<CR>
+
 
 " Function for toggling paste mode on/off
 function! TogglePasteMode ()
