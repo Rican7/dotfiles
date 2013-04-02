@@ -185,6 +185,7 @@ autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 " autocmd FileType php inoremap <leader>c <ESC>:call PhpDocSingle()<CR>i
 autocmd FileType php nnoremap <leader>c :call PhpDocSingle()<CR>
 autocmd FileType php vnoremap <leader>c :call PhpDocRange()<CR>
+let g:pdv_cfg_autoEndFunction = 0 " Disable function end trailing comment
 
 " Change highlight colors for vimdiff
 highlight DiffAdd cterm=none ctermfg=black ctermbg=Green gui=none guifg=black guibg=Green 
