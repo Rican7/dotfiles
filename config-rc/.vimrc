@@ -87,6 +87,9 @@ nmap <silent> <leader>] /\v\[[^\]]+\]/e<CR>:nohl<CR>
 " Enable and disable Paste Mode
 map <leader>v :call TogglePasteMode()<CR>
 
+" Enable and disable hard/soft tabs
+map <leader>t :call ToggleExpandTab()<CR>
+
 " Paste and select the text
 map <leader>P P'[v']
 map <leader>p p'[v']
@@ -148,6 +151,17 @@ function! TogglePasteMode ()
      	set paste
      	echo "paste mode on"
      endif
+endfunction
+
+" Function for toggling expandtab mode on/off
+function! ToggleExpandTab ()
+    if (&expandtab)
+        set noexpandtab
+        echo "hard tabs on"
+    else
+        set expandtab
+        echo "soft tabs on"
+    endif
 endfunction
 
 " Filetypes based on file extension
