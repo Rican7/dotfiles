@@ -14,9 +14,12 @@ default_filter="s'@.*\\\/\\\/ End .*@@'" # Have to use @ as the delimiter, or el
 default_blankline_filter="'/^$/d'"
 default_tag_file_name="tags"
 behaviors_arg_prefix="--phptags-"
+outputSuppressor='2>/dev/null'
+
+# Flags
 merge_args=false
 merge_default_first=true
-outputSuppressor='2>/dev/null'
+echo_filters=false
 
 # Some calculations
 arg_prefix_length=${#behaviors_arg_prefix}
@@ -39,6 +42,7 @@ if $ctags ; then
 			case $unprefixed_arg in
 				merge) merge_args=true ;;
 				merge-priority) merge_default_first=false ;;
+				echo-filters) echo_filters=true ;;
 				*) echo "Invalid arg: $var"; exit 2;;
 			esac
 		else
@@ -46,6 +50,12 @@ if $ctags ; then
 			filtered_args="$filtered_args$var "
 		fi
 	done
+
+	# Do we only want to echo our filters?
+	if $echo_filters ; then
+		echo "sed $default_filter | sed $default_blankline_filter"
+		exit 0;
+	fi
 
     # Were any args manually passed?
     if [ $# -gt 0 ] ; then
