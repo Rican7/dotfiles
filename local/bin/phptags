@@ -16,6 +16,7 @@ default_tag_file_name="tags"
 behaviors_arg_prefix="--phptags-"
 merge_args=false
 merge_default_first=true
+outputSuppressor='2>/dev/null'
 
 # Some calculations
 arg_prefix_length=${#behaviors_arg_prefix}
@@ -38,6 +39,7 @@ if $ctags ; then
 			case $unprefixed_arg in
 				merge) merge_args=true ;;
 				merge-priority) merge_default_first=false ;;
+				*) echo "Invalid arg: $var"; exit 2;;
 			esac
 		else
 			# Add our arg to our filtered list
@@ -59,6 +61,9 @@ if $ctags ; then
     else
         command="ctags $default_ctags_args"
     fi
+
+	# Add our output suppressor to our ctags command
+	command="$command $outputSuppressor"
 else
     # Echo error and exit with a non-successful (non-zero) response
     echo "Ctags not available...";
