@@ -61,3 +61,9 @@
 [submodule ".vim/bundle/vim-javascript"]
 	path = .vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/bundle/vim-php-namespace"]
+	path = .vim/bundle/vim-php-namespace
+	url = https://github.com/vim-scripts/vim-php-namespace.git
+[submodule ".vim/bundle/AutoTag"]
+	path = .vim/bundle/AutoTag
+	url = https://github.com/vim-scripts/AutoTag.git
