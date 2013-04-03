@@ -15,6 +15,7 @@ default_blankline_filter="'/^$/d'"
 default_tag_file_name="tags"
 behaviors_arg_prefix="--phptags-"
 merge_args=false
+merge_default_first=true
 
 # Some calculations
 arg_prefix_length=${#behaviors_arg_prefix}
@@ -35,7 +36,8 @@ if $ctags ; then
 
 			# Act on behalf of our args
 			case $unprefixed_arg in
-				merge) merge_args=true
+				merge) merge_args=true ;;
+				merge-priority) merge_default_first=false ;;
 			esac
 		else
 			# Add our arg to our filtered list
@@ -46,8 +48,11 @@ if $ctags ; then
     # Were any args manually passed?
     if [ $# -gt 0 ] ; then
 		# Should we merge our args?
-		if $merge_args ; then
+		if $merge_args && $merge_default_first ; then
 			command="ctags $default_ctags_args $filtered_args"
+		# Should we merge our args WITH priority?
+		elif $merge_args && ! $merge_default_first ; then
+			command="ctags $filtered_args $default_ctags_args"
 		else
 			command="ctags $filtered_args"
 		fi
