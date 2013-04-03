@@ -21,6 +21,9 @@ arg_prefix_length=${#behaviors_arg_prefix}
 
 # Do we have ctags?
 if $ctags ; then
+	# Create a variable to hold our args
+	filtered_args=""
+
 	# Loop over all of our passed arguments
 	for var in "$@";
 	do
@@ -34,6 +37,9 @@ if $ctags ; then
 			case $unprefixed_arg in
 				merge) merge_args=true
 			esac
+		else
+			# Add our arg to our filtered list
+			filtered_args="$filtered_args$var "
 		fi
 	done
 
@@ -41,9 +47,9 @@ if $ctags ; then
     if [ $# -gt 0 ] ; then
 		# Should we merge our args?
 		if $merge_args ; then
-			command="ctags $default_ctags_args $@"
+			command="ctags $default_ctags_args $filtered_args"
 		else
-			command="ctags $@"
+			command="ctags $filtered_args"
 		fi
     else
         command="ctags $default_ctags_args"
