@@ -208,6 +208,11 @@ autocmd FileType php nnoremap <leader>c :call PhpDocSingle()<CR>
 autocmd FileType php vnoremap <leader>c :call PhpDocRange()<CR>
 let g:pdv_cfg_autoEndFunction = 0 " Disable function end trailing comment
 
+" PHP-Vim-Namespace configuration and key-mappings
+" inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+
 " Change highlight colors for vimdiff
 highlight DiffAdd cterm=none ctermfg=black ctermbg=Green gui=none guifg=black guibg=Green 
 highlight DiffDelete cterm=none ctermfg=black ctermbg=Red gui=none guifg=black guibg=Red 
