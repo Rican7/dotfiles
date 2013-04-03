@@ -1,0 +1,46 @@
+#! /usr/bin/env bash
+#
+# Script to simplify the calling of "ctags" for PHP projects, and fix the output of failed calls
+#
+#
+
+# Detect what commands exist
+hash ctags      2>/dev/null && ctags=true   || ctags=false
+hash sed        2>/dev/null && sed=true     || sed=false
+
+# Defaults
+default_ctags_args="-R --PHP-kinds=+cidfv -f -"
+default_filter="s'@.*\\\/\\\/ End .*@@'" # Have to use @ as the delimiter, or else bash freaks on "eval"
+default_blankline_filter="'/^$/d'"
+default_tag_file_name="tags"
+
+# Do we have ctags?
+if $ctags ; then
+    # Were any args manually passed?
+    if [ $# -gt 0 ] ; then
+        command="ctags $@"
+    else
+        command="ctags $default_ctags_args"
+    fi
+else
+    # Echo error and exit with a non-successful (non-zero) response
+    echo "Ctags not available...";
+    exit 1;
+fi
+
+# Do we have sed?
+if $sed ; then
+    # Filter
+    command="$command | sed $default_filter"
+
+    # Filter blank lines
+    command="$command | sed $default_blankline_filter"
+fi
+
+# Append our tags file name
+command="$command > $default_tag_file_name"
+
+
+
+# Finally, run our command. :)
+eval $command
