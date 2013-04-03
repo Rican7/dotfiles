@@ -213,6 +213,10 @@ let g:pdv_cfg_autoEndFunction = 0 " Disable function end trailing comment
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 
+" AutoTag configuration
+" let g:autotagCtagsCmd="phptags --phptags-merge --phptags-merge-priority"
+let g:autotagPostCmd="cat tags | eval $(phptags --phptags-echo-filters) > tags"
+
 " Change highlight colors for vimdiff
 highlight DiffAdd cterm=none ctermfg=black ctermbg=Green gui=none guifg=black guibg=Green 
 highlight DiffDelete cterm=none ctermfg=black ctermbg=Red gui=none guifg=black guibg=Red 
