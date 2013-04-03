@@ -13,12 +13,38 @@ default_ctags_args="-R --PHP-kinds=+cidfv -f -"
 default_filter="s'@.*\\\/\\\/ End .*@@'" # Have to use @ as the delimiter, or else bash freaks on "eval"
 default_blankline_filter="'/^$/d'"
 default_tag_file_name="tags"
+behaviors_arg_prefix="--phptags-"
+merge_args=false
+
+# Some calculations
+arg_prefix_length=${#behaviors_arg_prefix}
 
 # Do we have ctags?
 if $ctags ; then
+	# Loop over all of our passed arguments
+	for var in "$@";
+	do
+		# Were any of our args meant to modify this script?
+		# (and not the subsequently called commands)
+		if [[ $var == $behaviors_arg_prefix* ]] ; then
+			# Grab the name of the arg, sans the prefix
+			unprefixed_arg=${var:arg_prefix_length}
+
+			# Act on behalf of our args
+			case $unprefixed_arg in
+				merge) merge_args=true
+			esac
+		fi
+	done
+
     # Were any args manually passed?
     if [ $# -gt 0 ] ; then
-        command="ctags $@"
+		# Should we merge our args?
+		if $merge_args ; then
+			command="ctags $default_ctags_args $@"
+		else
+			command="ctags $@"
+		fi
     else
         command="ctags $default_ctags_args"
     fi
