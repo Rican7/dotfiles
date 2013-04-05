@@ -67,3 +67,6 @@
 [submodule ".vim/bundle/AutoTag-Modded"]
 	path = .vim/bundle/AutoTag-Modded
 	url = https://github.com/Rican7/AutoTag.git
+[submodule ".vim/bundle/vim-phpqa"]
+	path = .vim/bundle/vim-phpqa
+	url = https://github.com/joonty/vim-phpqa.git
