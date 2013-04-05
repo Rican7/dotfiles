@@ -217,6 +217,14 @@ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 " let g:autotagCtagsCmd="phptags --phptags-merge --phptags-merge-priority"
 let g:autotagPostCmd="cat tags | eval $(phptags --phptags-echo-filters) > tags"
 
+" Vim-PHPQa configuration
+let g:phpqa_messdetector_autorun = 0 " PHP Mess detector
+let g:phpqa_codecoverage_autorun = 0 " PHP Code coverage
+let g:phpqa_codesniffer_autorun  = 1 " PHP Code sniffer
+let g:phpqa_codesniffer_args = "--standard=PSR2"
+
+
+
 " Change highlight colors for vimdiff
 highlight DiffAdd cterm=none ctermfg=black ctermbg=Green gui=none guifg=black guibg=Green 
 highlight DiffDelete cterm=none ctermfg=black ctermbg=Red gui=none guifg=black guibg=Red 
