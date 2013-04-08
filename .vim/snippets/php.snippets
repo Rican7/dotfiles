@@ -1,0 +1,175 @@
+#
+# ActiveRecord
+#
+
+# ActiveRecord model
+snippet ar_m
+	namespace ${1};
+
+	/**
+	 * ${2} model
+	 *
+	 * @package ${3:$1}
+	 */
+	class ${4:$2} extends AbstractModel
+	{
+
+		/**
+		 * DB/Model Relationships
+		 */
+
+		/**
+		 * @see \ActiveRecord\Model::$has_many
+		 * @static
+		 * @var array
+		 * @access public
+		 */
+		public static $has_many = array(
+			${5}
+		);
+
+		/**
+		 * Callbacks
+		 */
+
+		/**
+		 * @see \ActiveRecord\Model::$before_save
+		 * @static
+		 * @var array
+		 * @access public
+		 */
+		public static $before_save = array(
+			${6}
+		);
+
+		/**
+		 * Validators
+		 */
+
+		/**
+		 * @see \ActiveRecord\Model::$validates_presence_of
+		 * @static
+		 * @var array
+		 * @access public
+		 */
+		public static $validates_presence_of = array(
+			${7}
+		);
+
+		/**
+		 * Attribute Access Modifiers
+		 */
+
+		/**
+		 * @see \ActiveRecord\Model::$attr_accessible
+		 * @static
+		 * @var array
+		 * @access public
+		 */
+		static $attr_accessible = array(
+			'${8:NONE_AT_ALL}',
+		);
+
+
+		/**
+		 * Methods
+		 */
+
+		/**
+		 * Get a casted version of the object
+		 *
+		 * @access public
+		 * @return array
+		 */
+		public function get_profile()
+		{
+			return array(
+				'id' => (int) $this->id,
+				'${9:col_slug}' => (string) $this->${10:$9},
+			);
+		}
+	}
+# ActiveRecord relationships
+snippet ar_rel
+	/**
+	 * DB/Model Relationships
+	 */
+
+	/**
+	 * @see \ActiveRecord\Model::$has_${1:one}
+	 * @static
+	 * @var array
+	 * @access public
+	 */
+	public static $has_${2:$1} = array(
+		${3}
+	);
+
+# ActiveRecord callbacks
+snippet ar_cal
+	/**
+	 * Callbacks
+	 */
+
+	/**
+	 * @see \ActiveRecord\Model::$before_${1:save}
+	 * @static
+	 * @var array
+	 * @access public
+	 */
+	public static $before_${2:$1} = array(
+		${3}
+	);
+
+# ActiveRecord validators
+snippet ar_val
+	/**
+	 * Validators
+	 */
+
+	/**
+	 * @see \ActiveRecord\Model::$validates_${1:presence_of}
+	 * @static
+	 * @var array
+	 * @access public
+	 */
+	public static $validates_${2:$1} = array(
+		${3}
+	);
+
+# ActiveRecord access modifiers
+snippet ar_acc
+	/**
+	 * Attribute Access Modifiers
+	 */
+
+	/**
+	 * @see \ActiveRecord\Model::$attr_${1:accessible}
+	 * @static
+	 * @var array
+	 * @access public
+	 */
+	static $attr_${2:$1} = array(
+		'${3:NONE_AT_ALL}',
+	);
+
+# ActiveRecord "get_profile"
+snippet ar_gp
+
+	/**
+	 * Methods
+	 */
+
+	/**
+	 * Get a casted version of the object
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function get_profile()
+	{
+		return array(
+			'id' => (int) $this->id,
+			'${1:col_slug}' => (string) $this->${2:$1},
+		);
+	}
