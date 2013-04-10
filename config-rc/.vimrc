@@ -141,6 +141,13 @@ map J <Nop>
 map N Nzz
 map n nzz
 
+
+"
+" Command mappings
+"
+command FixTrevorSpaces :%s/( \(.*\) )/(\1)/g
+
+
 "
 " Insert mappings
 "
