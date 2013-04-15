@@ -224,11 +224,10 @@ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 " let g:autotagCtagsCmd="phptags --phptags-merge --phptags-merge-priority"
 let g:autotagPostCmd="cat tags | eval $(phptags --phptags-echo-filters) > tags"
 
-" Vim-PHPQa configuration
-let g:phpqa_messdetector_autorun = 0 " PHP Mess detector
-let g:phpqa_codecoverage_autorun = 0 " PHP Code coverage
-let g:phpqa_codesniffer_autorun  = 1 " PHP Code sniffer
-let g:phpqa_codesniffer_args = "--standard=PSR2"
+" Syntastic configuration
+let g:syntastic_auto_loc_list = 1 " Automatically open and close the location list
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd'] " PHP Linter, PHP Code Sniffer, PHP Mess Detector
+let g:syntastic_php_phpcs_args = "--standard=PSR2" " Use the PSR-2 standard for PHP Code Sniffer
 
 
 
