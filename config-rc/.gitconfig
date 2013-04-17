@@ -48,3 +48,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[hub]
+	protocol = ssh
