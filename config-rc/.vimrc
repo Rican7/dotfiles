@@ -145,7 +145,10 @@ map n nzz
 "
 " Command mappings
 "
-command FixTrevorSpaces :%s/( \(.*\) )/(\1)/g
+command FixTrevorSpaces :%s/\((\|\[\)\s\+\(.*\)\s\+\()\|\]\)/\1\2\3/g
+command FixClassStartBrace :%s/class\(.*\)\(\s\+\){/class\1\r{/g
+command FixClassEndBrace :%s/^\(\n\+\)}\(\s\+\)\/\/ End.*/}/g
+command FixMethodStartBrace :%s/^\(\s\+\)\(public\|private\|protected\) function \(.\{-}\)\s\+{/\1\2 function \3\r\1{/g
 
 
 "
