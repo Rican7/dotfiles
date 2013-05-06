@@ -232,6 +232,7 @@ let g:autotagPostCmd="cat tags | eval $(phptags --phptags-echo-filters) > tags"
 let g:syntastic_auto_loc_list = 1 " Automatically open and close the location list
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd'] " PHP Linter, PHP Code Sniffer, PHP Mess Detector
 let g:syntastic_php_phpcs_args = "--standard=PSR2" " Use the PSR-2 standard for PHP Code Sniffer
+let g:syntastic_json_checkers = ['jsonlint'] " Use JSON linter
 
 
 
