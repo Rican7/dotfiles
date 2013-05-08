@@ -30,6 +30,7 @@
 	subupdate = submodule update --init --recursive
 	syncup = !git checkout master && git pullbase upstream master && git subupdate
 	syncthis = !git pullbase origin HEAD && git subupdate
+	syncthisup = !git pullbase upstream `git rev-parse --abbrev-ref HEAD` && git subupdate
 	call = !git ci -a
 [core]
 	excludesfile = ~/.gitignore_global
