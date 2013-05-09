@@ -73,3 +73,6 @@
 [submodule "local/modules/boris"]
 	path = local/modules/boris
 	url = https://github.com/d11wtq/boris.git
+[submodule ".vim/bundle/tabular"]
+	path = .vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
