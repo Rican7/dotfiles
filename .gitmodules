@@ -79,3 +79,6 @@
 [submodule ".vim/bundle/vim-haml"]
 	path = .vim/bundle/vim-haml
 	url = https://github.com/tpope/vim-haml.git
+[submodule ".vim/bundle/html5.vim"]
+	path = .vim/bundle/html5.vim
+	url = https://github.com/othree/html5.vim.git
