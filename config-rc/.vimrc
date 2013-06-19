@@ -274,6 +274,17 @@ let g:vim_markdown_folding_disabled=1
 
 
 "
+" DetectIndent
+"
+
+" Attempt to automatically detect the indentation of the file
+autocmd BufReadPost * DetectIndent
+
+" Set some indentation detection options
+let g:detectindent_preferred_indent = 4
+
+
+"
 " Folding Options
 "
 
