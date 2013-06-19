@@ -85,3 +85,6 @@
 [submodule ".vim/bundle/vim-jinja"]
 	path = .vim/bundle/vim-jinja
 	url = https://github.com/lepture/vim-jinja.git
+[submodule ".vim/bundle/detectindent"]
+	path = .vim/bundle/detectindent
+	url = https://github.com/ciaranm/detectindent.git
