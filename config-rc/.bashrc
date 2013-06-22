@@ -16,6 +16,7 @@ umask 002;
 ## Modify PATH Variable ##
 ##########################
 export PATH="/usr/local/bin:/usr/local/sbin/:/usr/local/mysql/bin/:/opt/local/bin:/opt/local/sbin:~/local/bin:/usr/bin:/usr/sbin:$PATH"
+export PATH="$HOME/.phpenv/bin:$HOME/.phpenv/shims:$PATH" # "phpenv" - PHP Environment
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH" # "rbenv" - Ruby Environment
 
 
@@ -132,6 +133,9 @@ fi
 # Z command (similar to J/AutoJump)
 export _Z_CMD="j" # I'm used to j...
 source ~/local/bash/z.sh
+
+# Initialize phpenv
+eval "$(phpenv init -)"
 
 
 
