@@ -85,6 +85,7 @@ hash tmux		2>/dev/null && tmux=true || tmux=false
 hash sass		2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
 hash apt-cyg	2>/dev/null && aptcyg=true || aptcyg=false
+hash phpenv	2>/dev/null && phpenv=true || phpenv=false
 
 # Make sass try to watch a default file (style.scss) by default
 if $sass ; then
@@ -138,7 +139,9 @@ export _Z_CMD="j" # I'm used to j...
 source ~/local/bash/z.sh
 
 # Initialize phpenv
-eval "$(phpenv init -)"
+if $phpenv ; then
+     eval "$(phpenv init -)"
+fi
 
 
 
