@@ -105,6 +105,9 @@ nnoremap <silent> N :set hlsearch<CR>N
 " Toggle line-numbering
 map <silent> <leader>n :se nu!<CR>
 
+" Search for currently selected text
+vnoremap / "hy/<C-r>h
+
 " Search and replace for currently selected text
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
