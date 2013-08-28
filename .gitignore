@@ -1,0 +1,7 @@
+## ------------------------ ##
+#  -- Ignore some things --  #
+## ------------------------ ##
+
+# -- rbenv and phpenv --
+local/phpenv
+local/rbenv
