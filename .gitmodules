@@ -100,3 +100,6 @@
 [submodule ".vim/bundle/vim-multiple-cursors"]
 	path = .vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule ".vim/bundle/webapi-vim"]
+	path = .vim/bundle/webapi-vim
+	url = https://github.com/mattn/webapi-vim.git
