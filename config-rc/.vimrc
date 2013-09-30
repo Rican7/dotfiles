@@ -221,6 +221,7 @@ autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd FileType php nnoremap <leader>c :call PhpDocSingle()<CR>
 autocmd FileType php vnoremap <leader>c :call PhpDocRange()<CR>
 let g:pdv_cfg_autoEndFunction = 0 " Disable function end trailing comment
+let g:pdv_cfg_autoEndClass = 0 " Disable class end trailing comment
 
 " PHP-Vim-Namespace configuration and key-mappings
 " inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
