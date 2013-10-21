@@ -21,6 +21,7 @@
 	last = diff --name-only HEAD^!
 	showfiles = show --name-only
 	showlast = show --name-only HEAD^!
+	excluded = ls-files --others --ignored --exclude-standard
 	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	pushhead = push origin HEAD
 	mergeflow = !git merge --no-ff
