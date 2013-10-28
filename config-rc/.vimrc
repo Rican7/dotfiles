@@ -103,7 +103,8 @@ nnoremap <silent> n :set hlsearch<CR>n
 nnoremap <silent> N :set hlsearch<CR>N
 
 " Toggle line-numbering
-map <silent> <leader>n :se nu!<CR>
+" map <silent> <leader>n :se nu!<CR>
+map <silent> <leader>n :call ToggleShowNumbers()<CR>
 
 " Search for currently selected text
 vnoremap / "hy/<C-r>h
@@ -163,6 +164,10 @@ command! FixImplicitPropertyVisibility :%s/^\(\s\+\)static \$/\1public static \$
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
 
+"
+" Function definitions
+"
+
 " Function for toggling paste mode on/off
 function! TogglePasteMode ()
 	if (&paste)
@@ -185,6 +190,25 @@ function! ToggleExpandTab ()
     endif
 endfunction
 
+" Function for toggling showing numbers between multiple types of display (relative, normal, off)
+function! ToggleShowNumbers ()
+	if (&number)
+		set nonumber
+		echo "disabling numbers"
+	elseif exists("*NumberToggle")
+		call NumberToggle()
+		echo "toggling relative/normal numbers"
+	else
+		set number
+		echo "enabling numbers"
+	endif
+endfunction
+
+
+"
+" Automatically triggered settings
+"
+
 " Filetypes based on file extension
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
@@ -199,6 +223,10 @@ filetype indent on
 
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc
 
+" Un-map ctrl-n on start
+autocmd VimEnter * nunmap <C-n>
+
+" Functions based on file type
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
