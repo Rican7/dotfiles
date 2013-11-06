@@ -165,7 +165,7 @@ inoremap \fn <C-R>=expand("%:t:r")<CR>
 
 " Insert the current namespace according to PSR-0 spec
 " (https://github.com/php-fig/fig-standards/blob/60f3bc5543f1bb98efd6c559633687e6c73d2476/accepted/PSR-0.md)
-imap \fpn <C-R>=expand("%:p:h:s?.*\/[^A-Z]\\+\\C??")<CR>
+inoremap \fpn <C-R>=expand("%:p:h:s?.*\/[^A-Z]\\+\\C??:gs?/?\\?")<CR>
 
 
 "
