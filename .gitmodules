@@ -109,3 +109,6 @@
 [submodule ".vim/bundle/phpcomplete-vim"]
 	path = .vim/bundle/phpcomplete-vim
 	url = https://github.com/shawncplus/phpcomplete.vim.git
+[submodule ".vim/bundle/dart-vim-plugin"]
+	path = .vim/bundle/dart-vim-plugin
+	url = https://github.com/dart-lang/dart-vim-plugin.git
