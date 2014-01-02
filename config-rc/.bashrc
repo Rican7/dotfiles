@@ -39,12 +39,15 @@ fi
 if [ ! -f /etc/debian_version ]; then
 	# Grab smart autocompletion functions
 
-	# For each file in the autocompletion directory
-	for filename in /etc/bash_completion.d/*
-	do
-		# Source the file (add the autocompletion scheme to bash "complete")
-		. $filename
-	done;
+	# If we have a global autocompletion directory
+	if [ -d /etc/bash_completion.d ]; then
+	     # For each file in the autocompletion directory
+	     for filename in /etc/bash_completion.d/*
+	     do
+		     # Source the file (add the autocompletion scheme to bash "complete")
+		     . $filename
+	     done;
+	fi
 fi
 
 # Source my own custom bash completion scripts
