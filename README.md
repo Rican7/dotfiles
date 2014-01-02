@@ -5,8 +5,9 @@ Or as I like to call this, my "git box". :D
 ## Getting Started
 
 1. Install Git. I mean... really, c'mon.
-2. Clone this repo: `git clone https://github.com/Rican7/dotfiles.git ~/.git_box`
-3. Run the installer: `cd ~/.git_box && ./INSTALL.sh`
+2. Clone this repo: `git clone git@github.com:Rican7/dotfiles.git ~/.git_box`
+3. Download any submodules: `cd ~/.git_box && git submodule update --init --recursive`
+4. Run the installer: `cd ~/.git_box && ./INSTALL.sh`
 
 ## OS Setups
 
