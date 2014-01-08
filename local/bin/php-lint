@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+#
+# Script to lint all given files using the native php linter
+#
+#
+
+# Were any args manually passed?
+if [ $# -gt 0 ] ; then
+    args="$@"
+else
+    args="."
+fi
+
+find $args -name "*.php" -print0 | xargs -n 1 -0 php -l
