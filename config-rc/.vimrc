@@ -155,6 +155,7 @@ command! FixClassStartBrace :%s/class\(.*\)\(\s\+\){/class\1\r{/g
 command! FixClassEndBrace :%s/^\(\n\+\)}\(\s\+\)\/\/ End.*/}/g
 command! FixMethodStartBrace :%s/^\(\s\+\)\(public\|private\|protected\) function \(.\{-}\)\s\+{/\1\2 function \3\r\1{/g
 command! FixImplicitPropertyVisibility :%s/^\(\s\+\)static \$/\1public static \$/g
+command! DeleteHiddenBuffers :call DeleteHiddenBuffers()
 
 
 "
@@ -207,6 +208,23 @@ function! ToggleShowNumbers ()
 		set number
 		echo "enabling numbers"
 	endif
+endfunction
+
+" Function for deleting (closing) all hidden (un-opened) buffers
+" Source - http://stackoverflow.com/a/8459043/852382
+function! DeleteHiddenBuffers ()
+    let tpbl=[]
+
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+
+    let num_deleted=0
+
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+	silent execute 'bwipeout' buf
+        let num_deleted = num_deleted + 1
+    endfor
+
+    echo "Removed ". num_deleted ." buffers"
 endfunction
 
 
