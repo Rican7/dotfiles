@@ -175,7 +175,7 @@ function symLink() {
 	# Let's make SURE that the target doesn't already exist... or we might make a recursive symlink (AH!)
 	if [ ! -e "$target" ] ; then
 		# Let's symbolically link them
-		ln -s $1 $2
+		ln -s $source $target
 
 		# Save the return status
 		status=$?
