@@ -12,10 +12,10 @@ _emux() {
 
 	if [[ "${prev}" == "${cmd}" ]] ; then
 		# Grab all of our sessions and put them in an array
-		sessionsArray=( $( \tmux list-sessions | awk '{print $1}' | tr -d \) | sed 's/:/ /' | tr -d '\n' ) )
+		sessionsArray=( $( \tmux list-sessions 2>/dev/null | awk '{print $1}' | tr -d \) | sed 's/:/ /' | tr -d '\n' ) )
 
 		COMPREPLY=( $( compgen -W "${sessionsArray[*]}" -- $cur ) )
 	fi
 }
 
-complete -o filenames -F _emux emux tmux
+complete -o nospace -F _emux emux
