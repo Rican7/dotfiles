@@ -313,6 +313,9 @@ let g:tagbar_sort = 0
 " NERDTree commands
 "
 
+" Ignore certain files/dirs from showing
+let NERDTreeIgnore=['^tags$[[file]]']
+
 " Toggle opening/closing of NERDTree
 nmap <F2> :NERDTreeToggle<CR>
 
