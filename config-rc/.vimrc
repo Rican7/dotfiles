@@ -155,6 +155,7 @@ command! FixClassStartBrace :%s/class\(.*\)\(\s\+\){/class\1\r{/g
 command! FixClassEndBrace :%s/^\(\n\+\)}\(\s\+\)\/\/ End.*/}/g
 command! FixMethodStartBrace :%s/^\(\s\+\)\(public\|private\|protected\) function \(.\{-}\)\s\+{/\1\2 function \3\r\1{/g
 command! FixImplicitPropertyVisibility :%s/^\(\s\+\)static \$/\1public static \$/g
+command! UpgradePHPArrays :%s/array(\(\_.\{-}\))/[\1]/g
 command! DeleteHiddenBuffers :call DeleteHiddenBuffers()
 
 
