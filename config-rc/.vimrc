@@ -39,6 +39,10 @@ set backupcopy=yes
 set wildmenu
 set wildmode=list:longest,full
 
+" Tag file settings
+set tags+=../tags,../TAGS " Add tag files that are above the current directory
+set tags+=./tags.vendor,tags.vendor,../tags.vendor " Add tag files for vendor dependencies
+
 syntax on
 
 " Colorscheme
@@ -315,7 +319,7 @@ let g:tagbar_sort = 0
 "
 
 " Ignore certain files/dirs from showing
-let NERDTreeIgnore=['^tags$[[file]]']
+let NERDTreeIgnore=['^tags$[[file]]', '^tags\.vendor$[[file]]']
 
 " Toggle opening/closing of NERDTree
 nmap <F2> :NERDTreeToggle<CR>
