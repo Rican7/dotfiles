@@ -9,7 +9,7 @@ hash ctags      2>/dev/null && ctags=true   || ctags=false
 hash sed        2>/dev/null && sed=true     || sed=false
 
 # Defaults
-default_ctags_args="-R --PHP-kinds=+cidfv -f -"
+default_ctags_args="-R --PHP-kinds=+cidfv --exclude='*.min.*' -f -"
 default_filter="s'@.*\\\/\\\/ End .*@@'" # Have to use @ as the delimiter, or else bash freaks on "eval"
 default_blankline_filter="'/^$/d'"
 default_tag_file_name="tags"
