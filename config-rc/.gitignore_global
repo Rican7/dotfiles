@@ -28,12 +28,12 @@ CVS
 *.swp
 *~
 
+# -- Tag Files --
+tags
+tags.vendor
+
 # -- VIM Files --
 .netrwhist
-
-# -- VIM Extension Caching --
-# TagBar
-tags
 
 # -- PHP Composer Dependencies --
 vendor/
