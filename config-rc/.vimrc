@@ -267,6 +267,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType make set noexpandtab
 autocmd FileType json set ts=3 sts=3 sw=3
+autocmd FileType gitcommit execute "set colorcolumn=51," . join(range(73,335), ',')
 
 autocmd FileType php let php_sql_query=1
 autocmd FileType php let php_htmlInStrings=1
@@ -275,6 +276,8 @@ autocmd FileType php let php_folding=0
 
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
+
+autocmd FileType php execute "set colorcolumn=81," . join(range(121,335), ',')
 
 " PHP-Doc configuration and key-mappings
 " autocmd FileType php inoremap <leader>c <ESC>:call PhpDocSingle()<CR>i
