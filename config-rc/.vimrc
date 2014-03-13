@@ -57,6 +57,10 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 " Set our status line's colors
 hi StatusLine ctermfg=LightGray ctermbg=Black guifg=LightGray guibg=Black
 
+" 'ColorColumn' Line configuration
+set colorcolumn=+1 " Set the color column to appear at the text-width's setting
+hi ColorColumn term=reverse ctermbg=234 guibg=#222222 ctermfg=none guifg=none
+
 
 " Let the spacebar work as a leader without still moving forward a char
 nnoremap <SPACE> <Nop>
