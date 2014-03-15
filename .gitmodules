@@ -115,6 +115,12 @@
 [submodule ".vim/bundle/xterm-color-table.vim"]
 	path = .vim/bundle/xterm-color-table.vim
 	url = https://github.com/guns/xterm-color-table.vim.git
+[submodule "local/modules/php-build"]
+	path = local/modules/php-build
+	url = https://github.com/CHH/php-build.git
+[submodule "local/modules/phpenv"]
+	path = local/modules/phpenv
+	url = https://github.com/CHH/phpenv.git
 [submodule ".vim/bundle/tagbar-phpctags.vim"]
 	path = .vim/bundle/tagbar-phpctags.vim
 	url = https://github.com/vim-php/tagbar-phpctags.vim.git
