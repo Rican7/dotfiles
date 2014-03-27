@@ -118,3 +118,6 @@
 [submodule ".vim/bundle/tagbar-phpctags.vim"]
 	path = .vim/bundle/tagbar-phpctags.vim
 	url = https://github.com/vim-php/tagbar-phpctags.vim.git
+[submodule "local/modules/vimpager"]
+	path = local/modules/vimpager
+	url = https://github.com/rkitover/vimpager.git
