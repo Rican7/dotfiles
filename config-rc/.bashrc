@@ -21,6 +21,7 @@ export PATH="$HOME/.phpenv/bin:$HOME/.phpenv/shims:$PATH" # "phpenv" - PHP Envir
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH" # "rbenv" - Ruby Environment
 export PATH="$HOME/.composer/vendor/bin:$PATH" # Global composer package executable binaries
 export PATH="vendor/bin:$PATH" # Local composer package executable binaries
+export PATH="./bin:$PATH" # Local executable binaries
 
 
 #
