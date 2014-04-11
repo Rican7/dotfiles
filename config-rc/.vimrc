@@ -292,7 +292,7 @@ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 
 " AutoTag configuration
 " let g:autotagCtagsCmd="phptags --phptags-merge --phptags-merge-priority"
-let g:autotagPostCmd="cat tags | eval $(phptags --phptags-echo-filters) > tags"
+" let g:autotagPostCmd="cat tags | eval $(phptags --phptags-echo-filters) > tags"
 
 " Syntastic configuration
 let g:syntastic_auto_loc_list = 1 " Automatically open and close the location list
