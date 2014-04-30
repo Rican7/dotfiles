@@ -243,7 +243,6 @@ endfunction
 " Filetypes based on file extension
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
-autocmd BufRead,BufNewFile *.html set filetype=php
 autocmd BufRead,BufNewFile *.sass set filetype=css
 autocmd BufRead,BufNewFile *.scss set filetype=css
 autocmd BufRead,BufNewFile .*rc set filetype=sh
