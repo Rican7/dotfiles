@@ -240,6 +240,9 @@ endfunction
 " Automatically triggered settings
 "
 
+filetype indent on
+filetype plugin on
+
 " Filetypes based on file extension
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
@@ -248,8 +251,6 @@ autocmd BufRead,BufNewFile *.scss set filetype=css
 autocmd BufRead,BufNewFile .*rc set filetype=sh
 autocmd BufRead,BufNewFile .*virc,.*vimrc set filetype=vim
 autocmd BufRead,BufNewFile *.markdown,*.mdown,*.mkd,*.mkdn,*.md set filetype=mkd
-
-filetype indent on
 
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc
 
