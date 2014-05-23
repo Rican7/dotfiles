@@ -290,6 +290,8 @@ let g:pdv_cfg_autoEndClass = 0 " Disable class end trailing comment
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
 " AutoTag configuration
 " let g:autotagCtagsCmd="phptags --phptags-merge --phptags-merge-priority"
 " let g:autotagPostCmd="cat tags | eval $(phptags --phptags-echo-filters) > tags"
