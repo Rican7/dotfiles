@@ -35,6 +35,10 @@ set ffs=unix,dos,mac
 " http://marc.info/?t=108316584200005&r=1&w=2
 set backupcopy=yes
 
+" Set new split default locations
+set splitright
+set splitbelow
+
 set wildmenu
 set wildmode=list:longest,full
 
@@ -135,6 +139,10 @@ map <leader>b :b#<CR>
 
 " go forward # words
 map <leader>w :w#<CR>
+
+" Re-map the quick split key-binds to create new buffers
+map <C-w>v :vnew<CR>
+map <C-w>s :new<CR>
 
 " makes the current vsplit window wider by 10 characters
 map <leader><Right> 10<C-W>>
