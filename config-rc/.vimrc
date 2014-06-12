@@ -259,6 +259,7 @@ autocmd BufRead,BufNewFile *.scss set filetype=css
 autocmd BufRead,BufNewFile .*rc set filetype=sh
 autocmd BufRead,BufNewFile .*virc,.*vimrc set filetype=vim
 autocmd BufRead,BufNewFile *.markdown,*.mdown,*.mkd,*.mkdn,*.md set filetype=mkd
+autocmd BufRead,BufNewFile *.gradle set filetype=groovy
 
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc
 
