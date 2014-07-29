@@ -276,6 +276,7 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType make set noexpandtab
 autocmd FileType json set ts=2 sts=2 sw=2
 autocmd FileType gitcommit execute "set colorcolumn=51," . join(range(73,335), ',')
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 autocmd FileType php let php_sql_query=1
 autocmd FileType php let php_htmlInStrings=1
@@ -299,7 +300,9 @@ let g:pdv_cfg_autoEndClass = 0 " Disable class end trailing comment
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
 
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+" PHP-Indenting-for-Vim configuration
+let g:PHP_autoformatcomment = 1 " Format comments automatically
+let g:PHP_vintage_case_default_indent = 1 " Use the older style of switch/case indentation
 
 " AutoTag configuration
 " let g:autotagCtagsCmd="phptags --phptags-merge --phptags-merge-priority"
