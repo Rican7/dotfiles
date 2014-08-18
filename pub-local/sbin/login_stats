@@ -32,7 +32,7 @@ fi
  
 CPUTIME=$(ps -eo pcpu | awk 'NR>1' | awk '{tot=tot+$1} END {print tot}')
 CPUCORES=$(cat /proc/cpuinfo | grep -c processor)
-UPTIME=$(echo `uptime` | awk '{ gsub(/,/, ""); print $3 }')
+UPTIME=$(echo `uptime` | awk '{ gsub(/,/, ""); print $3,$4 }')
 LASTLOGINDATE=$(whoami | xargs last -aF | awk 'NR == 2 { print $3,$4,$5,$6,$7 }' | xargs -0 -I datestr date --date=datestr)
 LASTLOGINHOST=$(whoami | xargs last -aF | awk 'NR == 2 { print $NF }')
 LASTLOGINIP=$(whoami | xargs last -i | awk 'NR == 2 { print $3 }')
@@ -50,7 +50,7 @@ echo "
   ${propTitleStyle}Host Name:${normal}                  `hostname -f`
   ${propTitleStyle}Public IP:${normal}                  `dig +short myip.opendns.com @resolver1.opendns.com`
   ${propTitleStyle}OS Version:${normal}                 `cat /etc/issue.net | head -1`
-  ${propTitleStyle}System Uptime:${normal}              $UPTIME days
+  ${propTitleStyle}System Uptime:${normal}              $UPTIME
   ${propTitleStyle}CPU Usage (average):${normal}        `echo $CPUTIME / $CPUCORES | bc`%
   ${propTitleStyle}Load Averages:${normal}              `cat /proc/loadavg`
   ${propTitleStyle}Memory free:${normal}                $MEMORY_FREE_REAL ($MEMORY_FREE_CACHE cached) of $MEMORY_TOTAL MB
