@@ -29,6 +29,8 @@
 	fall = fetch --all
 	pullbase = pull --rebase
 	remoteclean = remote prune # No shorter, but more semantic.... at least to me. :P
+	merged = !git branch --merged | grep -v '^\\*'
+	localclean = !git merged | xargs --no-run-if-empty git branch -d
 	subupdate = submodule update --init --recursive
 	syncup = !git checkout master && git pullbase upstream master && git subupdate
 	syncthis = !git pullbase origin HEAD && git subupdate
