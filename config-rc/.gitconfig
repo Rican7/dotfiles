@@ -34,6 +34,7 @@
 	syncthis = !git pullbase origin HEAD && git subupdate
 	syncthisup = !git pullbase upstream `git rev-parse --abbrev-ref HEAD` && git subupdate
 	call = !git ci -a
+	orphaned = clean -nd
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -FRSX
