@@ -17,6 +17,7 @@
 	diffp = !git diffpager
 	dfp = !git diffpager
 	s = status -s
+	branchname = rev-parse --abbrev-ref HEAD
 	files = diff --name-only
 	last = diff --name-only HEAD^!
 	showfiles = show --name-only
