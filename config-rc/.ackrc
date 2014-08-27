@@ -3,5 +3,8 @@
 # Add some file types for ack to recognize
 --type-set=smarty=.tpl
 
+# Ignore some directories
+--ignore-directory=vendor/
+
 # Ignore some file types
 --ignore-file=match:tags
