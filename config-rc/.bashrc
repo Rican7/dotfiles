@@ -116,6 +116,11 @@ alias pack="ack --pager='less -R'"
 alias src="source ~/.bash_profile"
 alias srcg="source /etc/profile"
 
+# Check if an argument works first
+if ls --group-directories-first . >/dev/null 2>&1; then
+    alias la="${BASH_ALIASES[la]} --group-directories-first"
+fi
+
 # Copy/remake of "http://rage.thewaffleshop.net/"
 # Originally found from @abackstrom (https://twitter.com/abackstrom/status/232898857837662208)
 alias fuck="curl -s rage.metroserve.me/?format=plain"
