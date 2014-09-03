@@ -31,6 +31,7 @@
 	showfiles-stat = show --stat
 	showlast-stat = show --stat HEAD^!
 	excluded = ls-files --others --ignored --exclude-standard
+	untracked = ls-files --others --exclude-standard
 	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lgbranch = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --first-parent --no-merges master..HEAD
 	pushhead = push origin HEAD
@@ -48,6 +49,7 @@
 	syncthisup = !git pullbase upstream `git branchname` && git subsync && git subupdate
 	call = !git ci -a
 	orphaned = clean -nd
+	addnew = !git add `git untracked`
 	mergediff = log --pretty=oneline --abbrev-commit --merges
 	mergediffpr = !git mergediff -i --grep 'pull request'
 	revision = rev-parse HEAD
