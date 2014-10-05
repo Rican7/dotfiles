@@ -29,33 +29,33 @@ export PATH="./bin:$PATH" # Local executable binaries
 #
 # If we have the smart debian-like bash completion script
 if [ -f /etc/bash_completion ]; then
-	. /etc/bash_completion
+    . /etc/bash_completion
 else
-	# Source our autocompletion scripts manually
+    # Source our autocompletion scripts manually
 
-	# If we have a global autocompletion directory
-	if [ -d /etc/bash_completion.d ]; then
-	     # For each file in the autocompletion directory
-	     for filename in /etc/bash_completion.d/*
-	     do
-		     # Source the file (add the autocompletion scheme to bash "complete")
-		     . $filename
-	     done;
-	fi
+    # If we have a global autocompletion directory
+    if [ -d /etc/bash_completion.d ]; then
+         # For each file in the autocompletion directory
+         for filename in /etc/bash_completion.d/*
+         do
+             # Source the file (add the autocompletion scheme to bash "complete")
+             . $filename
+         done;
+    fi
 fi
 
 if [ -e "${HOME}/.git-completion.bash" ]; then
-	source "${HOME}"/.git-completion.bash
+    source "${HOME}"/.git-completion.bash
 fi
 if [ -e /usr/local/git/contrib/completion/git-completion.bash ]; then
-	source /usr/local/git/contrib/completion/git-completion.bash
+    source /usr/local/git/contrib/completion/git-completion.bash
 fi
 
 # Source my own custom bash completion scripts
 for filename in ${HOME}/bash_completion.d/*
 do
-	# Source the file (add the autocompletion scheme to bash "complete")
-	source $filename
+    # Source the file (add the autocompletion scheme to bash "complete")
+    source $filename
 done;
 
 # Autocomplete my SSH hosts
@@ -86,23 +86,23 @@ export CYGWIN="nodosfilewarning"
 # Function aliases
 #
 # Let's define what commands exist
-hash tmux		2>/dev/null && tmux=true || tmux=false
-hash sass		2>/dev/null && sass=true || sass=false
+hash tmux       2>/dev/null && tmux=true || tmux=false
+hash sass       2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
-hash apt-cyg	2>/dev/null && aptcyg=true || aptcyg=false
-hash phpenv	2>/dev/null && phpenv=true || phpenv=false
+hash apt-cyg    2>/dev/null && aptcyg=true || aptcyg=false
+hash phpenv 2>/dev/null && phpenv=true || phpenv=false
 
 # Make sass try to watch a default file (style.scss) by default
 if $sass ; then
-	alias sass="sass --watch style.scss:style.css"
+    alias sass="sass --watch style.scss:style.css"
 fi
 
 # Enable ls to show folder/file colors
 if $dircolors ; then
-	[ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-	[ -e "$DIR_COLORS" ] || DIR_COLORS=""
-	eval "`dircolors -b $DIR_COLORS`"
-	alias ls="ls --color"
+    [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+    [ -e "$DIR_COLORS" ] || DIR_COLORS=""
+    eval "`dircolors -b $DIR_COLORS`"
+    alias ls="ls --color"
 fi
 
 # Let's define some other aliases
@@ -126,22 +126,22 @@ alias fuck="curl -s rage.metroserve.me/?format=plain"
 
 # Check if we're running CYGWIN
 if [[ $OSTYPE == "cygwin" ]] ; then
-	# Enable java command line usage under Cygwin
-	alias java="winrun java"
+    # Enable java command line usage under Cygwin
+    alias java="winrun java"
 
-	# Do we have apt-cyg?
-	if $aptcyg ; then
-		# Alias cygpath to a good mirror
-		alias apt-cyg="apt-cyg -m ftp://cygwin.mirrorcatalogs.com/cygwin/"
-		alias apt-cygports="apt-cyg -m ftp://ftp.cygwinports.org/pub/cygwinports/"
-	fi
+    # Do we have apt-cyg?
+    if $aptcyg ; then
+        # Alias cygpath to a good mirror
+        alias apt-cyg="apt-cyg -m ftp://cygwin.mirrorcatalogs.com/cygwin/"
+        alias apt-cygports="apt-cyg -m ftp://ftp.cygwinports.org/pub/cygwinports/"
+    fi
 fi
 
 # Check if we're running OS X
 if [[ $OSTYPE == darwin* ]] ; then
-	# Don't use our custom "open" script; Fall back to stock
-	alias open="/usr/bin/open"
-	alias explore="/usr/bin/open ."
+    # Don't use our custom "open" script; Fall back to stock
+    alias open="/usr/bin/open"
+    alias explore="/usr/bin/open ."
 fi
 
 # Z command (similar to J/AutoJump)
