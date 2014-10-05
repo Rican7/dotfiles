@@ -27,9 +27,6 @@ export PATH="./bin:$PATH" # Local executable binaries
 #
 # Autocompletion
 #
-if [ -f /etc/bash_completion ]; then
-	. /etc/bash_completion
-fi
 if [ -e "${HOME}/.git-completion.bash" ]; then
 	source "${HOME}"/.git-completion.bash
 fi
@@ -37,8 +34,9 @@ if [ -e /usr/local/git/contrib/completion/git-completion.bash ]; then
 	source /usr/local/git/contrib/completion/git-completion.bash
 fi
 
-# If we're NOT running on Debian based distributions
-if [ ! -f /etc/debian_version ]; then
+if [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+else
 	# Grab smart autocompletion functions
 
 	# If we have a global autocompletion directory
