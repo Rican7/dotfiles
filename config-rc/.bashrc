@@ -4,9 +4,9 @@
 # Source global definitions
 #
 if [ -f /etc/bashrc ]; then
-     . /etc/bashrc
+    . /etc/bashrc
 elif [ -f /etc/bash.bashrc ]; then
-     . /etc/bash.bashrc
+    . /etc/bash.bashrc
 fi
 
 # User specific aliases and functions
@@ -35,12 +35,12 @@ else
 
     # If we have a global autocompletion directory
     if [ -d /etc/bash_completion.d ]; then
-         # For each file in the autocompletion directory
-         for filename in /etc/bash_completion.d/*
-         do
-             # Source the file (add the autocompletion scheme to bash "complete")
-             . $filename
-         done;
+        # For each file in the autocompletion directory
+        for filename in /etc/bash_completion.d/*
+        do
+            # Source the file (add the autocompletion scheme to bash "complete")
+            . $filename
+        done;
     fi
 fi
 
@@ -150,7 +150,7 @@ source ~/local/bash/z.sh
 
 # Initialize phpenv
 if $phpenv ; then
-     eval "$(phpenv init -)"
+    eval "$(phpenv init -)"
 fi
 
 # SSH Agent at Login
@@ -179,5 +179,5 @@ fi
 
 # Let's source an optional device-specific bash config file
 if [ -f ~/.bash_device_rc ]; then
-     . ~/.bash_device_rc
+    . ~/.bash_device_rc
 fi
