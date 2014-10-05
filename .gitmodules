@@ -127,9 +127,6 @@
 [submodule "local/modules/vimpager"]
 	path = local/modules/vimpager
 	url = https://github.com/rkitover/vimpager.git
-[submodule ".vim/bundle/vim-golang"]
-	path = .vim/bundle/vim-golang
-	url = https://github.com/jnwhiteh/vim-golang.git
 [submodule ".vim/bundle/vim-android"]
 	path = .vim/bundle/vim-android
 	url = https://github.com/hsanson/vim-android.git
