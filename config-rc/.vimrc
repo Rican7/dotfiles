@@ -385,3 +385,11 @@ set foldopen-=search
 
 " Don't open folds when you undo stuff
 set foldopen-=undo
+
+
+"
+" Vim-Go Options
+"
+
+" Disable reporting `go fmt` errors. Let Syntastic handle it instead
+let g:go_fmt_fail_silently = 1
