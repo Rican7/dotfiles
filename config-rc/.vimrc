@@ -276,6 +276,7 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType make set noexpandtab
 autocmd FileType json set ts=2 sts=2 sw=2
 autocmd FileType gitcommit execute "set colorcolumn=51," . join(range(73,335), ',')
+autocmd FileType go execute "set colorcolumn=81," . join(range(121,335), ',')
 
 autocmd FileType php let php_sql_query=1
 autocmd FileType php let php_htmlInStrings=1
