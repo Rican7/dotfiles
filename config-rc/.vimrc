@@ -62,7 +62,7 @@ hi StatusLine ctermfg=LightGray ctermbg=Black guifg=LightGray guibg=Black
 
 " 'ColorColumn' Line configuration
 set colorcolumn=+1 " Set the color column to appear at the text-width's setting
-hi ColorColumn term=reverse ctermbg=234 guibg=#222222 ctermfg=none guifg=none
+hi ColorColumn term=reverse ctermbg=234 guibg=#222222 ctermfg=NONE guifg=NONE
 
 
 " Let the spacebar work as a leader without still moving forward a char
@@ -317,10 +317,10 @@ let g:syntastic_json_checkers = ['jsonlint'] " Use JSON linter
 
 
 " Change highlight colors for vimdiff
-highlight DiffAdd cterm=none ctermfg=black ctermbg=Green gui=none guifg=black guibg=Green 
-highlight DiffDelete cterm=none ctermfg=black ctermbg=Red gui=none guifg=black guibg=Red 
-highlight DiffChange cterm=none ctermfg=black ctermbg=Yellow gui=none guifg=black guibg=Yellow 
-highlight DiffText cterm=none ctermfg=black ctermbg=Magenta gui=none guifg=black guibg=Magenta
+highlight DiffAdd cterm=NONE ctermfg=black ctermbg=Green gui=NONE guifg=black guibg=Green 
+highlight DiffDelete cterm=NONE ctermfg=black ctermbg=Red gui=NONE guifg=black guibg=Red 
+highlight DiffChange cterm=NONE ctermfg=black ctermbg=Yellow gui=NONE guifg=black guibg=Yellow 
+highlight DiffText cterm=NONE ctermfg=black ctermbg=Magenta gui=NONE guifg=black guibg=Magenta
 
 
 "
