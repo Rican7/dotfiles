@@ -243,6 +243,28 @@ function! DeleteHiddenBuffers ()
     echo "Removed ". num_deleted ." buffers"
 endfunction
 
+" Function for ordering PHP use statements
+function! OrderUseStatements ()
+    " Grab our cursor's current position
+    let original_position = getpos(".")
+
+    " Set our cursor position to the top so we can normalize our search results
+    call setpos('.', [0, 0, 0, 0])
+
+    " Search for our first and last use statements
+    let first_use = search('\(^\|\r\|\n\)\s*use \(.\{-}\)\_s*;', 'n')
+    let last_use = search('use \(.\{-}\)\_s*;\(\r\|\n\)*\([^use]\)', 'n')
+
+    " Define our sort range
+    let sort_range = first_use . ',' . last_use
+
+    " Order our use statements based on our sort range
+    execute sort_range . 'sort'
+
+    " Restore our original cursor position
+    call setpos('.', original_position)
+endfunction
+
 
 "
 " Automatically triggered settings
@@ -299,6 +321,9 @@ let g:pdv_cfg_autoEndClass = 0 " Disable class end trailing comment
 " inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+
+" Automaticaly order `use` statements on save
+autocmd FileType php autocmd BufWritePre <buffer> call OrderUseStatements()
 
 " PHP-Indenting-for-Vim configuration
 let g:PHP_autoformatcomment = 1 " Format comments automatically
