@@ -246,7 +246,7 @@ endfunction
 " Function for ordering PHP use statements
 function! OrderUseStatements ()
     " Grab our cursor's current position
-    let original_position = getpos(".")
+    let original_position = winsaveview()
 
     " Set our cursor position to the top so we can normalize our search results
     call setpos('.', [0, 0, 0, 0])
@@ -262,7 +262,7 @@ function! OrderUseStatements ()
     execute sort_range . 'sort'
 
     " Restore our original cursor position
-    call setpos('.', original_position)
+    call winrestview(original_position)
 endfunction
 
 
