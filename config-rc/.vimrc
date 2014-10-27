@@ -245,6 +245,11 @@ endfunction
 
 " Function for ordering PHP use statements
 function! OrderUseStatements ()
+    " Save our undo file so that we can restore it after this function runs
+    " This allows us to run this function without it being part of the history
+    let tmpundofile = tempname()
+    execute 'wundo! '. tmpundofile
+
     " Grab our cursor's current position
     let original_position = winsaveview()
 
@@ -263,6 +268,10 @@ function! OrderUseStatements ()
 
     " Restore our original cursor position
     call winrestview(original_position)
+
+    " Restore our undo history
+    silent! execute 'rundo ' . tmpundofile
+    call delete(tmpundofile)
 endfunction
 
 
