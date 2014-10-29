@@ -429,3 +429,11 @@ set foldopen-=undo
 
 " Disable reporting `go fmt` errors. Let Syntastic handle it instead
 let g:go_fmt_fail_silently = 1
+
+
+"
+" Vim-Better-Whitespace Options
+"
+
+" Disable for a list of filetypes
+let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit']
