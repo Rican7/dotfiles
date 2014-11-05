@@ -15,3 +15,6 @@ BellFlash=no
 CursorBlinks=no
 ZoomShortcuts=no
 FontSmoothing=default
+FontIsBold=no
+Locale=en_US
+Charset=UTF-8
