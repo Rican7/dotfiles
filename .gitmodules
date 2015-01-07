@@ -64,9 +64,6 @@
 [submodule ".vim/bundle/vim-php-namespace"]
 	path = .vim/bundle/vim-php-namespace
 	url = https://github.com/arnaud-lb/vim-php-namespace.git
-[submodule ".vim/bundle/AutoTag-Modded"]
-	path = .vim/bundle/AutoTag-Modded
-	url = https://github.com/Rican7/AutoTag.git
 [submodule ".vim/bundle/vim-abolish"]
 	path = .vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git
