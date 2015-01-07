@@ -437,3 +437,25 @@ let g:go_fmt_fail_silently = 1
 
 " Disable for a list of filetypes
 let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit']
+
+
+"
+" Vim-Easytags Options
+"
+
+" Enable async operation
+let g:easytags_async = 1
+
+" Use project specific tags files (fall back to a global)
+let g:easytags_dynamic_files = 1
+
+" Language specific settings
+let g:easytags_languages = {
+\   'php': {
+\     'cmd': 'phpctags',
+\       'args': [],
+\       'fileoutput_opt': '-f',
+\       'stdout_opt': '-f-',
+\       'recurse_flag': '-R'
+\   }
+\}
