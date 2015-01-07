@@ -43,8 +43,8 @@ set wildmenu
 set wildmode=list:longest,full
 
 " Tag file settings
-set tags+=../tags,../TAGS " Add tag files that are above the current directory
-set tags+=./tags.vendor,tags.vendor,../tags.vendor " Add tag files for vendor dependencies
+set tags+=./tags;/,./TAGS;/ " Recurse up the directory tree until finding a tags file
+set tags+=./tags.vendor;/ " Add tag files for vendor dependencies, again with recursion up the tree
 
 syntax on
 
