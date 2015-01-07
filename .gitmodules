@@ -139,3 +139,6 @@
 [submodule ".vim/bundle/ack.vim"]
 	path = .vim/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
+[submodule ".vim/bundle/vim-easytags"]
+	path = .vim/bundle/vim-easytags
+	url = https://github.com/xolox/vim-easytags.git
