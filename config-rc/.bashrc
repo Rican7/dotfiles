@@ -86,11 +86,12 @@ export CYGWIN="nodosfilewarning"
 # Function aliases
 #
 # Let's define what commands exist
-hash tmux       2>/dev/null && tmux=true || tmux=false
-hash sass       2>/dev/null && sass=true || sass=false
+hash tmux      2>/dev/null && tmux=true || tmux=false
+hash sass      2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
-hash apt-cyg    2>/dev/null && aptcyg=true || aptcyg=false
-hash phpenv 2>/dev/null && phpenv=true || phpenv=false
+hash apt-cyg   2>/dev/null && aptcyg=true || aptcyg=false
+hash phpenv    2>/dev/null && phpenv=true || phpenv=false
+hash rbenv     2>/dev/null && rbenv=true || rbenv=false
 
 # Make sass try to watch a default file (style.scss) by default
 if $sass ; then
@@ -151,6 +152,11 @@ source ~/local/bash/z.sh
 # Initialize phpenv
 if $phpenv ; then
     eval "$(phpenv init -)"
+fi
+
+# Initialize rbenv
+if $rbenv ; then
+    eval "$(rbenv init -)"
 fi
 
 # SSH Agent at Login
