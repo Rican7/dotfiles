@@ -154,3 +154,6 @@
 [submodule ".vim/bundle/vim-sorcerer"]
 	path = .vim/bundle/vim-sorcerer
 	url = https://github.com/adlawson/vim-sorcerer.git
+[submodule ".vim/bundle/vim-monokai"]
+	path = .vim/bundle/vim-monokai
+	url = https://github.com/sickill/vim-monokai.git
