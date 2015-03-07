@@ -157,3 +157,6 @@
 [submodule ".vim/bundle/vim-monokai"]
 	path = .vim/bundle/vim-monokai
 	url = https://github.com/sickill/vim-monokai.git
+[submodule ".vim/bundle/vim-tomorrow-theme"]
+	path = .vim/bundle/vim-tomorrow-theme
+	url = https://github.com/chriskempson/vim-tomorrow-theme.git
