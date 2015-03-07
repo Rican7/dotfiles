@@ -151,3 +151,6 @@
 [submodule ".vim/bundle/vim-coffee"]
 	path = .vim/bundle/vim-coffee
 	url = https://github.com/duythinht/vim-coffee.git
+[submodule ".vim/bundle/vim-sorcerer"]
+	path = .vim/bundle/vim-sorcerer
+	url = https://github.com/adlawson/vim-sorcerer.git
