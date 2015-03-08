@@ -27,28 +27,8 @@ export PATH="./bin:$PATH" # Local executable binaries
 #
 # Autocompletion
 #
-# If we have the smart debian-like bash completion script
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-else
-    # Source our autocompletion scripts manually
-
-    # If we have a global autocompletion directory
-    if [ -d /etc/bash_completion.d ]; then
-        # For each file in the autocompletion directory
-        for filename in /etc/bash_completion.d/*
-        do
-            # Source the file (add the autocompletion scheme to bash "complete")
-            . $filename
-        done;
-    fi
-fi
-
 if [ -e "${HOME}/.git-completion.bash" ]; then
     source "${HOME}"/.git-completion.bash
-fi
-if [ -e /usr/local/git/contrib/completion/git-completion.bash ]; then
-    source /usr/local/git/contrib/completion/git-completion.bash
 fi
 
 # Source my own custom bash completion scripts
