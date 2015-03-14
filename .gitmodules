@@ -1,6 +1,3 @@
-[submodule "local/modules/swagger"]
-	path = local/modules/swagger
-	url = https://github.com/zircote/swagger-php.git
 [submodule ".vim/bundle/railscasts"]
 	path = .vim/bundle/railscasts
 	url = https://github.com/vim-scripts/Railscasts-Theme-GUIand256color.git
