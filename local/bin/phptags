@@ -1,98 +1,59 @@
 #! /usr/bin/env bash
 #
-# Script to simplify the calling of "ctags" for PHP projects, and fix the output of failed calls
+# Script to simplify the calling of "phpctags" for most modern PHP projects
 #
 #
 
 # Detect what commands exist
-hash ctags      2>/dev/null && ctags=true   || ctags=false
-hash sed        2>/dev/null && sed=true     || sed=false
+hash phpctags      2>/dev/null && phpctags=true   || phpctags=false
 
 # Defaults
-default_ctags_args="-R --PHP-kinds=+cidfv --exclude='*.min.*' -f -"
-default_filter="s'@.*\\\/\\\/ End .*@@'" # Have to use @ as the delimiter, or else bash freaks on "eval"
-default_blankline_filter="'/^$/d'"
-default_tag_file_name="tags"
-behaviors_arg_prefix="--phptags-"
-outputSuppressor='2>/dev/null'
+DEFAULT_SOURCE_DIRECTORY="./src"
+DEFAULT_VENDOR_DIRECTORY="./vendor"
+DEFAULT_VENDOR_TAGS_FILENAME="tags.vendor"
+DEFAULT_EXCLUDE_PATTERN="tests"
+DEFAULT_MEMORY_LIMIT="512M"
 
-# Flags
-merge_args=false
-merge_default_first=true
-echo_filters=false
+# Functions
+echoerr() {
+	echo -e "\033[00;31m${@}" 1>&2;
+}
 
-# Some calculations
-arg_prefix_length=${#behaviors_arg_prefix}
+# Runtime variables
+return_code=0
+
 
 # Do we have ctags?
-if $ctags ; then
-	# Create a variable to hold our args
-	filtered_args=""
-
-	# Loop over all of our passed arguments
-	for var in "$@";
-	do
-		# Were any of our args meant to modify this script?
-		# (and not the subsequently called commands)
-		if [[ $var == $behaviors_arg_prefix* ]] ; then
-			# Grab the name of the arg, sans the prefix
-			unprefixed_arg=${var:arg_prefix_length}
-
-			# Act on behalf of our args
-			case $unprefixed_arg in
-				merge) merge_args=true ;;
-				merge-priority) merge_default_first=false ;;
-				echo-filters) echo_filters=true ;;
-				*) echo "Invalid arg: $var"; exit 2;;
-			esac
-		else
-			# Add our arg to our filtered list
-			filtered_args="$filtered_args$var "
-		fi
-	done
-
-	# Do we only want to echo our filters?
-	if $echo_filters ; then
-		echo "sed $default_filter | sed $default_blankline_filter"
-		exit 0;
-	fi
-
-    # Were any args manually passed?
-    if [ $# -gt 0 ] ; then
-		# Should we merge our args?
-		if $merge_args && $merge_default_first ; then
-			command="ctags $default_ctags_args $filtered_args"
-		# Should we merge our args WITH priority?
-		elif $merge_args && ! $merge_default_first ; then
-			command="ctags $filtered_args $default_ctags_args"
-		else
-			command="ctags $filtered_args"
-		fi
-    else
-        command="ctags $default_ctags_args"
-    fi
-
-	# Add our output suppressor to our ctags command
-	command="$command $outputSuppressor"
-else
+if ! $phpctags; then
     # Echo error and exit with a non-successful (non-zero) response
-    echo "Ctags not available...";
-    exit 1;
+    echoerr "phpctags not available";
+    exit 4;
 fi
 
-# Do we have sed?
-if $sed ; then
-    # Filter
-    command="$command | sed $default_filter"
+# Source directory
+if [ ! -r "$DEFAULT_SOURCE_DIRECTORY" ] || [ ! -d "$DEFAULT_SOURCE_DIRECTORY" ] ; then
+    echoerr "Directory \"$DEFAULT_SOURCE_DIRECTORY\" isn't readable. Skipping..."
+    return_code=$(( $return_code | 8 ));
+else
+    echo "Generating tags for the \"$DEFAULT_SOURCE_DIRECTORY\" directory"
 
-    # Filter blank lines
-    command="$command | sed $default_blankline_filter"
+    `phpctags --memory=${DEFAULT_MEMORY_LIMIT} -R ${DEFAULT_SOURCE_DIRECTORY}`
+    return_code=$?
 fi
 
-# Append our tags file name
-command="$command > $default_tag_file_name"
+# Vendor directory
+if [ ! -r "$DEFAULT_VENDOR_DIRECTORY" ] || [ ! -d "$DEFAULT_VENDOR_DIRECTORY" ] ; then
+    echoerr "Directory \"$DEFAULT_VENDOR_DIRECTORY\" isn't readable. Skipping..."
+    return_code=$(( $return_code | 8 ));
+else
+    echo "Generating tags for the \"$DEFAULT_VENDOR_DIRECTORY\" directory"
 
+    `phpctags --memory=${DEFAULT_MEMORY_LIMIT} --exclude=\"${DEFAULT_EXCLUDE_PATTERN}\" -f ${DEFAULT_VENDOR_TAGS_FILENAME} -R ${DEFAULT_VENDOR_DIRECTORY}`
+    return_code=$?
+fi
 
+if (( ($return_code & 8) == 8 )) ; then
+    echoerr "Failed to generate tags for either \"$DEFAULT_SOURCE_DIRECTORY\" or \"$DEFAULT_VENDOR_DIRECTORY\""
+fi
 
-# Finally, run our command. :)
-eval $command
+exit $return_code
