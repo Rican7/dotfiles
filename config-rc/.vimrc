@@ -430,8 +430,11 @@ set foldopen-=undo
 " Disable reporting `go fmt` errors. Let Syntastic handle it instead
 let g:go_fmt_fail_silently = 1
 
-" Enable showing type information automatically
-let g:go_auto_type_info = 1
+" Specify some options to pass to the `godoc` command
+let g:go_doc_options = '-analysis="type"'
+
+" Disable showing type information automatically (its buggy)
+let g:go_auto_type_info = 0
 
 " Enable highlighting operators
 let g:go_highlight_operators = 1
