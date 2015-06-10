@@ -171,7 +171,7 @@ command! FixClassEndBrace :%s/^\(\n\+\)}\(\s\+\)\/\/ End.*/}/g
 command! FixMethodStartBrace :%s/^\(\s\+\)\(public\|private\|protected\) function \(.\{-}\)\s\+{/\1\2 function \3\r\1{/g
 command! FixImplicitPropertyVisibility :%s/^\(\s\+\)static \$/\1public static \$/g
 command! UpgradePHPArrays :%s/array(\(\_.\{-}\))/[\1]/g
-command! DeleteHiddenBuffers :call DeleteHiddenBuffers()
+command! RemoveHiddenBuffers :call RemoveHiddenBuffers()
 
 
 "
@@ -228,7 +228,7 @@ endfunction
 
 " Function for deleting (closing) all hidden (un-opened) buffers
 " Source - http://stackoverflow.com/a/8459043/852382
-function! DeleteHiddenBuffers ()
+function! RemoveHiddenBuffers ()
     let tpbl=[]
 
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
