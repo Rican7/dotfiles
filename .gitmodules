@@ -45,7 +45,7 @@
 	url = https://github.com/Rican7/php-doc-modded.git
 [submodule ".vim/bundle/ctrlp"]
 	path = .vim/bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim.git
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule "local/modules/z"]
 	path = local/modules/z
 	url = https://github.com/rupa/z.git
