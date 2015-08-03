@@ -488,5 +488,5 @@ let g:easytags_languages = {
 
 " If 'ack' is installed, use it as the CtrlP indexer. :)
 if (1 == executable('ack'))
-    let g:ctrlp_user_command = 'ack -i --nocolor --nogroup -g "" %s'
+    let g:ctrlp_user_command = 'ack -i --noenv --nocolor --nogroup -g "" %s'
 endif
