@@ -32,7 +32,7 @@
 	remoteclean = remote prune # No shorter, but more semantic.... at least to me. :P
 	merged = !git branch --merged | grep -v '^\\*'
 	localclean = !git merged | xargs --no-run-if-empty git branch -d
-	subsync = submodule sync
+	subsync = submodule sync --recursive
 	subupdate = submodule update --init --recursive
 	syncup = !git checkout master && git pullbase upstream master && git subsync && git subupdate
 	syncthis = !git pullbase origin `git branchname` && git subsync && git subupdate
