@@ -33,7 +33,7 @@
 	merged = !git branch --merged | grep -v '^\\*'
 	localclean = !git merged | xargs --no-run-if-empty git branch -d
 	subsync = submodule sync --recursive
-	subupdate = submodule update --init --recursive
+	subupdate = submodule update --init --recursive --checkout
 	syncup = !git checkout master && git pullbase upstream master && git subsync && git subupdate
 	syncthis = !git pullbase origin `git branchname` && git subsync && git subupdate
 	syncthisup = !git pullbase upstream `git branchname` && git subsync && git subupdate
