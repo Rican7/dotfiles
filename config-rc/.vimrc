@@ -349,6 +349,7 @@ let g:syntastic_php_checkers = ['php', 'phpcs'] " PHP Linter, PHP Code Sniffer, 
 let g:syntastic_php_phpcs_post_args = "--standard=PSR2" " Use the PSR-2 standard for PHP Code Sniffer
 let g:syntastic_json_checkers = ['jsonlint'] " Use JSON linter
 let g:syntastic_go_checkers = ['go', 'gofmt', 'golint'] " Set our Go(lang) syntastic checkers
+let g:syntastic_go_golint_args = "-min_confidence=0.3" " Set a lower minimum confidence than default on `golint`
 
 
 
