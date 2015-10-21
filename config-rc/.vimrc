@@ -348,6 +348,7 @@ let g:syntastic_auto_loc_list = 1 " Automatically open and close the location li
 let g:syntastic_php_checkers = ['php', 'phpcs'] " PHP Linter, PHP Code Sniffer, PHP Mess Detector
 let g:syntastic_php_phpcs_post_args = "--standard=PSR2" " Use the PSR-2 standard for PHP Code Sniffer
 let g:syntastic_json_checkers = ['jsonlint'] " Use JSON linter
+let g:syntastic_go_checkers = ['go', 'gofmt', 'golint'] " Set our Go(lang) syntastic checkers
 
 
 
