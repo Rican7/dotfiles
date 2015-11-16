@@ -95,6 +95,7 @@ alias explore="open -e"
 alias pack="ack --pager='less -R'"
 alias src="source ~/.bash_profile"
 alias srcg="source /etc/profile"
+alias stripbinary="tr -cd '[:print:]\n'"
 
 # Check if an argument works first
 if ls --group-directories-first . >/dev/null 2>&1; then
