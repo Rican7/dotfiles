@@ -39,8 +39,8 @@
 	syncthisup = !git pullbase upstream `git branchname` && git subsync && git subupdate
 	call = !git ci -a
 	orphaned = clean -nd
-	mergediff = log --pretty=oneline --abbrev-commit -i --grep 'merge'
-	mergediffpr = log --pretty=oneline --abbrev-commit -i --grep 'merge pull request'
+	mergediff = log --pretty=oneline --abbrev-commit --merges
+	mergediffpr = !git mergediff -i --grep 'pull request'
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -FRSX
