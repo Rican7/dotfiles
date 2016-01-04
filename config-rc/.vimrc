@@ -491,7 +491,10 @@ let g:easytags_languages = {
 " CtrlP Options
 "
 
-" If 'ack' is installed, use it as the CtrlP indexer. :)
-if (1 == executable('ack'))
+if (1 == executable('sift'))
+    " If 'sift' is installed, use it as the CtrlP indexer. :)
+    let g:ctrlp_user_command = 'sift -i --no-conf --no-color --no-group --targets --path "" %s'
+elseif (1 == executable('ack'))
+    " If 'ack' is installed, use it as the CtrlP indexer. :)
     let g:ctrlp_user_command = 'ack -i --noenv --nocolor --nogroup -g "" %s'
 endif
