@@ -493,8 +493,8 @@ let g:easytags_languages = {
 
 if (1 == executable('sift'))
     " If 'sift' is installed, use it as the CtrlP indexer. :)
-    let g:ctrlp_user_command = 'sift -i --no-conf --no-color --no-group --targets --path "" %s'
+    let g:ctrlp_user_command = 'sift -i --no-conf --no-color --no-group --targets --exclude-dirs=".git" --exclude-ext="min.js,dat,exe,gif,png,jpeg,jpg,ico" %s'
 elseif (1 == executable('ack'))
     " If 'ack' is installed, use it as the CtrlP indexer. :)
-    let g:ctrlp_user_command = 'ack -i --noenv --nocolor --nogroup -g "" %s'
+    let g:ctrlp_user_command = 'ack -i --noenv --nocolor --nogroup -f %s'
 endif
