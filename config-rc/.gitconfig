@@ -41,6 +41,9 @@
 	orphaned = clean -nd
 	mergediff = log --pretty=oneline --abbrev-commit --merges
 	mergediffpr = !git mergediff -i --grep 'pull request'
+	revision = rev-parse HEAD
+	revisionshort = rev-parse --short HEAD
+	root = rev-parse --show-toplevel
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -FRSX
