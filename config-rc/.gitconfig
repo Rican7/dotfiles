@@ -44,7 +44,7 @@
 	revision = rev-parse HEAD
 	revisionshort = rev-parse --short HEAD
 	root = rev-parse --show-toplevel
-	releasename = !git describe --exact-match --abbrev=0 2>/dev/null || git rev-parse HEAD
+	releasename = !git describe --exact-match --abbrev=0 2>/dev/null || git rev-parse --short HEAD
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -FRSX
