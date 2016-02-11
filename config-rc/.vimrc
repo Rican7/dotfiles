@@ -501,3 +501,13 @@ elseif (1 == executable('ack'))
     " If 'ack' is installed, use it as the CtrlP indexer. :)
     let g:ctrlp_user_command = 'ack -i --noenv --nocolor --nogroup -f %s'
 endif
+
+
+"
+" Ack.vim Options
+"
+
+" If 'sift' is installed, use it as the search program
+if (1 == executable('sift'))
+    let g:ackprg = 'sift --filename --no-color --no-group --column'
+endif
