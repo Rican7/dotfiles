@@ -1,7 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 #
-# Script to install all of the correct symlinks (syncing 
-#
+# Script to install all of the correct symlinks
 #
 
 # Define constants
