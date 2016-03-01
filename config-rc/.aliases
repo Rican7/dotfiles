@@ -17,7 +17,7 @@ fi
 if $dircolors ; then
     [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
     [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-    eval "`dircolors -b $DIR_COLORS`"
+    eval "$(dircolors -b $DIR_COLORS)"
 
     alias ls="ls --color"
 fi
