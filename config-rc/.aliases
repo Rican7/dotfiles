@@ -1,0 +1,69 @@
+#
+# Function aliases
+#
+
+# Let's define what commands exist
+hash sass      2>/dev/null && sass=true || sass=false
+hash dircolors 2>/dev/null && dircolors=true || dircolors=false
+hash apt-cyg   2>/dev/null && aptcyg=true || aptcyg=false
+
+
+# Make sass try to watch a default file (style.scss) by default
+if $sass ; then
+    alias sass="sass --watch style.scss:style.css"
+fi
+
+# Enable ls to show folder/file colors
+if $dircolors ; then
+    [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+    [ -e "$DIR_COLORS" ] || DIR_COLORS=""
+    eval "`dircolors -b $DIR_COLORS`"
+
+    alias ls="ls --color"
+fi
+
+alias la="ls -la"
+alias vi="vim"
+alias view="vim -R"
+alias explore="open -e"
+alias pack="ack --pager='less -R'"
+alias src="source ~/.bash_profile"
+alias srcg="source /etc/profile"
+alias stripbinary="tr -cd '[:print:]\n'"
+
+# Alias sudo so it can keep its subcommand's aliasing
+# (http://blog.edwards-research.com/2010/07/keeping-aliases-with-sudo-sort-of/)
+alias sudo="sudo "
+
+# Check if an argument works first
+if ls --group-directories-first . >/dev/null 2>&1; then
+    alias la="${BASH_ALIASES[la]} --group-directories-first"
+fi
+
+# Copy/remake of "http://rage.thewaffleshop.net/"
+# Originally found from @abackstrom (https://twitter.com/abackstrom/status/232898857837662208)
+alias fuck="curl -s rage.metroserve.me/?format=plain"
+
+#
+# CYGWIN
+#
+if [[ $OSTYPE == "cygwin" ]] ; then
+    # Enable java command line usage under Cygwin
+    alias java="winrun java"
+
+    # Do we have apt-cyg?
+    if $aptcyg ; then
+        # Alias cygpath to a good mirror
+        alias apt-cyg="apt-cyg -m ftp://cygwin.mirrorcatalogs.com/cygwin/"
+        alias apt-cygports="apt-cyg -m ftp://ftp.cygwinports.org/pub/cygwinports/"
+    fi
+fi
+
+#
+# Mac OS X
+#
+if [[ $OSTYPE == darwin* ]] ; then
+    # Don't use our custom "open" script; Fall back to stock
+    alias open="/usr/bin/open"
+    alias explore="/usr/bin/open ."
+fi

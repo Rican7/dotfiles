@@ -2,5 +2,5 @@
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
+	source ~/.bashrc
 fi

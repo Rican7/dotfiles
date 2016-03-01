@@ -4,9 +4,9 @@
 # Source global definitions
 #
 if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
+    source /etc/bashrc
 elif [ -f /etc/bash.bashrc ]; then
-    . /etc/bash.bashrc
+    source /etc/bash.bashrc
 fi
 
 # User specific aliases and functions
@@ -35,13 +35,13 @@ fi
 for filename in ${HOME}/bash_completion.d/*
 do
     # Source the file (add the autocompletion scheme to bash "complete")
-    source $filename
+    source "$filename"
 done;
 
 # Autocomplete my SSH hosts
 # Originally found here: https://coderwall.com/p/ezpvpa
 # Modified to not grab the catch-all "*" definition
-complete -o default -o nospace -W "$(awk '/^Host [^\*]/ {print $2}' < $HOME/.ssh/config)" scp sftp ssh
+complete -o default -o nospace -W "$(awk '/^Host [^\*]/ {print $2}' < "$HOME"/.ssh/config)" scp sftp ssh
 
 
 #
@@ -56,75 +56,14 @@ export VISUAL="vim"
 export SVN_EDITOR="vim"
 
 # Change bash prompt and color
-export PS1="\[\e[0;36m\]\u\[\e[m\]\[\e[0;34m\]@\h\[\e[m\] \[\e[0;32m\]\W\[\e[m\] $ "
+export PS1="\[\e[0;36m\]\u\[\e[m\]\[\e[0;34m\]@\h\[\e[m\] \[\e[0;32m\]\W\[\e[m\] \$ "
 
 # Suppress our DOS file warnings when running Cygwin
 export CYGWIN="nodosfilewarning"
 
-
-#
-# Function aliases
-#
 # Let's define what commands exist
-hash tmux      2>/dev/null && tmux=true || tmux=false
-hash sass      2>/dev/null && sass=true || sass=false
-hash dircolors 2>/dev/null && dircolors=true || dircolors=false
-hash apt-cyg   2>/dev/null && aptcyg=true || aptcyg=false
 hash phpenv    2>/dev/null && phpenv=true || phpenv=false
 hash rbenv     2>/dev/null && rbenv=true || rbenv=false
-
-# Make sass try to watch a default file (style.scss) by default
-if $sass ; then
-    alias sass="sass --watch style.scss:style.css"
-fi
-
-# Enable ls to show folder/file colors
-if $dircolors ; then
-    [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
-    [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-    eval "`dircolors -b $DIR_COLORS`"
-    alias ls="ls --color"
-fi
-
-# Let's define some other aliases
-alias la="ls -la"
-alias vi="vim"
-alias view="vim -R"
-alias sudo="sudo " # Alias sudo so it can keep its subcommand's aliasing (http://blog.edwards-research.com/2010/07/keeping-aliases-with-sudo-sort-of/)
-alias explore="open -e"
-alias pack="ack --pager='less -R'"
-alias src="source ~/.bash_profile"
-alias srcg="source /etc/profile"
-alias stripbinary="tr -cd '[:print:]\n'"
-
-# Check if an argument works first
-if ls --group-directories-first . >/dev/null 2>&1; then
-    alias la="${BASH_ALIASES[la]} --group-directories-first"
-fi
-
-# Copy/remake of "http://rage.thewaffleshop.net/"
-# Originally found from @abackstrom (https://twitter.com/abackstrom/status/232898857837662208)
-alias fuck="curl -s rage.metroserve.me/?format=plain"
-
-# Check if we're running CYGWIN
-if [[ $OSTYPE == "cygwin" ]] ; then
-    # Enable java command line usage under Cygwin
-    alias java="winrun java"
-
-    # Do we have apt-cyg?
-    if $aptcyg ; then
-        # Alias cygpath to a good mirror
-        alias apt-cyg="apt-cyg -m ftp://cygwin.mirrorcatalogs.com/cygwin/"
-        alias apt-cygports="apt-cyg -m ftp://ftp.cygwinports.org/pub/cygwinports/"
-    fi
-fi
-
-# Check if we're running OS X
-if [[ $OSTYPE == darwin* ]] ; then
-    # Don't use our custom "open" script; Fall back to stock
-    alias open="/usr/bin/open"
-    alias explore="/usr/bin/open ."
-fi
 
 # Z command (similar to J/AutoJump)
 export _Z_CMD="j" # I'm used to j...
@@ -143,28 +82,32 @@ fi
 # SSH Agent at Login
 # Thanks to http://mah.everybody.org/docs/ssh#run-ssh-agent
 SSH_ENV="$HOME/.ssh/environment"
-function start_agent {
+function start_agent() {
     echo "Initialising new SSH agent..."
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
     echo succeeded
     chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
+    source "${SSH_ENV}" > /dev/null
     /usr/bin/ssh-add;
 }
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
+    source "${SSH_ENV}" > /dev/null
+
     #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+    ps -ef | grep "${SSH_AGENT_PID}" | grep 'ssh-agent$' > /dev/null || {
         start_agent;
     }
 else
     start_agent;
 fi
 
-
+# Load our aliases
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+fi
 
 # Let's source an optional device-specific bash config file
 if [ -f ~/.bash_device_rc ]; then
-    . ~/.bash_device_rc
+    source ~/.bash_device_rc
 fi
