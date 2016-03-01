@@ -3,6 +3,9 @@
 # Script to install all of the correct symlinks
 #
 
+# Enable strict error handling
+set -u
+
 # Define constants
 CONFIGDIR='./config-rc'
 
@@ -22,6 +25,8 @@ done
 if [ $verbose != true ] ; then
 	# Suppress the output
 	outputSuppressor='> /dev/null'
+else
+	outputSuppressor=''
 fi
 
 # Get the current directory
@@ -75,7 +80,7 @@ function removeTarget() {
 	# Define some local variables
 	local recursive=false # Whether we should remove recursively or not
 	local force=false # Whether we should ignore "rm" errors or not
-	local argument="" # Our rm's argument
+	local removeCommand="rm" # Our rm's argument
 	local status=1 # Let's have a variable to hold the return status
 	local possible=false # Keep track of whether its possible to remove
 	local message="" # Hold our message here
@@ -93,7 +98,7 @@ function removeTarget() {
 				message="symlink \t$target removed"
 
 				# If we DON'T have access to the symlink's parent directory
-				if [ ! -w `dirname "$target"` ]; then
+				if [ ! -w "$(dirname "$target")" ]; then
 					# Don't allow the file to be removed
 					possible=false
 
@@ -126,30 +131,25 @@ function removeTarget() {
 			fi
 		fi
 
-		# Define our argument
+		# Refine our remove command based on our options
 		if $recursive ; then
-			argument=$argument"r"
+			removeCommand="$removeCommand -r"
 		fi
 		if $force ; then
-			argument=$argument"f"
-		fi
-
-		# Was an argument defined?
-		if [ "$argument" != "" ] ; then
-			argument="-"$argument
+			removeCommand="$removeCommand -f"
 		fi
 
 		# If its possible to make the delete
 		if $possible ; then
 			# Remove the target
-			rm $argument $target
+			eval "$removeCommand $target"
 
 			# Save the return status
 			status=$?
 
 			# Verbose info
 			if $verbose && [ $status == 0 ] ; then
-				echo -e $message
+				echo -e "$message"
 			fi
 		# I guess its not possible
 		else
@@ -174,7 +174,7 @@ function symLink() {
 	# Let's make SURE that the target doesn't already exist... or we might make a recursive symlink (AH!)
 	if [ ! -e "$target" ] ; then
 		# Let's symbolically link them
-		ln -s $source $target
+		ln -s "$source" "$target"
 
 		# Save the return status
 		status=$?
@@ -197,13 +197,13 @@ function symLink() {
 for target in "${filesDirectories[@]}"
 do
 	# Get the basename
-	baseName=$(basename "$target")
+	baseName="$(basename "$target")"
 
 	# Use the removeTarget function and pass the target as an argument
-	removeTarget $target #&& echo 'success!' || echo 'nope'; exit;
+	removeTarget "$target"
 
 	# Relink the file
-	symLink $gitboxDir/$baseName $target
+	symLink "$gitboxDir/$baseName" "$target"
 
 done;
 
@@ -211,21 +211,18 @@ done;
 for target in "${configFiles[@]}"
 do
 	# Get the basename
-	baseName=$(basename "$target")
+	baseName="$(basename "$target")"
 
 	# Use the removeTarget function
-	removeTarget $HOME/$baseName
+	removeTarget "$HOME/$baseName"
 
 	# Relink the file
-	symLink $gitboxDir/$target $HOME/$baseName
+	symLink "$gitboxDir/$target" "$HOME/$baseName"
 
 done;
 
 # Check if we're running CYGWIN
 if [[ $OSTYPE == "cygwin" ]] ; then
-	# Get the windows style home directory
-	windowsStyleHome=$(cygpath -w $HOME);
-
 	# Create a quick counter, to keep our two cygFile arrays aligned
 	count=0
 
@@ -233,13 +230,13 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 	for cygTarget in "${cygFileLocations[@]}"
 	do
 		# Get the windows target path
-		windowsTargetPath=$(cygpath -w $cygTarget);
+		windowsTargetPath="$(cygpath -w "$cygTarget")";
 
 		# Get the windows destination path
-		windowsDestinationPath=$(cygpath -w $gitboxDir\\${cygFileDestinations[$count]});
+		windowsDestinationPath="$(cygpath -w "$gitboxDir\\${cygFileDestinations[$count]}")";
 
 		# Use the removeTarget function and pass the target as an argument
-		removeTarget $cygTarget
+		removeTarget "$cygTarget"
 
 		# Not using verbose output?
 		if [ $verbose != true ] ; then
@@ -251,7 +248,7 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 		cmd /c mklink "$windowsTargetPath" "$windowsDestinationPath" $windowsOutputSuppressor
 
 		# Increment the counter
-		count=$[$count+1]
+		((count++))
 	done;
 fi
 
@@ -259,8 +256,8 @@ fi
 chmod 600 ./config
 
 # We're using Git Submodules now, so let's start those up
-git submodule init | grep .$outputSuppressor
-git submodule update | grep .$outputSuppressor
+git submodule init | grep ."$outputSuppressor"
+git submodule update | grep ."$outputSuppressor"
 
 # Exit gracefully (positive/good exit code)
 exit 0
