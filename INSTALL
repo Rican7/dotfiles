@@ -7,14 +7,14 @@
 set -u
 
 # Define constants
-CONFIGDIR='./config-rc'
+readonly CONFIGDIR='./config-rc'
 
 # Declare variables
-possibleParameters="v"
+readonly POSSIBLEPARAMETERS="v"
 verbose=false;
 
 # Let's set some values based on the parameters
-while getopts "$possibleParameters" opt; do
+while getopts "$POSSIBLEPARAMETERS" opt; do
 	case $opt in
 		v)	verbose=true;;
 		\?)	echo "Invalid option: -$OPTARG"; exit 1;;
@@ -30,10 +30,10 @@ else
 fi
 
 # Get the current directory
-gitboxDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+readonly GITBOXDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Define an array of files/directories
-filesDirectories=(
+readonly FILESANDDIRECTORIES=(
 	"$HOME/bash_completion.d"
 	"$HOME/.ssh/config"
 	"$HOME/.vim"
@@ -41,24 +41,19 @@ filesDirectories=(
 );
 
 # Define an array for all of the config-rc files
-configFiles=()
-# Let's go through all of the files in the config-rc directory
 shopt -s dotglob # Allow * to match hidden files
-for filename in $CONFIGDIR/*
-do
-	configFiles+=($filename)
-done;
+readonly CONFIGFILES=("$CONFIGDIR"/*)
 shopt -u dotglob # Undo the allowing of * to match hidden files
 
 # Define an array of Windows/Cygwin ONLY files/directories
-cygFileLocations=(
+readonly CYGFILELOCATIONS=(
 	"$HOME/_vimrc"
 	"$HOME/vimfiles"
 );
 
 # Define an array containing the destination of the Windows/Cygwin ONLY files/directories for linking
 # MUST ALIGN WITH cygFilesSources
-cygFileDestinations=(
+readonly CYGFILEDESTINATIONS=(
 	"$CONFIGDIR/.vimrc"
 	".vim"
 );
@@ -66,7 +61,7 @@ cygFileDestinations=(
 # Create a function to echo out errors
 function error() {
 	# Let's get our arguments
-	local message=$1
+	local readonly message=$1
 
 	# Echo out our message
 	echo -e "\033[00;31mERROR:\033[00m $message"
@@ -75,7 +70,7 @@ function error() {
 # Create a function to remove the passed target
 function removeTarget() {
 	# The target should be the first (only) argument
-	local target=$1
+	local readonly TARGET=$1
 
 	# Define some local variables
 	local recursive=false # Whether we should remove recursively or not
@@ -86,39 +81,39 @@ function removeTarget() {
 	local message="" # Hold our message here
 
 	# Make sure the target exists before we bother doing anything else
-	if [ -e "$target" ] ; then
+	if [ -e "$TARGET" ] ; then
 		# Let's make SURE that we have write permissions
-		if [ -w "$target" ] ; then
+		if [ -w "$TARGET" ] ; then
 			# If the target is a symlink
-			if [ -L "$target" ] ; then
+			if [ -L "$TARGET" ] ; then
 				# Remove the original file... we're gonna link it instead
 				possible=true
 
 				# Set the message
-				message="symlink \t$target removed"
+				message="REMOVING:\tsymlink $TARGET"
 
 				# If we DON'T have access to the symlink's parent directory
-				if [ ! -w "$(dirname "$target")" ]; then
+				if [ ! -w "$(dirname "$TARGET")" ]; then
 					# Don't allow the file to be removed
 					possible=false
 
 				# If the target doesn't actually exist
-				elif [ ! -e "$target" ] ; then
+				elif [ ! -e "$TARGET" ] ; then
 					# Set the message
-					message="broken link \t$target removed"
+					message="REMOVING:\tbroken link $TARGET"
 
 				fi
 
 			# If the target is a file
-			elif [ -f "$target" ] ; then
+			elif [ -f "$TARGET" ] ; then
 				# Remove the original file... we're gonna link it instead
 				possible=true
 
 				# Set the message
-				message="file \t\t$target removed"
+				message="REMOVING:\tfile $TARGET"
 
 			# If the target is a directory
-			elif [ -d "$target" ] ; then
+			elif [ -d "$TARGET" ] ; then
 				# Its a directory, so set this to remove recursively
 				recursive=true
 
@@ -126,7 +121,7 @@ function removeTarget() {
 				possible=true
 
 				# Set the message
-				message="directory \t$target removed"
+				message="REMOVING:\tdirectory $TARGET"
 
 			fi
 		fi
@@ -142,7 +137,7 @@ function removeTarget() {
 		# If its possible to make the delete
 		if $possible ; then
 			# Remove the target
-			eval "$removeCommand $target"
+			eval "$removeCommand $TARGET"
 
 			# Save the return status
 			status=$?
@@ -154,7 +149,7 @@ function removeTarget() {
 		# I guess its not possible
 		else
 			# Display an error
-			error "insufficient permissions to delete $target"
+			error "insufficient permissions to delete $TARGET"
 		fi
 	fi
 
@@ -168,25 +163,25 @@ function symLink() {
 	local status=1
 
 	# Let's get our arguments
-	local source=$1
-	local target=$2
+	local readonly SOURCE=$1
+	local readonly TARGET=$2
 
 	# Let's make SURE that the target doesn't already exist... or we might make a recursive symlink (AH!)
-	if [ ! -e "$target" ] ; then
+	if [ ! -e "$TARGET" ] ; then
 		# Let's symbolically link them
-		ln -s "$source" "$target"
+		ln -s "$SOURCE" "$TARGET"
 
 		# Save the return status
 		status=$?
 
 		# Verbose info
 		if $verbose && [ $status == 0 ] ; then
-			echo -e "  $source has been linked to $target"
+			echo -e "LINKING:\t$SOURCE -> $TARGET"
 		fi
 	# The target must already exist
 	else
 		# Display an error
-		error "location $target already exists"
+		error "location $TARGET already exists"
 	fi
 
 	# Give a return code as an exit status
@@ -194,7 +189,7 @@ function symLink() {
 }
 
 # Let's loop through each file/directory
-for target in "${filesDirectories[@]}"
+for target in "${FILESANDDIRECTORIES[@]}"
 do
 	# Get the basename
 	baseName="$(basename "$target")"
@@ -203,12 +198,11 @@ do
 	removeTarget "$target"
 
 	# Relink the file
-	symLink "$gitboxDir/$baseName" "$target"
-
+	symLink "$GITBOXDIR/$baseName" "$target"
 done;
 
 # Let's loop through each config file
-for target in "${configFiles[@]}"
+for target in "${CONFIGFILES[@]}"
 do
 	# Get the basename
 	baseName="$(basename "$target")"
@@ -217,8 +211,7 @@ do
 	removeTarget "$HOME/$baseName"
 
 	# Relink the file
-	symLink "$gitboxDir/$target" "$HOME/$baseName"
-
+	symLink "$GITBOXDIR/$target" "$HOME/$baseName"
 done;
 
 # Check if we're running CYGWIN
@@ -227,13 +220,13 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 	count=0
 
 	# Let's loop through each file/directory
-	for cygTarget in "${cygFileLocations[@]}"
+	for cygTarget in "${CYGFILELOCATIONS[@]}"
 	do
 		# Get the windows target path
 		windowsTargetPath="$(cygpath -w "$cygTarget")";
 
 		# Get the windows destination path
-		windowsDestinationPath="$(cygpath -w "$gitboxDir\\${cygFileDestinations[$count]}")";
+		windowsDestinationPath="$(cygpath -w "$GITBOXDIR\\${CYGFILEDESTINATIONS[$count]}")";
 
 		# Use the removeTarget function and pass the target as an argument
 		removeTarget "$cygTarget"
