@@ -59,7 +59,7 @@ readonly CYGFILEDESTINATIONS=(
 );
 
 # Create a function to echo out errors
-function error() {
+error() {
 	# Let's get our arguments
 	local readonly message=$1
 
@@ -68,7 +68,7 @@ function error() {
 }
 
 # Create a function to remove the passed target
-function removeTarget() {
+removeTarget() {
 	# The target should be the first (only) argument
 	local readonly TARGET=$1
 
@@ -158,7 +158,7 @@ function removeTarget() {
 }
 
 # Create a function to symbolically link the passed source to the passed target
-function symLink() {
+symLink() {
 	# Let's have a variable to hold the return status
 	local status=1
 
