@@ -30,6 +30,19 @@ alias src="source ~/.bash_profile"
 alias srcg="source /etc/profile"
 alias stripbinary="tr -cd '[:print:]\n'"
 
+# Go(lang) aliases
+alias golisttypes="sift --no-group --filename --no-line-number --ext='go' --exclude-files='*_test.go' '^(\s)?type .*'"
+alias goliststructs="sift --no-group --filename --no-line-number --ext='go' --exclude-files='*_test.go' 'type .* struct {'"
+alias golistinterfaces="sift --no-group --filename --no-line-number --ext='go' --exclude-files='*_test.go' 'type .* interface {'"
+alias golistcleantogodoc="sed 's/type\s\(.*\?\)\s.*/\1/g' | sed 's/\s.*//' | sed 's/\(\(\w\+\/\)\?\(\w\+\)\/\)\?\w\+\.go:/\3./g' | sed 's/^\.//g' | xargs -L 1 go doc 2>/dev/null"
+alias godoclistclean="sift --no-group --no-line-number --no-color '^(package|type|}|\t)'"
+alias godoctypes="golisttypes | golistcleantogodoc"
+alias godocstructs="goliststructs | golistcleantogodoc"
+alias godocinterfaces="golistinterfaces | golistcleantogodoc"
+alias golisttypesverbose="godoctypes | godoclistclean"
+alias goliststructsverbose="godocstructs | godoclistclean"
+alias golistinterfacesverbose="godocinterfaces | godoclistclean"
+
 # Alias sudo so it can keep its subcommand's aliasing
 # (http://blog.edwards-research.com/2010/07/keeping-aliases-with-sudo-sort-of/)
 alias sudo="sudo "
