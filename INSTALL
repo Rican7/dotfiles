@@ -81,35 +81,28 @@ removeTarget() {
 	local message="" # Hold our message here
 
 	# Make sure the target exists before we bother doing anything else
-	if [ -e "$TARGET" ] ; then
+	if [ -e "$TARGET" ] || [ -L "$TARGET" ] ; then
+		# If the target is a symlink
+		if [ -L "$TARGET" ] ; then
+			possible=true
+			message="REMOVING:\tsymlink $TARGET"
+
+			# If we DON'T have access to the symlink's parent directory
+			if [ ! -w "$(dirname "$TARGET")" ]; then
+				# Don't allow the file to be removed
+				possible=false
+
+			# If the target doesn't actually exist
+			elif [ ! -e "$TARGET" ] ; then
+				message="REMOVING:\tbroken link $TARGET"
+			fi
+
 		# Let's make SURE that we have write permissions
-		if [ -w "$TARGET" ] ; then
-			# If the target is a symlink
-			if [ -L "$TARGET" ] ; then
-				# Remove the original file... we're gonna link it instead
-				possible=true
-
-				# Set the message
-				message="REMOVING:\tsymlink $TARGET"
-
-				# If we DON'T have access to the symlink's parent directory
-				if [ ! -w "$(dirname "$TARGET")" ]; then
-					# Don't allow the file to be removed
-					possible=false
-
-				# If the target doesn't actually exist
-				elif [ ! -e "$TARGET" ] ; then
-					# Set the message
-					message="REMOVING:\tbroken link $TARGET"
-
-				fi
-
+		elif [ -w "$TARGET" ] ; then
 			# If the target is a file
-			elif [ -f "$TARGET" ] ; then
+			if [ -f "$TARGET" ] ; then
 				# Remove the original file... we're gonna link it instead
 				possible=true
-
-				# Set the message
 				message="REMOVING:\tfile $TARGET"
 
 			# If the target is a directory
@@ -119,10 +112,7 @@ removeTarget() {
 
 				# Remove the original directory... we're gonna link it instead
 				possible=true
-
-				# Set the message
 				message="REMOVING:\tdirectory $TARGET"
-
 			fi
 		fi
 
