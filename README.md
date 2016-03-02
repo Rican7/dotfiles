@@ -13,8 +13,7 @@ Or as I like to call this, my "git box". :D
 ## Getting Started
 
 1. Clone this repo: `git clone git@github.com:Rican7/dotfiles.git ~/.git_box`
-2. Download any submodules: `cd ~/.git_box && git submodule update --init --recursive`
-3. Run the installer: `cd ~/.git_box && make`
+2. Run the installer: `cd ~/.git_box && make`
 
 
 ## OS Setups
