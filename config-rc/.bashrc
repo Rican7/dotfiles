@@ -103,8 +103,8 @@ else
 fi
 
 # Load our aliases
-if [ -f ~/.aliases ]; then
-    source ~/.aliases
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
 fi
 
 # Let's source an optional device-specific bash config file
