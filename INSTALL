@@ -21,14 +21,6 @@ while getopts "$POSSIBLEPARAMETERS" opt; do
 	esac
 done
 
-# Not using verbose output?
-if [ $verbose != true ] ; then
-	# Suppress the output
-	outputSuppressor='> /dev/null'
-else
-	outputSuppressor=''
-fi
-
 # Get the current directory
 readonly GITBOXDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -237,10 +229,6 @@ fi
 
 # Let's change the permissions of some files
 chmod 600 ./config
-
-# We're using Git Submodules now, so let's start those up
-git submodule init | grep ."$outputSuppressor"
-git submodule update | grep ."$outputSuppressor"
 
 # Exit gracefully (positive/good exit code)
 exit 0
