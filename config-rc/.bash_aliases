@@ -5,7 +5,6 @@
 # Let's define what commands exist
 hash sass      2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
-hash apt-cyg   2>/dev/null && aptcyg=true || aptcyg=false
 
 
 # Make sass try to watch a default file (style.scss) by default
@@ -44,26 +43,12 @@ fi
 # Originally found from @abackstrom (https://twitter.com/abackstrom/status/232898857837662208)
 alias fuck="curl -s rage.metroserve.me/?format=plain"
 
-#
-# CYGWIN
-#
-if [[ $OSTYPE == "cygwin" ]] ; then
-    # Enable java command line usage under Cygwin
-    alias java="winrun java"
-
-    # Do we have apt-cyg?
-    if $aptcyg ; then
-        # Alias cygpath to a good mirror
-        alias apt-cyg="apt-cyg -m ftp://cygwin.mirrorcatalogs.com/cygwin/"
-        alias apt-cygports="apt-cyg -m ftp://ftp.cygwinports.org/pub/cygwinports/"
-    fi
+# Cygwin/Windows specific aliases
+if [[ $OSTYPE == "cygwin" ]] && [ -f ~/.bash_aliases.win ] ; then
+    source ~/.bash_aliases.win
 fi
 
-#
-# Mac OS X
-#
-if [[ $OSTYPE == darwin* ]] ; then
-    # Don't use our custom "open" script; Fall back to stock
-    alias open="/usr/bin/open"
-    alias explore="/usr/bin/open ."
+# Darwin/Mac OS X specific aliases
+if [[ $OSTYPE == darwin* ]] && [ -f ~/.bash_aliases.osx ] ; then
+    source ~/.bash_aliases.osx
 fi

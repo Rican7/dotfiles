@@ -1,0 +1,7 @@
+#
+# Darwin/OS X Function aliases
+#
+
+# Don't use our custom "open" script; Fall back to stock
+alias open="/usr/bin/open"
+alias explore="/usr/bin/open ."

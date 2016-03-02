@@ -1,0 +1,17 @@
+#
+# Cygwin/Windows Function aliases
+#
+
+# Let's define what commands exist
+hash apt-cyg   2>/dev/null && aptcyg=true || aptcyg=false
+
+
+# Enable java command line usage under Cygwin
+alias java="winrun java"
+
+# Do we have apt-cyg?
+if $aptcyg ; then
+    # Alias cygpath to a good mirror
+    alias apt-cyg="apt-cyg -m ftp://cygwin.mirrorcatalogs.com/cygwin/"
+    alias apt-cygports="apt-cyg -m ftp://ftp.cygwinports.org/pub/cygwinports/"
+fi
