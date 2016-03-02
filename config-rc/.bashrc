@@ -1,4 +1,5 @@
 # .bashrc
+# vim: syntax=sh filetype=sh
 
 #
 # Source global definitions

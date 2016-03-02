@@ -1,6 +1,7 @@
 #
 # Darwin/OS X Function aliases
 #
+# vim: syntax=sh filetype=sh
 
 # Don't use our custom "open" script; Fall back to stock
 alias open="/usr/bin/open"

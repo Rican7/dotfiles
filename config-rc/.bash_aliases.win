@@ -1,6 +1,7 @@
 #
 # Cygwin/Windows Function aliases
 #
+# vim: syntax=sh filetype=sh
 
 # Let's define what commands exist
 hash apt-cyg   2>/dev/null && aptcyg=true || aptcyg=false
