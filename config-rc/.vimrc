@@ -58,7 +58,6 @@ syntax on
 " Colorscheme
 set background=dark
 colorscheme railscasts
-"colorscheme ir_black
 
 " Status line badassery
 set laststatus=2
@@ -70,6 +69,23 @@ hi StatusLine ctermfg=LightGray ctermbg=Black guifg=LightGray guibg=Black
 " 'ColorColumn' Line configuration
 set colorcolumn=+1 " Set the color column to appear at the text-width's setting
 hi ColorColumn term=reverse ctermbg=234 guibg=#222222 ctermfg=NONE guifg=NONE
+
+
+"
+" Folding Options
+"
+
+" Make folding indent sensitive
+set foldmethod=indent
+
+" Don't autofold anything (but I can still fold manually)
+set foldlevel=100
+
+" Don't open folds when you search into them
+set foldopen-=search
+
+" Don't open folds when you undo stuff
+set foldopen-=undo
 
 
 " Let the spacebar work as a leader without still moving forward a char
@@ -413,23 +429,6 @@ autocmd BufReadPost * DetectIndent
 " Set some indentation detection options
 let g:detectindent_preferred_expandtab = 1
 let g:detectindent_preferred_indent = 4
-
-
-"
-" Folding Options
-"
-
-" Make folding indent sensitive
-set foldmethod=indent
-
-" Don't autofold anything (but I can still fold manually)
-set foldlevel=100
-
-" Don't open folds when you search into them
-set foldopen-=search
-
-" Don't open folds when you undo stuff
-set foldopen-=undo
 
 
 "
