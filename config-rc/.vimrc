@@ -22,12 +22,19 @@ call pathogen#infect()
 call pathogen#helptags()
 
 " Behavior settings
-set backspace=2 ts=4 sts=4 sw=4 smarttab noet ai nocp wrap
+set backspace=indent,eol,start " Backspace/delete like most apps
+set tabstop=4 softtabstop=4 shiftwidth=4
+set autoindent
+set expandtab smarttab
 set history=750 " Set the command history size
-set ruler nowrap backspace=2 hidden showmatch matchtime=3
-set wrap incsearch ignorecase hlsearch
-set updatecount=50 showmatch matchtime=3
-set modeline modelines=5 nu spr
+set ruler
+set hidden
+set showmatch matchtime=3
+set wrap
+set incsearch ignorecase hlsearch
+set updatecount=50
+set modeline modelines=5
+set number relativenumber
 set nofoldenable
 set t_Co=256
 set ffs=unix,dos,mac
