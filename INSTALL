@@ -200,6 +200,13 @@ done;
 if [[ $OSTYPE == "cygwin" ]] ; then
 	# Create a quick counter, to keep our two cygFile arrays aligned
 	count=0
+	windowsOutputSuppressor=''
+
+	# Not using verbose output?
+	if [ "$verbose" != true ] ; then
+		# Suppress the output
+		windowsOutputSuppressor='>nul'
+	fi
 
 	# Let's loop through each file/directory
 	for cygTarget in "${CYGFILELOCATIONS[@]}"
@@ -212,12 +219,6 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 
 		# Use the removeTarget function and pass the target as an argument
 		removeTarget "$cygTarget"
-
-		# Not using verbose output?
-		if [ $verbose != true ] ; then
-			# Suppress the output
-			windowsOutputSuppressor='>nul'
-		fi
 
 		# Use cmd (windows native command prompt) to setup Windows NT Symbolic Links
 		cmd /c mklink "$windowsTargetPath" "$windowsDestinationPath" $windowsOutputSuppressor
