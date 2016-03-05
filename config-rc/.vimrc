@@ -1,17 +1,17 @@
 " Windows vs Mac GUI settings
 if has("win32") || has("win64")
-	set guifont=Source\ Code\ Pro:h10
-	set guioptions-=T
+    set guifont=Source\ Code\ Pro:h10
+    set guioptions-=T
 else
-	set guifont=Source\ Code\ Pro\ Light:h13
-	set guioptions-=T
+    set guifont=Source\ Code\ Pro\ Light:h13
+    set guioptions-=T
 end
 
 " Windows SWAP files
 if has("win32") || has("win64")
-	set directory=$TMP
+    set directory=$TMP
 else
-	set directory=/tmp
+    set directory=/tmp
 end
 
 " Set nocompatible BEFORE trying to use Pathogen (Use Vim defaults = much better!)
@@ -199,13 +199,13 @@ inoremap \pn <C-R>=expand("%:p:h:s?.*\/[^A-Z]\\+\\C??:gs?/?\\?")<CR>
 
 " Function for toggling paste mode on/off
 function! TogglePasteMode ()
-	if (&paste)
-		set nopaste
-		echo "paste mode off"
-     else
-     	set paste
-     	echo "paste mode on"
-     endif
+    if (&paste)
+        set nopaste
+        echo "paste mode off"
+    else
+        set paste
+        echo "paste mode on"
+    endif
 endfunction
 
 " Function for toggling expandtab mode on/off
@@ -221,16 +221,16 @@ endfunction
 
 " Function for toggling showing numbers between multiple types of display (relative, normal, off)
 function! ToggleShowNumbers ()
-	if (&number)
-		set nonumber
-		echo "disabling numbers"
-	elseif exists("*NumberToggle")
-		call NumberToggle()
-		echo "toggling relative/normal numbers"
-	else
-		set number
-		echo "enabling numbers"
-	endif
+    if (&number)
+        set nonumber
+        echo "disabling numbers"
+    elseif exists("*NumberToggle")
+        call NumberToggle()
+        echo "toggling relative/normal numbers"
+    else
+        set number
+        echo "enabling numbers"
+    endif
 endfunction
 
 " Function for deleting (closing) all hidden (un-opened) buffers
@@ -243,7 +243,7 @@ function! RemoveHiddenBuffers ()
     let num_deleted=0
 
     for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-	silent execute 'bwipeout' buf
+        silent execute 'bwipeout' buf
         let num_deleted = num_deleted + 1
     endfor
 
