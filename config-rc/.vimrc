@@ -489,6 +489,13 @@ let g:easytags_languages = {
 \       'fileoutput_opt': '-f',
 \       'stdout_opt': '-f-',
 \       'recurse_flag': '-R'
+\   },
+\   'go': {
+\     'cmd': 'gotags',
+\       'args': [],
+\       'fileoutput_opt': '-f',
+\       'stdout_opt': '-f -',
+\       'recurse_flag': '-R'
 \   }
 \}
 
