@@ -20,7 +20,7 @@ function session_exists() {
 
 	# Did we pass an argument?
 	if [ -n "$sessionArg" ]; then
-		tmux has-session -t $sessionArg 2>/dev/null
+		tmux has-session -t "$sessionArg" 2>/dev/null
 	else
 		tmux has-session 2>/dev/null
 	fi
@@ -44,18 +44,18 @@ fi
 # Did we pass an argument?
 if [ -n "$sessionId" ]; then
 	# See if we have an existing session matching our passed name
-	if $(session_exists $sessionId); then
-		tmux attach-session -t $sessionId
+	if session_exists "$sessionId"; then
+		tmux attach-session -t "$sessionId"
 
 	# We don't have an existing session with our passed name
 	else
-		tmux new-session -s $sessionId
+		tmux new-session -s "$sessionId"
 	fi
 
 # No argument passed
 else
 	# See if we have any existing sessions
-	if $(session_exists); then
+	if session_exists; then
 		# Just list our sessions
 		tmux list-sessions
 
