@@ -6,6 +6,7 @@
 # Let's define what commands exist
 hash sass      2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
+hash emux      2>/dev/null && emux=true || emux=false
 
 
 # Make sass try to watch a default file (style.scss) by default
@@ -20,6 +21,12 @@ if $dircolors ; then
     eval "$(dircolors -b $DIR_COLORS)"
 
     alias ls="ls --color"
+fi
+
+if $emux ; then
+    # Single quote this to delay expansion
+    alias emux-this='emux $(basename $(pwd))'
+    alias tmux-this='emux-this'
 fi
 
 alias la="ls -la"
