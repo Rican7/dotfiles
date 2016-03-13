@@ -41,6 +41,7 @@ shopt -u dotglob # Undo the allowing of * to match hidden files
 readonly CYGFILELOCATIONS=(
 	"$HOME/_vimrc"
 	"$HOME/vimfiles"
+	"$HOME/.sift.conf"
 );
 
 # Define an array containing the destination of the Windows/Cygwin ONLY files/directories for linking
@@ -48,6 +49,7 @@ readonly CYGFILELOCATIONS=(
 readonly CYGFILEDESTINATIONS=(
 	"$CONFIGDIR/.vimrc"
 	".vim"
+	"$CONFIGDIR/.sift.conf"
 );
 
 # Create a function to echo out errors
@@ -211,14 +213,14 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 	# Let's loop through each file/directory
 	for cygTarget in "${CYGFILELOCATIONS[@]}"
 	do
+		# Use the removeTarget function and pass the target as an argument
+		removeTarget "$cygTarget"
+
 		# Get the windows target path
 		windowsTargetPath="$(cygpath -w "$cygTarget")";
 
 		# Get the windows destination path
 		windowsDestinationPath="$(cygpath -w "$GITBOXDIR\\${CYGFILEDESTINATIONS[$count]}")";
-
-		# Use the removeTarget function and pass the target as an argument
-		removeTarget "$cygTarget"
 
 		# Use cmd (windows native command prompt) to setup Windows NT Symbolic Links
 		cmd /c mklink "$windowsTargetPath" "$windowsDestinationPath" $windowsOutputSuppressor
