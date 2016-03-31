@@ -20,8 +20,16 @@
 	branchname = rev-parse --abbrev-ref HEAD
 	files = diff --name-only
 	last = diff --name-only HEAD^!
+	files-status = diff --name-status
+	last-status = diff --name-status HEAD^!
+	files-stat = diff --stat
+	last-stat = diff --stat HEAD^!
 	showfiles = show --name-only
 	showlast = show --name-only HEAD^!
+	showfiles-status = show --name-status
+	showlast-status = show --name-status HEAD^!
+	showfiles-stat = show --stat
+	showlast-stat = show --stat HEAD^!
 	excluded = ls-files --others --ignored --exclude-standard
 	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lgbranch = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --first-parent --no-merges master..HEAD
