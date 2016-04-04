@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 #
 # Script to open a file in windows from within cygwin
 #
@@ -6,16 +6,13 @@
 
 # Check if we're running CYGWIN
 if [[ $OSTYPE == "cygwin" ]] ; then
-	
-	# Declare constants
-	startCommandPath="/bin/cygstart"
+	readonly START_COMMAND_PATH="/bin/cygstart"
+	readonly POSSIBLE_PARAMETERS="e";
 
-	# Declare variables
-	possibleParameters="e";
 	explore=false;
 
 	# Let's set some values based on the parameters
-	while getopts "$possibleParameters" opt; do
+	while getopts "$POSSIBLE_PARAMETERS" opt; do
 		case $opt in
 			e)	explore=true;;
 			\?)	echo "Invalid option: -$OPTARG"; exit;;
@@ -24,11 +21,28 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 
 	# If explore is set, then add the explore argument
 	if $explore ; then
-		"$startCommandPath" "--explore" "${2:-.}";
+		"$START_COMMAND_PATH" "--explore" "${2:-.}";
 	else
-		"$startCommandPath" "${1:-.}";
+		"$START_COMMAND_PATH" "${1:-.}";
 	fi
 
 else
+	# Get the path of the script (thanks http://stackoverflow.com/questions/4774054/#comment25142411_4774063)
+	readonly SCRIPTPATH="$(cd "$(dirname "$0")" || exit; pwd -P)"
+	readonly SCRIPTNAME="$(basename "${BASH_SOURCE[0]:-$0}")"
+	readonly SCRIPTPATH_FULL="$SCRIPTPATH/$SCRIPTNAME"
+
+	# Loop through each script with the same name
+	while read -r line; do
+		# Replace any `~` characters with the expanded `$HOME` value
+		canonical_line_path="${line/#\~/$HOME}"
+
+		# If another "open" script exists, defer to it
+		if ! [ "$canonical_line_path" -ef "$SCRIPTPATH_FULL" ]; then
+			eval "$canonical_line_path" "$@"
+			exit $?
+		fi
+	done < <(which -a "$SCRIPTNAME"); # Get the list of all scripts with the same name
+
 	echo -e "This script is meant only for Windows running Cygwin";
 fi
