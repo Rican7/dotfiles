@@ -160,3 +160,6 @@
 [submodule ".vim/bundle/clam.vim"]
 	path = .vim/bundle/clam.vim
 	url = https://github.com/sjl/clam.vim.git
+[submodule ".vim/bundle/vim-marked"]
+	path = .vim/bundle/vim-marked
+	url = https://github.com/itspriddle/vim-marked.git
