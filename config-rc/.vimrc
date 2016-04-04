@@ -524,3 +524,11 @@ endif
 if (1 == executable('sift'))
     let g:ackprg = 'sift --filename --no-color --no-group --column'
 endif
+
+
+"
+" vim-marked Options
+"
+
+" If 'sift' is installed, use it as the search program
+let g:marked_app = 'Markoff'
