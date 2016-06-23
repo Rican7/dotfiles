@@ -50,6 +50,9 @@ alias godocinterfaces="golistinterfaces | golistcleantogodoc"
 alias golisttypesverbose="godoctypes | godoclistclean"
 alias goliststructsverbose="godocstructs | godoclistclean"
 alias golistinterfacesverbose="godocinterfaces | godoclistclean"
+alias golistdeps="go list -f '{{ join .Deps \"\n\" }}'"
+golistdepsordered() { golistdeps "${1}" | sort -n | uniq; }
+golistdepsgrouped() { golistdepsordered "${1}" | grep -v '^[^internal].*\.'; echo; golistdepsordered "${1}" | grep '^[^internal].*\.'; }
 
 # Alias sudo so it can keep its subcommand's aliasing
 # (http://blog.edwards-research.com/2010/07/keeping-aliases-with-sudo-sort-of/)
