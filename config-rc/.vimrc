@@ -462,6 +462,9 @@ let g:go_highlight_structs = 1
 " Enable highlighting build constraints
 let g:go_highlight_build_constraints = 1
 
+" Don't overwrite default mappings just for some def calls...
+let g:go_def_mapping_enabled = 0
+
 
 "
 " Vim-Better-Whitespace Options
