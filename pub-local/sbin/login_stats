@@ -1,63 +1,65 @@
-#!/bin/bash
+#!/bin/env bash
 #
 # Server Status MOTD Script
 # Originally from: http://www.question-defense.com/2010/04/03/cent-os-how-to-make-a-custom-ssh-banner-with-current-system-statistics
 
 # Get and define colors
-ncolors=$(tput colors)
-if [ $ncolors ] && [ $ncolors -ge 8 ]; then
-  bold="$(tput bold)"
-  underline="$(tput smul)"
-  standout="$(tput smso)"
-  normal="$(tput sgr0)"
-  black="$(tput setaf 0)"
-  red="$(tput setaf 1)"
-  green="$(tput setaf 2)"
-  yellow="$(tput setaf 3)"
-  blue="$(tput setaf 4)"
-  magenta="$(tput setaf 5)"
-  cyan="$(tput setaf 6)"
-  white="$(tput setaf 7)"
+readonly NCOLORS=$(tput colors)
 
-  dateStyle="$bold$magenta"
-  propTitleStyle="$cyan"
-  loginTitleStyle="$blue"
+if [ "${NCOLORS}" ] && [ "${NCOLORS}" -ge 8 ]; then
+  readonly BOLD="$(tput bold)"
+  readonly UNDERLINE="$(tput smul)"
+  readonly STANDOUT="$(tput smso)"
+  readonly NORMAL="$(tput sgr0)"
+  readonly BLACK="$(tput setaf 0)"
+  readonly RED="$(tput setaf 1)"
+  readonly GREEN="$(tput setaf 2)"
+  readonly YELLOW="$(tput setaf 3)"
+  readonly BLUE="$(tput setaf 4)"
+  readonly MAGENTA="$(tput setaf 5)"
+  readonly CYAN="$(tput setaf 6)"
+  readonly WHITE="$(tput setaf 7)"
+
+  readonly DATE_STYLE="${BOLD}${MAGENTA}"
+  readonly PROP_TITLE_STYLE="${CYAN}"
+  readonly LOGIN_TITLE_STYLE="${BLUE}"
 else
-  normal=""
-  dateStyle=""
-  propTitleStyle=""
-  loginTitleStyle=""
+  readonly NORMAL=""
+
+  readonly DATE_STYLE=""
+  readonly PROP_TITLE_STYLE=""
+  readonly LOGIN_TITLE_STYLE=""
 fi
 
- 
-CPUTIME=$(ps -eo pcpu | awk 'NR>1' | awk '{tot=tot+$1} END {print tot}')
-CPUCORES=$(cat /proc/cpuinfo | grep -c processor)
-UPTIME=$(uptime | tr "," " " | cut -f4-5 -d" " | sed -e 's/^ *//')
-LASTLOGINDATE=$(whoami | xargs last -aF | awk 'NR == 2 { print $3,$4,$5,$6,$7 }' | xargs -0 -I datestr date --date=datestr)
-LASTLOGINHOST=$(whoami | xargs last -aF | awk 'NR == 2 { print $NF }')
-LASTLOGINIP=$(whoami | xargs last -i | awk 'NR == 2 { print $3 }')
-DISK_SPACE_USED=$(df -P --block-size="GB" / | sed s/GB//g | awk '{ size = $2 } { used = $3 } END { print used, "of", size }')
-DISK_SPACE_PERCENT=$(df -khP / | column -t | tail -n 1 | awk '{ print $5 }')
-MEMORY_FREE_REAL=$(free -m | head -n 2 | tail -n 1 | awk {'print $4'})
-MEMORY_FREE_CACHE=$(free -m | head -n 3 | tail -n 1 | awk {'print $4'})
-MEMORY_TOTAL=$(free -m | head -n 2 | tail -n 1 | awk {'print $2'})
-SWAP_USED=$(free -m | tail -n 1 | awk '{ size = $2 } { used = $3 } END { print used, "of", size }')
+
+readonly CPU_TIME=$(ps -eo pcpu | awk 'NR>1' | awk '{tot=tot+$1} END {print tot}')
+readonly CPU_CORES=$(grep -c 'processor' /proc/cpuinfo)
+readonly UP_TIME=$(uptime | tr "," " " | cut -f4-5 -d" " | sed -e 's/^ *//')
+readonly LAST_LOGIN_DATE=$(whoami | xargs last -aF | awk 'NR == 2 { print $3,$4,$5,$6,$7 }' | xargs -0 -I datestr date --date=datestr)
+readonly LAST_LOGIN_HOST=$(whoami | xargs last -aF | awk 'NR == 2 { print $NF }')
+readonly LAT_LOGIN_IP=$(whoami | xargs last -i | awk 'NR == 2 { print $3 }')
+readonly DISK_SPACE_USED=$(df -P --block-size="GB" / | sed s/GB//g | awk '{ size = $2 } { used = $3 } END { print used, "of", size }')
+readonly DISK_SPACE_PERCENT=$(df -khP / | column -t | tail -n 1 | awk '{ print $5 }')
+readonly MEMORY_FREE_REAL=$(free -m | head -n 2 | tail -n 1 | awk {'print $4'})
+readonly MEMORY_FREE_CACHE=$(free -m | head -n 3 | tail -n 1 | awk {'print $4'})
+readonly MEMORY_TOTAL=$(free -m | head -n 2 | tail -n 1 | awk {'print $2'})
+readonly SWAP_USED=$(free -m | tail -n 1 | awk '{ size = $2 } { used = $3 } END { print used, "of", size }')
 
 echo "
-  System Status as of ${dateStyle}`date`${normal}
-   
-  ${propTitleStyle}Server Name:${normal}                `hostname`
-  ${propTitleStyle}Host Name:${normal}                  `hostname -f`
-  ${propTitleStyle}Public IP:${normal}                  `dig +short +time=1 myip.opendns.com @resolver1.opendns.com`
-  ${propTitleStyle}OS Version:${normal}                 `cat /etc/issue.net | head -1`
-  ${propTitleStyle}System Uptime:${normal}              $UPTIME
-  ${propTitleStyle}CPU Usage (average):${normal}        `echo $CPUTIME / $CPUCORES | bc`%
-  ${propTitleStyle}Load Averages:${normal}              `cat /proc/loadavg`
-  ${propTitleStyle}Memory free:${normal}                $MEMORY_FREE_REAL ($MEMORY_FREE_CACHE cached) of $MEMORY_TOTAL MB
-  ${propTitleStyle}Swap in use:${normal}                $SWAP_USED MB
-  ${propTitleStyle}Disk Space Used:${normal}            $DISK_SPACE_USED GB ($DISK_SPACE_PERCENT)
-  
-  ${loginTitleStyle}Last login Time:${normal}            $LASTLOGINDATE
-  ${loginTitleStyle}Last login Host:${normal}            $LASTLOGINHOST
-  ${loginTitleStyle}Last login IP:${normal}              $LASTLOGINIP
+  System Status as of ${DATE_STYLE}$(date)${NORMAL}
+
+  ${PROP_TITLE_STYLE}Server Name:${NORMAL}                $(hostname)
+  ${PROP_TITLE_STYLE}Host Name:${NORMAL}                  $(hostname -f)
+  ${PROP_TITLE_STYLE}Public IP:${NORMAL}                  $(dig +short +time=1 myip.opendns.com @resolver1.opendns.com)
+  ${PROP_TITLE_STYLE}OS Version:${NORMAL}                 $(head -1 /etc/issue.net)
+  ${PROP_TITLE_STYLE}System Uptime:${NORMAL}              ${UP_TIME}
+  ${PROP_TITLE_STYLE}CPU Usage (average):${NORMAL}        $(echo "${CPU_TIME}" / "${CPU_CORES}" | bc)%
+  ${PROP_TITLE_STYLE}Load Averages:${NORMAL}              $(cat /proc/loadavg)
+  ${PROP_TITLE_STYLE}Memory free:${NORMAL}                ${MEMORY_FREE_REAL} (${MEMORY_FREE_CACHE} cached) of ${MEMORY_TOTAL} MB
+  ${PROP_TITLE_STYLE}Swap in use:${NORMAL}                ${SWAP_USED} MB
+  ${PROP_TITLE_STYLE}Disk Space Used:${NORMAL}            ${DISK_SPACE_USED} GB (${DISK_SPACE_PERCENT})
+
+  ${LOGIN_TITLE_STYLE}Last login Time:${NORMAL}            ${LAST_LOGIN_DATE}
+  ${LOGIN_TITLE_STYLE}Last login Host:${NORMAL}            ${LAST_LOGIN_HOST}
+  ${LOGIN_TITLE_STYLE}Last login IP:${NORMAL}              ${LAT_LOGIN_IP}
 "
