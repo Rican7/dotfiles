@@ -48,7 +48,7 @@ echo "
    
   ${propTitleStyle}Server Name:${normal}                `hostname`
   ${propTitleStyle}Host Name:${normal}                  `hostname -f`
-  ${propTitleStyle}Public IP:${normal}                  `dig +short myip.opendns.com @resolver1.opendns.com`
+  ${propTitleStyle}Public IP:${normal}                  `dig +short +time=1 myip.opendns.com @resolver1.opendns.com`
   ${propTitleStyle}OS Version:${normal}                 `cat /etc/issue.net | head -1`
   ${propTitleStyle}System Uptime:${normal}              $UPTIME
   ${propTitleStyle}CPU Usage (average):${normal}        `echo $CPUTIME / $CPUCORES | bc`%
