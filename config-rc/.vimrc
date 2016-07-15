@@ -258,7 +258,7 @@ function! RemoveHiddenBuffers ()
 
     let num_deleted=0
 
-    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1 && empty(getbufvar(v:val, "&buftype"))')
         silent execute 'bwipeout' buf
         let num_deleted = num_deleted + 1
     endfor
