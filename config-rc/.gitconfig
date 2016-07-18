@@ -57,6 +57,7 @@
 	root = rev-parse --show-toplevel
 	releasename = !git describe --exact-match --abbrev=0 2>/dev/null || git rev-parse --short HEAD
 	branchliststatus = !git remote update && git branch --list -vv
+	branchls = !git branchliststatus --color=always | sed --posix 's/].*/]/g'
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -FRSX
