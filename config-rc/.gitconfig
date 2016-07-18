@@ -56,6 +56,7 @@
 	revisionshort = rev-parse --short HEAD
 	root = rev-parse --show-toplevel
 	releasename = !git describe --exact-match --abbrev=0 2>/dev/null || git rev-parse --short HEAD
+	branchliststatus = !git remote update && git branch --list -vv
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -FRSX
