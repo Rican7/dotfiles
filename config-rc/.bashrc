@@ -103,12 +103,12 @@ else
     start_agent;
 fi
 
-# Load our aliases
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
-
 # Let's source an optional device-specific bash config file
 if [ -f ~/.bash_device_rc ]; then
     source ~/.bash_device_rc
+fi
+
+# Load our aliases
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
 fi
