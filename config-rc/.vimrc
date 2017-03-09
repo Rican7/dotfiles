@@ -349,6 +349,7 @@ autocmd FileType php vnoremap <leader>c :call PhpDocRange()<CR>
 let g:pdv_cfg_autoEndFunction = 0 " Disable function end trailing comment
 let g:pdv_cfg_autoEndClass = 0 " Disable class end trailing comment
 let g:pdv_cfg_php4always = 0 " Disable PHP-4 style tags from being used in PHP-5
+let g:pdv_cfg_createClassTags = 0 " Disable complex tags from being created for classes
 
 " PHP-Vim-Namespace configuration and key-mappings
 " inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
