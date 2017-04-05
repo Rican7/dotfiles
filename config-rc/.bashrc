@@ -49,7 +49,7 @@ complete -o default -o nospace -W "$(awk '/^Host [^\*]/ {print $2}' < "$HOME"/.s
 # Environment Variables
 #
 # Let's define our shell for continuity
-export SHELL="/bin/bash"
+export SHELL="$(which bash)"
 
 # Export the EDITOR and VISUAL variables
 export EDITOR="vim"
