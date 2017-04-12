@@ -21,6 +21,9 @@ set nocompatible
 call pathogen#infect()
 call pathogen#helptags()
 
+" Packages (`:help packages`)
+packadd! matchit
+
 " Behavior settings
 set backspace=indent,eol,start " Backspace/delete like most apps
 set tabstop=4 softtabstop=4 shiftwidth=4
