@@ -4,6 +4,10 @@
 #
 #
 
+# Let's define what commands exist
+hash 'cmd.exe' 2>/dev/null && windows=true || windows=false
+
+
 # Check if we're running CYGWIN
 if [[ $OSTYPE == "cygwin" ]] ; then
 	readonly START_COMMAND_PATH="/bin/cygstart"
@@ -26,6 +30,12 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 		"$START_COMMAND_PATH" "${1:-.}";
 	fi
 
+elif $windows ; then
+	# Running windows with Bash?
+
+	# Open the argument with the "internal" command
+	cmd.exe /C "start \"Opening...\" \"$*\""
+	exit $?
 else
 	# Get the path of the script (thanks http://stackoverflow.com/questions/4774054/#comment25142411_4774063)
 	readonly SCRIPTPATH="$(cd "$(dirname "$0")" || exit; pwd -P)"
@@ -39,7 +49,7 @@ else
 
 		# If another "open" script exists, defer to it
 		if ! [ "$canonical_line_path" -ef "$SCRIPTPATH_FULL" ]; then
-			eval "$canonical_line_path" "$@"
+			eval "$canonical_line_path" "'$*'"
 			exit $?
 		fi
 	done < <(which -a "$SCRIPTNAME"); # Get the list of all scripts with the same name
