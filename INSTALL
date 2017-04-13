@@ -42,14 +42,16 @@ readonly CYGFILELOCATIONS=(
 	"$HOME/_vimrc"
 	"$HOME/vimfiles"
 	"$HOME/.sift.conf"
+	"$HOME/.ConEmu.xml"
 );
 
 # Define an array containing the destination of the Windows/Cygwin ONLY files/directories for linking
-# MUST ALIGN WITH cygFilesSources
+# MUST ALIGN WITH 'CYGFILELOCATIONS'
 readonly CYGFILEDESTINATIONS=(
 	"$CONFIGDIR/.vimrc"
 	".vim"
 	"$CONFIGDIR/.sift.conf"
+	"$CONFIGDIR/.ConEmu.xml"
 );
 
 # Create a function to echo out errors
@@ -172,6 +174,24 @@ symLink() {
 	return $status
 }
 
+# Create a function to get the Windows equivalent path of a given path
+windowsPath() {
+	# Define our return value
+	local windowsPath
+
+	# Check if we're running CYGWIN
+	if [[ $OSTYPE == "cygwin" ]] ; then
+		windowsPath="$(cygpath -w "$1")"
+	else
+		# Convert our path to a windows path
+		windowsPath="${1#\/mnt\/}"
+		windowsPath="${windowsPath//\//\\}"
+		windowsPath="${windowsPath/\\/:\\}"
+	fi
+
+	echo "$windowsPath"
+}
+
 # Let's loop through each file/directory
 for target in "${FILESANDDIRECTORIES[@]}"
 do
@@ -198,8 +218,8 @@ do
 	symLink "$GITBOXDIR/$target" "$HOME/$baseName"
 done;
 
-# Check if we're running CYGWIN
-if [[ $OSTYPE == "cygwin" ]] ; then
+# Check if we're running CYGWIN or "Bash on Windows"
+if [[ $OSTYPE == "cygwin" ]] || grep -q Microsoft /proc/version ; then
 	# Create a quick counter, to keep our two cygFile arrays aligned
 	count=0
 	windowsOutputSuppressor=''
@@ -217,13 +237,13 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 		removeTarget "$cygTarget"
 
 		# Get the windows target path
-		windowsTargetPath="$(cygpath -w "$cygTarget")";
+		windowsTargetPath="$(windowsPath "$cygTarget")";
 
 		# Get the windows destination path
-		windowsDestinationPath="$(cygpath -w "$GITBOXDIR\\${CYGFILEDESTINATIONS[$count]}")";
+		windowsDestinationPath="$(windowsPath "$GITBOXDIR\\${CYGFILEDESTINATIONS[$count]}")";
 
 		# Use cmd (windows native command prompt) to setup Windows NT Symbolic Links
-		cmd /c mklink "$windowsTargetPath" "$windowsDestinationPath" $windowsOutputSuppressor
+		cmd.exe /c mklink "$windowsTargetPath" "$windowsDestinationPath" $windowsOutputSuppressor
 
 		# Increment the counter
 		((count++))
