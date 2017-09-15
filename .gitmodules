@@ -163,3 +163,6 @@
 [submodule ".vim/bundle/vim-pencil"]
 	path = .vim/bundle/vim-pencil
 	url = https://github.com/reedes/vim-pencil.git
+[submodule ".vim/bundle/vim-php-refactoring-toolbox"]
+	path = .vim/bundle/vim-php-refactoring-toolbox
+	url = https://github.com/adoy/vim-php-refactoring-toolbox
