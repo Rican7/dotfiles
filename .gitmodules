@@ -166,3 +166,6 @@
 [submodule ".vim/bundle/vim-php-refactoring-toolbox"]
 	path = .vim/bundle/vim-php-refactoring-toolbox
 	url = https://github.com/adoy/vim-php-refactoring-toolbox
+[submodule ".vim/bundle/ale"]
+	path = .vim/bundle/ale
+	url = https://github.com/w0rp/ale
