@@ -370,20 +370,22 @@ let g:PHP_vintage_case_default_indent = 1 " Use the older style of switch/case i
 " let g:autotagCtagsCmd="phptags --phptags-merge --phptags-merge-priority"
 " let g:autotagPostCmd="cat tags | eval $(phptags --phptags-echo-filters) > tags"
 
-" Syntastic configuration
-let g:syntastic_auto_loc_list = 1 " Automatically open and close the location list
-let g:syntastic_php_checkers = ['php', 'phpcs'] " PHP Linter, PHP Code Sniffer, PHP Mess Detector
-let g:syntastic_php_phpcs_post_args = "--standard=PSR2" " Use the PSR-2 standard for PHP Code Sniffer
-let g:syntastic_json_checkers = ['jsonlint'] " Use JSON linter
-let g:syntastic_go_checkers = ['go', 'gofmt', 'golint'] " Set our Go(lang) syntastic checkers
-let g:syntastic_go_golint_args = "-min_confidence=0.3" " Set a lower minimum confidence than default on `golint`
+" ALE configuration
+let g:ale_open_list = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_linters = {
+\   'go': ['gobuild', 'gofmt', 'golint'],
+\   'php': ['php', 'phpcs'],
+\}
+let g:ale_php_phpcs_standard = 'PSR2' " Use the PSR-2 standard for PHP Code Sniffer
 
 
 
 " Change highlight colors for vimdiff
-highlight DiffAdd cterm=NONE ctermfg=black ctermbg=Green gui=NONE guifg=black guibg=Green 
-highlight DiffDelete cterm=NONE ctermfg=black ctermbg=Red gui=NONE guifg=black guibg=Red 
-highlight DiffChange cterm=NONE ctermfg=black ctermbg=Yellow gui=NONE guifg=black guibg=Yellow 
+highlight DiffAdd cterm=NONE ctermfg=black ctermbg=Green gui=NONE guifg=black guibg=Green
+highlight DiffDelete cterm=NONE ctermfg=black ctermbg=Red gui=NONE guifg=black guibg=Red
+highlight DiffChange cterm=NONE ctermfg=black ctermbg=Yellow gui=NONE guifg=black guibg=Yellow
 highlight DiffText cterm=NONE ctermfg=black ctermbg=Magenta gui=NONE guifg=black guibg=Magenta
 
 
@@ -439,7 +441,7 @@ let g:detectindent_preferred_indent = 4
 " Vim-Go Options
 "
 
-" Disable reporting `go fmt` errors. Let Syntastic handle it instead
+" Disable reporting `go fmt` errors. Let ALE handle it instead
 let g:go_fmt_fail_silently = 1
 
 " Specify the command to use for auto-formatting
