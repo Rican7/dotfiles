@@ -516,6 +516,9 @@ let g:easytags_languages = {
 " Configure CtrlP for the path to search in on invocation
 let g:ctrlp_working_path_mode = 'a'
 
+" Set CtrlP to update results lazily, so that typing isn't as easily interrupted (TODO: Remove this if/when CtrlP becomes async)
+let g:ctrlp_lazy_update=100
+
 if (1 == executable('sift'))
     " If 'sift' is installed, use it as the CtrlP indexer. :)
     let g:ctrlp_user_command = 'sift -i --no-conf --no-color --no-group --targets --exclude-dirs=".git" --exclude-ext="min.js,dat,exe,gif,png,jpeg,jpg,ico" %s'
