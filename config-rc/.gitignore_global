@@ -41,3 +41,6 @@ vendor/
 
 # -- PHPDoc's --
 php-docs/
+
+# -- TODOs and task lists --
+.todos
