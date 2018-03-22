@@ -376,7 +376,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_linters = {
 \   'go': ['go build', 'gofmt', 'golint'],
-\   'php': ['php', 'phpcs'],
+\   'php': ['php', 'phpcs', 'phpstan'],
 \}
 let g:ale_php_phpcs_standard = 'PSR2' " Use the PSR-2 standard for PHP Code Sniffer
 
