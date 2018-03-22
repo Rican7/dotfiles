@@ -450,8 +450,8 @@ let g:go_fmt_command = "goimports"
 " Specify some options to pass to the `godoc` command
 let g:go_doc_options = '-analysis="type"'
 
-" Disable showing type information automatically (its buggy)
-let g:go_auto_type_info = 0
+" Enable showing type information automatically
+let g:go_auto_type_info = 1
 
 " Enable highlighting operators
 let g:go_highlight_operators = 1
