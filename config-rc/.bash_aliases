@@ -25,7 +25,7 @@ fi
 
 if $emux ; then
     # Single quote this to delay expansion
-    alias emux-this='emux $(basename $(pwd))'
+    alias emux-this='emux "$(basename "$(pwd)")"'
     alias tmux-this='emux-this'
 fi
 
