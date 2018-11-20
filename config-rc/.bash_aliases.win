@@ -1,0 +1,6 @@
+#
+# Windows/WSL function aliases
+#
+# vim: syntax=sh filetype=sh
+
+alias explore="open ."

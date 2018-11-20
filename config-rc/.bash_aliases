@@ -71,9 +71,10 @@ alias fuck="curl -s rage.metroserve.me/?format=plain"
 if [[ $OSTYPE == "cygwin" ]] && [ -f ~/.bash_aliases.cyg ] ; then
     # Cygwin specific aliases
     source ~/.bash_aliases.cyg
-fi
-
-# Darwin/Mac OS X specific aliases
-if [[ $OSTYPE == darwin* ]] && [ -f ~/.bash_aliases.osx ] ; then
+elif [ -f /proc/version ] && grep -q 'Microsoft' /proc/version && [ -f ~/.bash_aliases.win ] ; then
+    # Windows/WSL specific aliases
+    source ~/.bash_aliases.win
+elif [[ $OSTYPE == darwin* ]] && [ -f ~/.bash_aliases.osx ] ; then
+    # Darwin/Mac OS X specific aliases
     source ~/.bash_aliases.osx
 fi
