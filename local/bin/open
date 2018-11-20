@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 #
-# Script to open a file in windows from within cygwin
+# Script to open a file in Windows from within Cygwin or WSL
 #
 #
 
 # Let's define what commands exist
 hash 'cmd.exe' 2>/dev/null && windows=true || windows=false
+hash 'wslpath' 2>/dev/null && wslpath=true || wslpath=false
 
 
 # Check if we're running CYGWIN
@@ -33,8 +34,14 @@ if [[ $OSTYPE == "cygwin" ]] ; then
 elif $windows ; then
 	# Running windows with Bash?
 
+	path="$*"
+
+	if $wslpath ; then
+		path="$(wslpath -w "$path")"
+	fi
+
 	# Open the argument with the "internal" command
-	cmd.exe /C "start \"Opening...\" \"$*\""
+	cmd.exe /C start '"Opening..."' "$path"
 	exit $?
 else
 	# Get the path of the script (thanks http://stackoverflow.com/questions/4774054/#comment25142411_4774063)
