@@ -68,9 +68,9 @@ fi
 # Originally found from @abackstrom (https://twitter.com/abackstrom/status/232898857837662208)
 alias fuck="curl -s rage.metroserve.me/?format=plain"
 
-# Cygwin/Windows specific aliases
-if [[ $OSTYPE == "cygwin" ]] && [ -f ~/.bash_aliases.win ] ; then
-    source ~/.bash_aliases.win
+if [[ $OSTYPE == "cygwin" ]] && [ -f ~/.bash_aliases.cyg ] ; then
+    # Cygwin specific aliases
+    source ~/.bash_aliases.cyg
 fi
 
 # Darwin/Mac OS X specific aliases
