@@ -34,7 +34,6 @@ fi
 alias la="ls -la"
 alias vi="vim"
 alias view="vim -R"
-alias explore="open -e"
 alias pack="ack --pager='less -R'"
 alias src="source ~/.bash_profile"
 alias srcg="source /etc/profile"

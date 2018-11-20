@@ -6,6 +6,8 @@
 # Let's define what commands exist
 hash apt-cyg   2>/dev/null && aptcyg=true || aptcyg=false
 
+# Allow for an "explore" alias for our 'open' script
+alias explore="open -e"
 
 # Enable java command line usage under Cygwin
 alias java="winrun java"
