@@ -24,6 +24,15 @@ export PATH="$HOME/.composer/vendor/bin:$PATH" # Global composer package executa
 export PATH="vendor/bin:$PATH" # Local composer package executable binaries
 export PATH="./bin:$PATH" # Local executable binaries
 
+#
+# Enhance and "fix" bash command history
+#
+export HISTCONTROL=ignoredups:erasedups # Prevent duplicate entries
+export HISTSIZE=100000 # Enable a large history
+export HISTFILESIZE=100000 # Enable a large history
+export PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}" # Make sure the current session appends entries to existing ones
+shopt -s histappend # Have concurrent sessions append to history, instead of overwriting it
+
 
 #
 # Autocompletion
