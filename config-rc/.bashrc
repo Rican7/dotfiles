@@ -24,14 +24,25 @@ export PATH="$HOME/.composer/vendor/bin:$PATH" # Global composer package executa
 export PATH="vendor/bin:$PATH" # Local composer package executable binaries
 export PATH="./bin:$PATH" # Local executable binaries
 
+# Create some useful identifiers
+export HOSTNAME_SHORT="${HOSTNAME%%.*}"
+
 #
 # Enhance and "fix" bash command history
 #
+export HISTPARENTDIR="${HOME}/.bash_history.d"
+export HISTFILE="${HISTPARENTDIR}/$(date -u +%Y/%m/%d)/${HOSTNAME_SHORT}" # Thanks https://twitter.com/michaelhoffman/status/639178145673932800
+export HISTDIR="$(dirname ${HISTFILE})"
 export HISTCONTROL=ignoredups:erasedups # Prevent duplicate entries
 export HISTSIZE=100000 # Enable a large history
 export HISTFILESIZE=100000 # Enable a large history
 export PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}" # Make sure the current session appends entries to existing ones
 shopt -s histappend # Have concurrent sessions append to history, instead of overwriting it
+
+# Create the HISTDIR directory if it doesn't exist
+if [ ! -e "${HISTDIR}" ]; then
+    mkdir -m 700 -p "$HISTDIR"
+fi
 
 
 #
