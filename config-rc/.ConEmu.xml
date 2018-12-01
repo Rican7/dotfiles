@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2018-03-27 14:37:00" build="180318">
+		<key name=".Vanilla" modified="2018-11-30 21:47:34" build="180626">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -195,7 +195,6 @@
 			<value name="ComSpec.UncPaths" type="hex" data="00"/>
 			<value name="ComSpec.Path" type="string" data=""/>
 			<value name="EnvironmentSet" type="multi">
-				<line data="set HOME=D:\Trevor"/>
 				<line data="set PATH=%ConEmuBaseDir%\Scripts;%PATH%"/>
 			</value>
 			<value name="CTS.Intelligent" type="hex" data="01"/>
@@ -665,30 +664,30 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task7" modified="2018-03-27 14:39:15" build="180318">
+				<key name="Task7" modified="2018-11-30 21:50:12" build="180626">
 					<value name="Name" type="string" data="{Bash::bash}"/>
 					<value name="Flags" type="dword" data="00000003"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data='-icon "%USERPROFILE%\AppData\Local\lxss\bash.ico"'/>
-					<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe --wsl -new_console:d:D:\Trevor -new_console:np'/>
+					<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe --wsl -new_console:d:%HOME% -new_console:np'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task8" modified="2018-03-27 14:33:05" build="180318">
+				<key name="Task8" modified="2018-11-30 21:50:12" build="180318">
 					<value name="Name" type="string" data="{Bash:bash LEGACY Ubuntu}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data='-icon "%USERPROFILE%\AppData\Local\lxss\bash.ico"'/>
-					<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe --wsl -new_console:d:D:\Trevor -new_console:np --distro-guid "{12345678-1234-5678-0123-456789abcdef}"'/>
+					<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe --wsl -new_console:d:%HOME% -new_console:np --distro-guid "{12345678-1234-5678-0123-456789abcdef}"'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task9" modified="2018-03-27 14:37:00" build="180318">
+				<key name="Task9" modified="2018-11-30 21:50:12" build="180318">
 					<value name="Name" type="string" data="{Bash::bash via OLD WSLBridge}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data='-icon "%USERPROFILE%\AppData\Local\lxss\bash.ico"'/>
-					<value name="Cmd1" type="string" data='conemu-cyg-32.exe ./wslbridge.exe -t "-new_console:C:%USERPROFILE%\AppData\Local\lxss\bash.ico" "-new_console:d:D:\Trevor" -new_console:np'/>
+					<value name="Cmd1" type="string" data='conemu-cyg-32.exe ./wslbridge.exe -t "-new_console:C:%USERPROFILE%\AppData\Local\lxss\bash.ico" "-new_console:d:%HOME%" -new_console:np'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
