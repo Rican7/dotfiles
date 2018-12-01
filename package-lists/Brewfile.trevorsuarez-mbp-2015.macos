@@ -1,0 +1,121 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/completions"
+tap "homebrew/core"
+tap "homebrew/dupes"
+tap "homebrew/php"
+tap "homebrew/services"
+tap "homebrew/versions"
+# C/C++ resolver library and DNS resolver utilities
+brew "adns"
+# Automatic configure script builder
+brew "autoconf"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Programmable completion for Bash 3.2
+brew "bash-completion"
+# Collection of portable C++ source libraries
+brew "boost"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Reimplementation of ctags(1)
+brew "ctags"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Go dependency management tool
+brew "dep"
+# X.509 and CMS library
+brew "libksba"
+# GNU Portable THreads
+brew "pth"
+# Server for managing certificate revocation lists
+brew "dirmngr"
+# Generate documentation for several programming languages
+brew "doxygen"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Collection of GNU find, xargs, and locate
+brew "findutils", args: ["with-default-names"]
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
+# GNU multiple precision arithmetic library
+brew "gmp"
+# GNU awk utility
+brew "gawk"
+# Distributed revision control system
+brew "git"
+# Enable transparent encryption/decryption of files in a git repo
+brew "git-crypt"
+# Command-line option parsing library
+brew "gnu-getopt"
+# C code prettifier
+brew "gnu-indent", args: ["with-default-names"]
+# GNU implementation of the famous stream editor
+brew "gnu-sed", args: ["with-default-names"]
+# GNU version of the tar archiving utility
+brew "gnu-tar", args: ["with-default-names"]
+# C string library for manipulating Unicode strings
+brew "libunistring"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg", link: false
+# GPG key agent
+brew "gpg-agent"
+# GNU grep, egrep and fgrep
+brew "grep"
+# Convert source code to formatted text with syntax highlighting
+brew "highlight"
+# Improved top (interactive process viewer)
+brew "htop"
+# Image manipulation library
+brew "jpeg"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Platform built on V8 to build network applications
+brew "node"
+# JSON parser and validator with a CLI
+brew "jsonlint", link: false
+# Statically typed programming language for the JVM
+brew "kotlin"
+# Version of the SSL/TLS protocol forked from OpenSSL
+brew "libressl"
+# Library for USB device access
+brew "libusb-compat"
+# Uniform interface to a large number of hash algorithms
+brew "mhash"
+# Replacement for the old crypt package and crypt(1) command
+brew "mcrypt"
+# Platform built on V8 to build network applications
+brew "node@4"
+# General-purpose scripting language
+brew "php"
+# Reattach process (e.g., tmux) to background
+brew "reattach-to-user-namespace"
+# Persistent key-value database, with built-in net interface
+brew "redis"
+# Powerful, clean, object-oriented scripting language
+brew "ruby", link: true
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Add a public key to a remote machine's authorized_keys file
+brew "ssh-copy-id"
+# Proxy server that works as a poor man's VPN
+brew "sshuttle"
+# Terminal multiplexer
+brew "tmux"
+# Secures, stores, and tightly controls access to secrets
+brew "vault"
+# Internet file retriever
+brew "wget"
+cask "android-platform-tools"
+cask "betterzipql"
+cask "gpgtools"
+cask "java"
+cask "qlcolorcode"
+cask "qlimagesize"
+cask "qlmarkdown"
+cask "qlprettypatch"
+cask "qlstephen"
+cask "quicklook-csv"
+cask "quicklook-json"
+cask "suspicious-package"
+cask "webpquicklook"
