@@ -16,7 +16,7 @@ Since the various machines that I use, use different operating systems, the proc
 ### Ubuntu/apt:
 
 1. Install [`apt-clone`][apt-clone] (Should be able to do this via `sudo apt install apt-clone`)
-2. Generate the package state via `sudo apt-clone clone /path/hostname.os.env`
+2. Generate the package state via `sudo apt-clone clone "$(./generate-apt-clone-name)"`
 
 ### macOS/Homebrew:
 

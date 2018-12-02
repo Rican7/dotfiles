@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Script to make the generation of `apt-clone` names more consistent and safe.
+
+# Source our release files, for some local variables
+for file in /etc/*-release; do
+    source "$file"
+done
+
+release_name="${ID}"
+release_version="${VERSION_ID}"
+
+if [ -z "$release_name" ]; then
+    release_name="${DISTRIB_ID}"
+fi
+
+if [ -z "$release_version" ]; then
+    release_version="${DISTRIB_RELEASE}"
+fi
+
+# Our base-name is just our shortened hostname
+apt_clone_name="$(hostname -s)"
+
+# Are we on Windows/WSL?
+if [ -f /proc/version ] && grep -q 'Microsoft' /proc/version ; then
+    apt_clone_name="${apt_clone_name}.windows"
+fi
+
+apt_clone_name="${apt_clone_name}.${release_name}.${release_version}"
+
+# Echo the name back to the caller
+echo "${apt_clone_name}"
