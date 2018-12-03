@@ -16,7 +16,7 @@ umask 002;
 ##########################
 ## Modify PATH Variable ##
 ##########################
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:~/local/bin:/usr/bin:/usr/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:~/.local/bin:~/local/bin:/usr/bin:/usr/sbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH" # "heroku" - Heroku CLI
 export PATH="$HOME/.phpenv/bin:$HOME/.phpenv/shims:$PATH" # "phpenv" - PHP Environment
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH" # "rbenv" - Ruby Environment
