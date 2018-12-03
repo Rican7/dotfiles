@@ -20,7 +20,7 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:
 export PATH="/usr/local/heroku/bin:$PATH" # "heroku" - Heroku CLI
 export PATH="$HOME/.phpenv/bin:$HOME/.phpenv/shims:$PATH" # "phpenv" - PHP Environment
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH" # "rbenv" - Ruby Environment
-export PATH="$HOME/.composer/vendor/bin:$PATH" # Global composer package executable binaries
+export PATH="$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:$PATH" # Global composer package executable binaries
 export PATH="vendor/bin:$PATH" # Local composer package executable binaries
 export PATH="./bin:$PATH" # Local executable binaries
 
