@@ -1,1 +1,0 @@
-../modules/z/z.sh

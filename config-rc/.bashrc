@@ -85,10 +85,7 @@ export CYGWIN="nodosfilewarning"
 # Let's define what commands exist
 hash phpenv    2>/dev/null && phpenv=true || phpenv=false
 hash rbenv     2>/dev/null && rbenv=true || rbenv=false
-
-# Z command (similar to J/AutoJump)
-export _Z_CMD="j" # I'm used to j...
-source ~/local/bash/z.sh
+hash jump      2>/dev/null && jump=true || jump=false
 
 # Initialize phpenv
 if $phpenv ; then
@@ -98,6 +95,11 @@ fi
 # Initialize rbenv
 if $rbenv ; then
     eval "$(rbenv init -)"
+fi
+
+# Initialize jump
+if $jump ; then
+    eval "$(jump shell)"
 fi
 
 # SSH Agent at Login
