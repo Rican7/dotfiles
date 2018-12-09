@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2018-12-06 19:23:13" build="180626">
+		<key name=".Vanilla" modified="2018-12-09 10:25:04" build="180626">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -157,8 +157,8 @@
 			<value name="UserScreenTransparent" type="hex" data="00"/>
 			<value name="ColorKeyTransparent" type="hex" data="00"/>
 			<value name="ColorKeyValue" type="dword" data="00010101"/>
-			<value name="UseCurrentSizePos" type="hex" data="01"/>
-			<value name="AutoSaveSizePos" type="hex" data="01"/>
+			<value name="UseCurrentSizePos" type="hex" data="00"/>
+			<value name="AutoSaveSizePos" type="hex" data="00"/>
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
