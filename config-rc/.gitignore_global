@@ -21,8 +21,6 @@ CVS
 
 # -- Generated files --
 *.log
-*.sqlite
-*.sql
 
 # -- temp --
 *.swp
@@ -36,7 +34,7 @@ tags.vendor
 # -- VIM Files --
 .netrwhist
 
-# -- PHP Composer Dependencies --
+# -- Vendored Dependencies --
 vendor/
 
 # -- PHPDoc's --
