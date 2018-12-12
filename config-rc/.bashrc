@@ -31,7 +31,8 @@ export HOSTNAME_SHORT="${HOSTNAME%%.*}"
 # Enhance and "fix" bash command history
 #
 export HISTPARENTDIR="${HOME}/.bash_history.d"
-export HISTFILE="${HISTPARENTDIR}/$(date -u +%Y/%m/%d)/${HOSTNAME_SHORT}" # Thanks https://twitter.com/michaelhoffman/status/639178145673932800
+export HISTFILEBASENAME="${HOSTNAME_SHORT}"
+export HISTFILE="${HISTPARENTDIR}/$(date -u +%Y/%m/%d)/${HISTFILEBASENAME}" # Thanks https://twitter.com/michaelhoffman/status/639178145673932800
 export HISTDIR="$(dirname ${HISTFILE})"
 export HISTCONTROL=ignoredups:erasedups # Prevent duplicate entries
 export HISTSIZE=100000 # Enable a large history
@@ -42,6 +43,36 @@ shopt -s histappend # Have concurrent sessions append to history, instead of ove
 # Create the HISTDIR directory if it doesn't exist
 if [ ! -e "${HISTDIR}" ]; then
     mkdir -m 700 -p "$HISTDIR"
+fi
+
+readonly HISTFILES=("${HISTPARENTDIR}"/**/**/*/"${HISTFILEBASENAME}")
+
+#
+# Improve history by loading multiple of our latest history files
+#
+# This logic enables the keeping of history in multiple separate files, while
+# still getting a useful history that doesn't break whenever a new history file
+# is used for separation
+#
+if [ ${#HISTFILES[@]} -gt 0 ]; then
+    # Make a temporary file to collect history from multiple files
+    readonly TMP_HISTFILE=$(mktemp)
+
+    # Loop through history files in "reverse", to get the most recent history
+    for (( idx=${#HISTFILES[@]}-1 ; idx>=0 ; idx-- )); do
+        # Append the file contents to the temporary collected history file
+        cat "${HISTFILES[idx]}" >> "$TMP_HISTFILE";
+
+        # If the number of history entries is greater than our intended history size
+        if [ "$(wc -l < "$TMP_HISTFILE")" -ge $HISTSIZE ]; then
+            # Bail. We don't need to read any more files and waste I/O.
+            break
+        fi
+    done
+
+    # Load history from the "collected history" file and remove it
+    history -n "$TMP_HISTFILE" # A "real" file is needed... pipes won't work
+    rm "$TMP_HISTFILE"
 fi
 
 
