@@ -43,6 +43,7 @@ readonly CYGFILELOCATIONS=(
 	"$HOME/vimfiles"
 	"$HOME/.sift.conf"
 	"$HOME/.ConEmu.xml"
+	"$HOME/.wslttyrc"
 );
 
 # Define an array containing the destination of the Windows/Cygwin ONLY files/directories for linking
@@ -52,6 +53,7 @@ readonly CYGFILEDESTINATIONS=(
 	".vim"
 	"$CONFIGDIR/.sift.conf"
 	"$CONFIGDIR/.ConEmu.xml"
+	"$CONFIGDIR/.minttyrc"
 );
 
 # Create a function to echo out errors
