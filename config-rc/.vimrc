@@ -379,6 +379,7 @@ let g:ale_linters = {
 \   'php': ['php', 'phpcs', 'phpstan'],
 \}
 let g:ale_php_phpcs_standard = 'PSR2' " Use the PSR-2 standard for PHP Code Sniffer
+let g:ale_go_golint_options = '-min_confidence=0.3' " Set a lower minimum confidence than default on `golint`
 
 
 
