@@ -10,13 +10,16 @@ end
 " Windows SWAP files
 if has("win32") || has("win64")
     set directory=$TMP
-
-    " Ensure two trailing slashes to trigger collision-free swap file naming
-    let &directory = substitute(&directory, '\(\\\)*$', '\\\\', "")
 else
     " Use two trailing slashes to trigger collision-free swap file naming
     set directory=/tmp//
 end
+
+" Ensure two trailing slashes to trigger collision-free swap file naming
+" NOTE: We can use forward slashes (`//`) on Win32 also, which simplifies our
+" regular expression, and its actually suggested
+" (see :help directory)
+let &directory = substitute(&directory, '\(\\\|\/\/\)*$', '\/\/', "")
 
 " Set nocompatible BEFORE trying to use Pathogen (Use Vim defaults = much better!)
 set nocompatible
