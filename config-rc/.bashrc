@@ -35,6 +35,7 @@ export HISTFILEBASENAME="${HOSTNAME_SHORT}"
 export HISTFILE="${HISTPARENTDIR}/$(date -u +%Y/%m/%d)/${HISTFILEBASENAME}" # Thanks https://twitter.com/michaelhoffman/status/639178145673932800
 export HISTDIR="$(dirname ${HISTFILE})"
 export HISTCONTROL=ignoredups:erasedups # Prevent duplicate entries
+export HISTIGNORE="ls:la:pwd:[bf]g:clear:exit" # Prevent certain commands from being recorded in history
 export HISTSIZE=100000 # Enable a large history
 export HISTFILESIZE=100000 # Enable a large history
 export PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}" # Make sure the current session appends entries to existing ones
