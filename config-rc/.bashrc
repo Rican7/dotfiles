@@ -58,10 +58,16 @@ if [ ${#HISTFILES[@]} -gt 0 ]; then
     # Make a temporary file to collect history from multiple files
     readonly TMP_HISTFILE=$(mktemp)
 
-    # Loop through history files in "reverse", to get the most recent history
+    # Make a temporary file for prepending
+    readonly TMP_FILE_FOR_PREPEND=$(mktemp)
+
+    # Loop through history files in "reverse", to get the most recent history (before potentially bailing)
     for (( idx=${#HISTFILES[@]}-1 ; idx>=0 ; idx-- )); do
-        # Append the file contents to the temporary collected history file
-        cat "${HISTFILES[idx]}" >> "$TMP_HISTFILE";
+        # Prepend the file contents to a temporary prepend file (we do this, since we're looping in "reverse")
+        cat "${HISTFILES[idx]}" "$TMP_HISTFILE" >> "$TMP_FILE_FOR_PREPEND";
+
+        # Make the temporary prepended file the new temporary collected history file
+        mv "$TMP_FILE_FOR_PREPEND" "$TMP_HISTFILE"
 
         # If the number of history entries is greater than our intended history size
         if [ "$(wc -l < "$TMP_HISTFILE")" -ge $HISTSIZE ]; then
