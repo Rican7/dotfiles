@@ -48,6 +48,8 @@
 	syncup = !git checkout master && git pullbase upstream master && git subsync && git subupdate
 	syncthis = !git pullbase origin `git branchname` && git subsync && git subupdate
 	syncthisup = !git pullbase upstream `git branchname` && git subsync && git subupdate
+	syncstate = !git fall && git syncthis && git remoteclean origin
+	syncstateflow = !git fall && git syncthisup && git pushhead && git remoteclean upstream && git remoteclean origin
 	call = !git ci -a
 	orphaned = clean -nd
 	addnew = !git add `git untracked`
