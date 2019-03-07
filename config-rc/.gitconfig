@@ -49,6 +49,7 @@
 	syncthis = !git pullbase origin `git branchname` && git subsync && git subupdate
 	syncthisup = !git pullbase upstream `git branchname` && git subsync && git subupdate
 	syncstate = !git fall && git syncthis && git remoteclean origin
+	syncstateup = !git fall && git syncthisup && git remoteclean upstream
 	syncstateflow = !git fall && git syncthisup && git pushhead && git remoteclean upstream && git remoteclean origin
 	call = !git ci -a
 	orphaned = clean -nd
