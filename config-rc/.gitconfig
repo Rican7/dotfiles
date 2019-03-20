@@ -35,6 +35,8 @@
 	untracked = ls-files --others --exclude-standard
 	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lgbranch = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --first-parent --no-merges master..HEAD
+	mergelog = log --pretty=oneline --abbrev-commit --merges
+	mergelogpr = !git mergelog -i --grep 'pull request'
 	worklog = log --pretty=' - %s%n%n%w(0,4,4)%-b' --reverse --no-merges
 	worklogbranch = log --pretty=' - %s%n%n%w(0,4,4)%-b' --reverse --first-parent --no-merges master..HEAD
 	pushhead = push origin HEAD
@@ -56,8 +58,6 @@
 	call = !git ci -a
 	orphaned = clean -nd
 	addnew = !git add `git untracked`
-	mergediff = log --pretty=oneline --abbrev-commit --merges
-	mergediffpr = !git mergediff -i --grep 'pull request'
 	revision = rev-parse HEAD
 	revisionshort = rev-parse --short HEAD
 	root = rev-parse --show-toplevel
