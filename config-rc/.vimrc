@@ -342,6 +342,12 @@ autocmd FileType json set ts=2 sts=2 sw=2
 autocmd FileType gitcommit execute "set colorcolumn=51," . join(range(73,335), ',')
 autocmd FileType go execute "set colorcolumn=81," . join(range(121,335), ',')
 
+" Mappings for Go files
+autocmd FileType go nnoremap <buffer> <silent> gd :GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> <C-]> :GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> <C-w><C-]> :<C-u>call go#def#Jump("split", 0)<CR>
+autocmd FileType go nnoremap <buffer> <silent> <C-w><C-\> :<C-u>call go#def#Jump("vsplit", 0)<CR>
+
 autocmd FileType php let php_sql_query=1
 autocmd FileType php let php_htmlInStrings=1
 autocmd FileType php let php_noShortTags=0
