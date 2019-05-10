@@ -24,10 +24,11 @@ if $dircolors ; then
 fi
 
 if $emux ; then
-    # NOTE: Single quoted to delay expansion
+    emux-this() {
+        # Fix names that would otherwise be invalid (https://github.com/tmux/tmux/blob/641191ab2047d1437d46dc0ae787346b74fddca5/session.c#L252-L257)
+        emux "$@" "$(name="$(basename "$(pwd)")"; name="${name//./-}"; name="${name//:/-}"; echo "$name")"
+    }
 
-    # Fix names that would otherwise be invalid (https://github.com/tmux/tmux/blob/641191ab2047d1437d46dc0ae787346b74fddca5/session.c#L252-L257)
-    alias emux-this='emux "$(name="$(basename "$(pwd)")"; name="${name//./-}"; name="${name//:/-}"; echo $name)"'
     alias tmux-this='emux-this'
 fi
 
