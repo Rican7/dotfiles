@@ -1,0 +1,12 @@
+# Rename the first auto-created window
+rename-window "git"
+
+# Create a series of new windows (some named)
+new-window -n "build"
+new-window -n "tests"
+new-window
+new-window
+new-window -n "search&docs"
+
+# Select the first window
+select-window -t 0
