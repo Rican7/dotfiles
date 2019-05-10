@@ -65,12 +65,9 @@ if [ -n "$start_script_path" ] && [ ! -x "$start_script_path" ]; then
 fi
 
 if [ -n "$start_script_path" ]; then
-	# Start the tmux server to prevent issues getting option values if its not started
-	tmux start-server
-
 	# Determine the default TMUX command
-	default_tmux_command="$(tmux show-options -gv default-command)"
-	default_tmux_command="${default_tmux_command:-$(tmux show-options -gv default-shell)}"
+	default_tmux_command="$(tmux start-server && tmux show-options -gv default-command)"
+	default_tmux_command="${default_tmux_command:-$(tmux start-server && tmux show-options -gv default-shell)}"
 
 	start_script="tmux source-file $start_script_path ; $default_tmux_command"
 fi
