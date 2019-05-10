@@ -4,13 +4,16 @@
 #
 #
 
+# Define constants
+readonly STARTUP_SCRIPT_DIR="$(printf "%s.d" "${BASH_SOURCE[0]}")"
+
 # Create a function to echo out errors
 function error() {
 	# Let's get our arguments
 	local message=$1
 
 	# Echo out our message
-	echo -e "\033[00;31mERROR:\033[00m $message"
+	echo -e "\033[00;31mERROR:\033[00m $message" 1>&2
 }
 
 # Create a function to check if a tmux session exists
@@ -26,9 +29,13 @@ function session_exists() {
 	fi
 }
 
+function get_start_script_path() {
+	printf "%s/%s" "$STARTUP_SCRIPT_DIR" "$1"
+}
+
 
 # Grab our passed argument
-sessionId=$1
+readonly session_id=$1
 
 # Let's define what commands exist
 hash tmux		2>/dev/null && tmux=true || tmux=false
@@ -40,16 +47,50 @@ if ! $tmux ; then
 	exit 1;
 fi
 
+# Define our start script
+start_script_path=""
+start_script=""
+
+# Let's set some values based on the parameters
+while getopts ":r:" opt; do
+	case $opt in
+		r)	start_script_path="$(get_start_script_path "$OPTARG")";;
+		\?)	error "Unknown option: -$OPTARG"; exit 1;;
+		:)	error "Invalid option: -$OPTARG requires an argument"; exit 1;;
+	esac
+done
+
+if [ -n "$start_script_path" ] && [ ! -x "$start_script_path" ]; then
+	# Echo error and exit with a non-successful (non-zero) response
+	error "Start script \"$start_script_path\" does not exist or is unable to be executed";
+	exit 1;
+fi
+
+if [ -n "$start_script_path" ]; then
+	# Start the tmux server to prevent issues getting option values if its not started
+	tmux start-server
+
+	# Determine the default TMUX command
+	default_tmux_command="$(tmux show-options -gv default-command)"
+	default_tmux_command="${default_tmux_command:-$(tmux show-options -gv default-shell)}"
+
+	start_script="tmux source-file $start_script_path ; $default_tmux_command"
+fi
+
 
 # Did we pass an argument?
-if [ -n "$sessionId" ]; then
+if [ -n "$session_id" ]; then
 	# See if we have an existing session matching our passed name
-	if session_exists "$sessionId"; then
-		tmux attach-session -t "$sessionId"
+	if session_exists "$session_id"; then
+		tmux attach-session -t "$session_id"
 
 	# We don't have an existing session with our passed name
 	else
-		tmux new-session -s "$sessionId"
+		if [ -n "$start_script" ]; then
+			tmux new-session -A -s "$session_id" "$start_script"
+		else
+			tmux new-session -A -s "$session_id"
+		fi
 	fi
 
 # No argument passed
@@ -62,6 +103,10 @@ else
 	# No existing sessions
 	else
 		# Just create a new, default session
-		tmux new-session
+		if [ -n "$start_script" ]; then
+			tmux new-session -A "$start_script"
+		else
+			tmux new-session
+		fi
 	fi
 fi
