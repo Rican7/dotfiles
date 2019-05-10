@@ -1,7 +1,5 @@
-# Rename the first auto-created window
-rename-window "git"
-
 # Create a series of new windows (some named)
+new-window -n "git"
 new-window -n "build"
 new-window -n "tests"
 new-window
