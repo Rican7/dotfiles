@@ -7,7 +7,7 @@ Or as I like to call this, my "git box". :D
 - [Git][git]
     - ... duh
 - [Bash][bash]
-    -  preferably v3 or better
+    -  v4+, because 2019
 
 
 ## Getting Started
@@ -20,30 +20,25 @@ Or as I like to call this, my "git box". :D
 
 ### Windows
 
-1. Install ["Cygwin"][cygwin]... because, well, DOS/cmd sucks
-2. Install ["apt-cyg"][aptcyg]
-3. Using "apt-cyg", install:
-    - wget
-	- vim
-	- there's more, but I don't remember right now. #kthxbye
+1. Enable ["WSL"][wsl]
+2. Install [Ubuntu on WSL][ubuntu-wsl]
+3. See [Ubuntu setup](#ubuntu)
 
-### Mac OS X
+### MacOS
 
-1. Install ["Homebrew"][homebrew] **and** ["MacPorts"][macports], because [YOLO][port-brew-tweet].
-2. [Install the GNU "coreutils"][stackoverflow-coreutils]. Seriously, [do yourself the favor][brew-coreutils-tweet].
-3. ... I don't remember
+1. [Stop it][wsl-is-better-than-macos-tweet].
+2. See [Windows](#windows)...
+   1. Or, if you're stuck with a mac, follow the steps laid out in [package-lists/README.md][package-list-readme]
 
-### CentOS
+### Ubuntu
 
-1. Install the ["Remi"][remi] repo and get ALL THE THINGS!
+1. Follow the steps laid out in [package-lists/README.md][package-list-readme]
+
+
 
  [git]: https://git-scm.com/
  [bash]: https://www.gnu.org/software/bash/
- [cygwin]: http://cygwin.com/install.html
- [aptcyg]: https://code.google.com/p/apt-cyg/
- [homebrew]: http://mxcl.github.io/homebrew/
- [macports]: http://www.macports.org/
- [port-brew-tweet]: https://twitter.com/brianleroux/status/346581119157800962
- [stackoverflow-coreutils]: http://apple.stackexchange.com/a/69332/66708
- [brew-coreutils-tweet]: https://twitter.com/trevorsuarez/status/373146388659716096
- [remi]: http://blog.famillecollet.com/pages/Config-en
+ [wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
+ [ubuntu-wsl]: https://www.microsoft.com/store/p/ubuntu/9nblggh4msv6
+ [wsl-is-better-than-macos-tweet]: https://twitter.com/frankdejonge/status/1126168464236908551
+ [package-list-readme]: package-lists/README.md
