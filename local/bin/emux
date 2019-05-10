@@ -34,9 +34,6 @@ function get_start_script_path() {
 }
 
 
-# Grab our passed argument
-readonly session_id=$1
-
 # Let's define what commands exist
 hash tmux		2>/dev/null && tmux=true || tmux=false
 
@@ -59,6 +56,7 @@ while getopts ":r:" opt; do
 		:)	error "Invalid option: -$OPTARG requires an argument"; exit 1;;
 	esac
 done
+shift $((OPTIND -1))
 
 if [ -n "$start_script_path" ] && [ ! -x "$start_script_path" ]; then
 	# Echo error and exit with a non-successful (non-zero) response
@@ -77,6 +75,9 @@ if [ -n "$start_script_path" ]; then
 	start_script="tmux source-file $start_script_path ; $default_tmux_command"
 fi
 
+# Grab our passed argument
+readonly session_id=$1
+
 
 # Did we pass an argument?
 if [ -n "$session_id" ]; then
@@ -87,9 +88,9 @@ if [ -n "$session_id" ]; then
 	# We don't have an existing session with our passed name
 	else
 		if [ -n "$start_script" ]; then
-			tmux new-session -A -s "$session_id" "$start_script"
+			tmux new-session -s "$session_id" "$start_script"
 		else
-			tmux new-session -A -s "$session_id"
+			tmux new-session -s "$session_id"
 		fi
 	fi
 
@@ -104,7 +105,7 @@ else
 	else
 		# Just create a new, default session
 		if [ -n "$start_script" ]; then
-			tmux new-session -A "$start_script"
+			tmux new-session "$start_script"
 		else
 			tmux new-session
 		fi
