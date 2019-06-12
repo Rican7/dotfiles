@@ -220,6 +220,9 @@ command! RemoveHiddenBuffers :call RemoveHiddenBuffers()
 " Insert the file's name
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
+" Insert the directory's name
+inoremap \dn <C-R>=expand("%:h:t")<CR>
+
 
 "
 " Function definitions
