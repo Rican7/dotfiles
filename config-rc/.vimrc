@@ -220,10 +220,6 @@ command! RemoveHiddenBuffers :call RemoveHiddenBuffers()
 " Insert the file's name
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
-" Insert the current namespace according to PSR-0 spec
-" (https://github.com/php-fig/fig-standards/blob/60f3bc5543f1bb98efd6c559633687e6c73d2476/accepted/PSR-0.md)
-inoremap \pn <C-R>=expand("%:p:h:s?.*\/[^A-Z]\\+\\C??:gs?/?\\?")<CR>
-
 
 "
 " Function definitions
@@ -363,6 +359,10 @@ autocmd FileType php set makeprg=php\ -l\ %
 autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 
 autocmd FileType php execute "set colorcolumn=81," . join(range(121,335), ',')
+
+" Insert the current namespace according to PSR-0 spec
+" (https://github.com/php-fig/fig-standards/blob/60f3bc5543f1bb98efd6c559633687e6c73d2476/accepted/PSR-0.md)
+autocmd FileType php inoremap \pn <C-R>=expand("%:p:h:s?.*\/[^A-Z]\\+\\C??:gs?/?\\?")<CR>
 
 " PHP-Doc configuration and key-mappings
 " autocmd FileType php inoremap <leader>c <ESC>:call PhpDocSingle()<CR>i
