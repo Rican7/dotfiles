@@ -49,6 +49,12 @@ set nofoldenable
 set t_Co=256
 set ffs=unix,dos,mac
 
+" Set a useful default for the textwidth, rather than the default of `0`, which
+" effectively comes out to`79`
+"
+" See https://vi.stackexchange.com/q/9118/7236
+set textwidth=80
+
 " http://marc.info/?t=108316584200005&r=1&w=2
 set backupcopy=yes
 
