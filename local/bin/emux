@@ -16,6 +16,15 @@ function error() {
 	echo -e "\033[00;31mERROR:\033[00m $message" 1>&2
 }
 
+# Perform a TMUX command in wrapper that allows the command to work even if a
+# TMUX server isn't currently running.
+#
+# (We have to use `tmux start-server` to run certain commands if a session
+# doesn't exist yet... See: https://github.com/tmux/tmux/issues/182)
+function tmux_command() {
+	tmux start-server \; "$@"
+}
+
 # Create a function to check if a tmux session exists
 function session_exists() {
 	# Get the session id argument
@@ -23,9 +32,9 @@ function session_exists() {
 
 	# Did we pass an argument?
 	if [ -n "$sessionArg" ]; then
-		tmux has-session -t "$sessionArg" 2>/dev/null
+		tmux_command "has-session -t $sessionArg" 2>/dev/null
 	else
-		tmux has-session 2>/dev/null
+		tmux_command "has-session" 2>/dev/null
 	fi
 }
 
@@ -66,8 +75,8 @@ fi
 
 if [ -n "$start_script_path" ]; then
 	# Determine the default TMUX command
-	default_tmux_command="$(tmux start-server && tmux show-options -gv default-command)"
-	default_tmux_command="${default_tmux_command:-$(tmux start-server && tmux show-options -gv default-shell)}"
+	default_tmux_command="$(tmux_command show-options -gv default-command)"
+	default_tmux_command="${default_tmux_command:-$(tmux_command show-options -gv default-shell)}"
 
 	start_script="tmux source-file $start_script_path ; $default_tmux_command"
 fi
