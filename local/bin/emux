@@ -32,9 +32,9 @@ function session_exists() {
 
 	# Did we pass an argument?
 	if [ -n "$sessionArg" ]; then
-		tmux_command "has-session -t $sessionArg" 2>/dev/null
+		tmux_command has-session -t "$sessionArg" 2>/dev/null
 	else
-		tmux_command "has-session" 2>/dev/null
+		tmux_command has-session 2>/dev/null
 	fi
 }
 
