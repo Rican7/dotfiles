@@ -548,7 +548,10 @@ let g:ctrlp_working_path_mode = 'a'
 " Set CtrlP to update results lazily, so that typing isn't as easily interrupted (TODO: Remove this if/when CtrlP becomes async)
 let g:ctrlp_lazy_update=100
 
-if (1 == executable('sift'))
+if (1 == executable('rg'))
+    " If 'rg' (ripgrep) is installed, use it as the CtrlP indexer. :)
+    let g:ctrlp_user_command = 'rg -i --color=never --files --iglob "!*.{min.*,dat,exe,gif,png,jpeg,jpg,ico,bmp}" %s'
+elseif (1 == executable('sift'))
     " If 'sift' is installed, use it as the CtrlP indexer. :)
     let g:ctrlp_user_command = 'sift -i --no-conf --no-color --no-group --targets --exclude-dirs=".git" --exclude-ext="min.js,dat,exe,gif,png,jpeg,jpg,ico" %s'
 elseif (1 == executable('ack'))
@@ -561,8 +564,11 @@ endif
 " Ack.vim Options
 "
 
-" If 'sift' is installed, use it as the search program
-if (1 == executable('sift'))
+if (1 == executable('rg'))
+    " If 'rg' (ripgrep) is installed, use it as the search program
+    let g:ackprg = 'rg --no-heading --vimgrep'
+elseif (1 == executable('sift'))
+    " If 'sift' is installed, use it as the search program
     let g:ackprg = 'sift --filename --no-color --no-group --column'
 endif
 
