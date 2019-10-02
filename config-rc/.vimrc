@@ -577,5 +577,5 @@ endif
 " vim-marked Options
 "
 
-" If 'sift' is installed, use it as the search program
+" If 'Markoff' is installed, use it as the 'Marked' app
 let g:marked_app = 'Markoff'
