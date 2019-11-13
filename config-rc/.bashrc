@@ -56,26 +56,12 @@ readonly HISTFILES=("${HISTPARENTDIR}"/**/**/*/"${HISTFILEBASENAME}")
 # is used for separation
 #
 if [ ${#HISTFILES[@]} -gt 0 ]; then
-    # Make a temporary file to collect history from multiple files
-    readonly TMP_HISTFILE=$(mktemp)
+    # Make a temporary pipe to collect history from multiple pipes
+    readonly TMP_HISTFILE="$(mktemp)"
 
-    # Make a temporary file for prepending
-    readonly TMP_FILE_FOR_PREPEND=$(mktemp)
-
-    # Loop through history files in "reverse", to get the most recent history (before potentially bailing)
-    for (( idx=${#HISTFILES[@]}-1 ; idx>=0 ; idx-- )); do
-        # Prepend the file contents to a temporary prepend file (we do this, since we're looping in "reverse")
-        cat "${HISTFILES[idx]}" "$TMP_HISTFILE" >> "$TMP_FILE_FOR_PREPEND";
-
-        # Make the temporary prepended file the new temporary collected history file
-        mv "$TMP_FILE_FOR_PREPEND" "$TMP_HISTFILE"
-
-        # If the number of history entries is greater than our intended history size
-        if [ "$(wc -l < "$TMP_HISTFILE")" -ge $HISTSIZE ]; then
-            # Bail. We don't need to read any more files and waste I/O.
-            break
-        fi
-    done
+    # Cat all of the history files, limit based on the defined history size, and
+    # store them into the temporary history file
+    cat "${HISTFILES[@]}" | head -n $HISTSIZE > "$TMP_HISTFILE"
 
     # Load history from the "collected history" file and remove it
     history -n "$TMP_HISTFILE" # A "real" file is needed... pipes won't work
