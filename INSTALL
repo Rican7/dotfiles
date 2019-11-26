@@ -44,6 +44,7 @@ readonly CYGFILELOCATIONS=(
 	"$HOME/.sift.conf"
 	"$HOME/.ConEmu.xml"
 	"$HOME/.wslttyrc"
+	"$HOME/.windows_terminal_profiles.json"
 );
 
 # Define an array containing the destination of the Windows/Cygwin ONLY files/directories for linking
@@ -54,6 +55,7 @@ readonly CYGFILEDESTINATIONS=(
 	"$CONFIGDIR/.sift.conf"
 	"$CONFIGDIR/.ConEmu.xml"
 	"$CONFIGDIR/.minttyrc"
+	"$CONFIGDIR/.windows_terminal_profiles.json"
 );
 
 # Create a function to echo out errors
