@@ -13,8 +13,7 @@
             "Windows.Terminal.Azure"
         ],
         "wordDelimiters" : " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502",
-        "keybindings" :
-        [
+        "keybindings" : [
             {
                 "command" : "copy",
                 "keys" :
@@ -221,67 +220,49 @@
             }
         ]
     },
-    "profiles" :
-    [
-        {
-            "guid" : "{2c4de342-38b7-51cf-b940-2309a097f518}",
-            "name" : "WSL",
-            "icon" : "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
-            "commandline" : "wsl.exe",
-            "startingDirectory" : "%HOME%",
+    "profiles" : {
+        "defaults": {
             "colorScheme" : "Mintty",
             "cursorColor" : "#FFFFFF",
             "cursorShape" : "filledBox",
             "fontFace" : "Source Code Pro",
             "fontSize" : 10,
-            "historySize" : 10000,
             "padding" : "0, 0, 0, 0",
-            "scrollbarState" : true,
-            "snapOnInput" : true,
-            "closeOnExit" : true,
             "useAcrylic" : false,
-            "acrylicOpacity" : 0.95
-        },
-        {
-            "acrylicOpacity" : 0.75,
-            "closeOnExit" : true,
-            "colorScheme" : "Campbell",
-            "commandline" : "cmd.exe",
-            "cursorColor" : "#FFFFFF",
-            "cursorShape" : "bar",
-            "fontFace" : "Source Code Pro",
-            "fontSize" : 10,
-            "guid" : "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-            "historySize" : 9001,
-            "icon" : "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
-            "name" : "cmd",
-            "padding" : "0, 0, 0, 0",
+            "acrylicOpacity" : 0.95,
+            "startingDirectory" : "%HOME%",
+            "historySize" : 10000,
+            "scrollbarState" : "hidden",
             "snapOnInput" : true,
-            "startingDirectory" : "%USERPROFILE%",
-            "useAcrylic" : true
+            "closeOnExit" : "graceful"
         },
-        {
-            "acrylicOpacity" : 0.5,
-            "background" : "#012456",
-            "closeOnExit" : true,
-            "colorScheme" : "Campbell",
-            "commandline" : "powershell.exe",
-            "cursorColor" : "#FFFFFF",
-            "cursorShape" : "bar",
-            "fontFace" : "Source Code Pro",
-            "fontSize" : 10,
-            "guid" : "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-            "historySize" : 9001,
-            "icon" : "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
-            "name" : "Windows PowerShell",
-            "padding" : "0, 0, 0, 0",
-            "snapOnInput" : true,
-            "startingDirectory" : "%USERPROFILE%",
-            "useAcrylic" : false
-        }
-    ],
-    "schemes" :
-    [
+        "list": [
+            {
+                "guid" : "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "name" : "WSL",
+                "icon" : "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+                "commandline" : "wsl.exe"
+            },
+            {
+                "guid" : "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "name" : "cmd",
+                "icon" : "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+                "commandline" : "cmd.exe",
+                "colorScheme" : "Campbell",
+                "cursorShape" : "vintage"
+            },
+            {
+                "guid" : "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "name" : "Windows PowerShell",
+                "icon" : "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "commandline" : "powershell.exe",
+                "colorScheme" : "Campbell",
+                "background" : "#012456",
+                "cursorShape" : "underscore"
+            }
+        ]
+    },
+    "schemes" : [
         {
             "name" : "Mintty",
             "background" : "#000000",
