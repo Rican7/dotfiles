@@ -481,6 +481,9 @@ let g:go_fmt_command = "goimports"
 " Specify some options to pass to the `godoc` command
 let g:go_doc_options = '-analysis="type"'
 
+" Use the `popup` window for documentation presentation
+let g:go_doc_popup_window = 1
+
 " Use `gopls` for `:GoDef`
 let g:go_def_mode='gopls'
 
