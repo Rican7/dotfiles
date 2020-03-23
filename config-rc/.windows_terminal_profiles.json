@@ -22,7 +22,12 @@
             {
                 "command": "paste",
                 "keys": [
-                    "ctrl+shift+v",
+                    "ctrl+shift+v"
+                ]
+            },
+            {
+                "command": "paste",
+                "keys": [
                     "shift+insert"
                 ]
             },
