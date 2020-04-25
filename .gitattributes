@@ -1,0 +1,2 @@
+*.tgz binary diff=tar-gz
+*.tar.gz binary diff=tar-gz

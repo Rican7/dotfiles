@@ -80,6 +80,15 @@
 	ff = false
 [diff]
 	tool = vimdiff
+[diff "tar"]
+	binary = true
+	textconv = tar --to-stdout -xf
+[diff "tar-gz"]
+	binary = true
+	textconv = tar --to-stdout -xzf
+[diff "tar-bz2"]
+	binary = true
+	textconv = tar --to-stdout -xjf
 [difftool]
 	prompt = false
 [hub]
