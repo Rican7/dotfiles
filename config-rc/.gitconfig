@@ -95,3 +95,6 @@
 	protocol = ssh
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[include]
+	# Source an optional device-specific config file
+	path = .gitconfig_device

@@ -1,3 +1,8 @@
+# Include device-specific SSH configurations
+#
+# NOTE: This MUST go at the top of the file.
+Include config_device
+
 Host *
 	ServerAliveInterval 120
 	ServerAliveCountMax 30
