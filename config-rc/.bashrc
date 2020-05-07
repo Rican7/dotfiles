@@ -139,7 +139,13 @@ function start_agent() {
     echo succeeded
     chmod 600 "${SSH_ENV}"
     source "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
+
+    # If on macOS
+    if [[ $OSTYPE == darwin* ]] ; then
+        /usr/bin/ssh-add -A; # Add all from "Keychain"
+    else
+        /usr/bin/ssh-add;
+    fi
 }
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
