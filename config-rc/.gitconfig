@@ -39,6 +39,7 @@
 	mergelogpr = !git mergelog -i --grep 'pull request'
 	worklog = log --pretty=' - %s%n%n%w(0,4,4)%-b' --reverse --no-merges
 	worklogbranch = !git worklog --first-parent master..HEAD
+	authors = !git log --pretty='%ae (%ce)' | sort -u
 	pushhead = push origin HEAD
 	pushup = push upstream HEAD
 	mergeflow = !git merge --no-ff
