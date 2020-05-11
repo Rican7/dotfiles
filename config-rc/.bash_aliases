@@ -18,9 +18,14 @@ fi
 if $dircolors ; then
     [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
     [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-    eval "$(dircolors -b $DIR_COLORS)"
+    eval "$(dircolors -b ${DIR_COLORS:+"$DIR_COLORS"})"
 
-    alias ls="ls --color"
+    # Check if an argument works first
+    if ls --color . >/dev/null 2>&1; then
+        alias ls="ls --color"
+    elif ls -G . >/dev/null 2>&1; then
+        alias ls="ls -G"
+    fi
 fi
 
 if $emux ; then
