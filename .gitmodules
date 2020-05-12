@@ -163,3 +163,6 @@
 [submodule ".vim/bundle/typescript-vim"]
 	path = .vim/bundle/typescript-vim
 	url = git@github.com:leafgarland/typescript-vim.git
+[submodule ".vim/bundle/vim-hack"]
+	path = .vim/bundle/vim-hack
+	url = git@github.com:hhvm/vim-hack.git
