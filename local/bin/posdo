@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# Script to execute a given command with a clean, standard environment.
+#
+#
+
+readonly SYSPATH="$(getconf PATH)"
+readonly STANDARDPATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+
+PATH="$STANDARDPATH:$SYSPATH" "$@"
+
+exit $?
