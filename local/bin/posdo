@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #
+# posdo - "POSIX do"
+#
 # Script to execute a given command with a clean, standard environment.
 #
 #
