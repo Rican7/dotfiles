@@ -110,6 +110,19 @@ export PS1="\[\e[0;36m\]\u\[\e[m\]\[\e[0;34m\]@\h\[\e[m\] \[\e[0;32m\]\W\[\e[m\]
 # Suppress our DOS file warnings when running Cygwin
 export CYGWIN="nodosfilewarning"
 
+# Guard for interactive shells
+#
+# The commands executed herein are only safe for interactive shells
+#
+# See:
+#  - https://unix.stackexchange.com/questions/257571/why-does-bashrc-check-whether-the-current-shell-is-interactive
+#  - https://www.gnu.org/software/bash/manual/html_node/Is-this-Shell-Interactive_003f.html
+if [[ $- = *i* ]]; then
+    # disable XON/XOFF flow control
+    # (stop `ctrl+s` from freezing output)
+    stty -ixon
+fi
+
 # Let's define what commands exist
 hash phpenv    2>/dev/null && phpenv=true || phpenv=false
 hash rbenv     2>/dev/null && rbenv=true || rbenv=false
