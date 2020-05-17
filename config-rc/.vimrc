@@ -111,6 +111,10 @@ nnoremap <SPACE> <Nop>
 " Define my leader
 let mapleader=" "
 
+" Remap the Ctrl-a mapping (increment) to Ctrl-s (opposite of Ctrl-x) to allow
+" for incrementing while using tmux/screen with a `Ctrl-a` leader
+nnoremap <C-s> <C-a>
+
 " Tab mappings
 nmap <C-t> :tabnew<CR>
 nmap <S-t> :tabclose<CR>
