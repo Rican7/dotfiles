@@ -89,14 +89,14 @@ readonly session_id=$1
 if [ -n "$session_id" ]; then
 	# See if we have an existing session matching our passed name
 	if session_exists "$session_id"; then
-		tmux attach-session -t "$session_id"
+		exec tmux attach-session -t "$session_id"
 
 	# We don't have an existing session with our passed name
 	else
 		if [ -n "$start_script" ]; then
-			tmux new-session -s "$session_id" "$start_script"
+			exec tmux new-session -s "$session_id" "$start_script"
 		else
-			tmux new-session -s "$session_id"
+			exec tmux new-session -s "$session_id"
 		fi
 	fi
 
@@ -105,15 +105,15 @@ else
 	# See if we have any existing sessions
 	if session_exists; then
 		# Just list our sessions
-		tmux list-sessions
+		exec tmux list-sessions
 
 	# No existing sessions
 	else
 		# Just create a new, default session
 		if [ -n "$start_script" ]; then
-			tmux new-session "$start_script"
+			exec tmux new-session "$start_script"
 		else
-			tmux new-session
+			exec tmux new-session
 		fi
 	fi
 fi
