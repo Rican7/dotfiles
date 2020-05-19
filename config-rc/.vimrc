@@ -70,6 +70,9 @@ set wildmode=list:longest,full
 set tags+=./tags;/,./TAGS;/ " Recurse up the directory tree until finding a tags file
 set tags+=./tags.vendor;/ " Add tag files for vendor dependencies, again with recursion up the tree
 
+" Terminal
+set termwinsize=10x0
+
 syntax on
 
 " Colorscheme
@@ -81,9 +84,11 @@ set laststatus=2
 set statusline=%f%m%r%h%w\ %<%=[Ln\ %l,\ Col\ %v](%p%%)\ -\ %{&l:expandtab?'Spaces':'Tabs'}\ %{shiftwidth()}\ -\ %Y\ (%{&ff}\|%{&fenc})
 
 " Set our status line's colors
-hi StatusLine ctermfg=LightGray ctermbg=Black guifg=LightGray guibg=Black
-hi StatusLineNC ctermfg=DarkGray ctermbg=Black guifg=DarkGray guibg=Black
-hi VertSplit ctermfg=DarkGray ctermbg=Black guifg=DarkGray guibg=Black
+hi StatusLine cterm=bold ctermbg=LightGray ctermfg=Black gui=bold guibg=LightGray guifg=Black
+hi StatusLineNC cterm=NONE ctermbg=DarkGray ctermfg=Black gui=bold guibg=DarkGray guifg=Black
+hi StatusLineTerm cterm=bold ctermbg=Cyan ctermfg=Black gui=bold guibg=Cyan guifg=Black
+hi StatusLineTermNC cterm=NONE ctermbg=DarkCyan ctermfg=Black gui=bold guibg=DarkCyan guifg=Black
+hi VertSplit cterm=NONE ctermbg=DarkGray ctermfg=Black gui=NONE guibg=DarkGray guifg=Black
 
 " 'ColorColumn' Line configuration
 set colorcolumn=+1 " Set the color column to appear at the text-width's setting
