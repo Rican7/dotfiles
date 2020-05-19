@@ -7,11 +7,10 @@ Host *
 	ServerAliveInterval 120
 	ServerAliveCountMax 30
 Host linode
-	user rican7
+	User rican7
 	HostName 66.175.213.45
 Host metro metroserve metro.linode metroserve.me
-	user rican7
+	User rican7
 	HostName metroserve.me
-Host zoltan mainframe omr omar
-	user trevorsuarez
-	HostName zoltan.omrcloud.com
+Host tns-custom tns-xps-15-2018
+	User trevor
