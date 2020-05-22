@@ -1,11 +1,14 @@
 " Windows vs Mac GUI settings
 if has("win32") || has("win64")
     set guifont=Source\ Code\ Pro:h10
-    set guioptions-=T
 else
-    set guifont=Source\ Code\ Pro\ Light:h13
-    set guioptions-=T
+    set guifont=Source\ Code\ Pro:h14
 end
+
+" Set common GUI options
+set guioptions-=T " Remove GUI toolbar
+set guioptions-=r " Remove right-hand scrollbar
+set guioptions-=L " Remove left-hand scrollbar
 
 " Windows SWAP files
 if has("win32") || has("win64")
