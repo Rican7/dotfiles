@@ -82,6 +82,9 @@ syntax on
 set background=dark
 colorscheme railscasts
 
+" Color basics, regardless of theme
+highlight Normal guibg=Black guifg=#f2f2f2 ctermbg=NONE ctermfg=NONE
+
 " Status line badassery
 set laststatus=2
 set statusline=%f%m%r%h%w\ %<%=[Ln\ %l,\ Col\ %v](%p%%)\ -\ %{&l:expandtab?'Spaces':'Tabs'}\ %{shiftwidth()}\ -\ %Y\ (%{&ff}\|%{&fenc})
@@ -95,7 +98,13 @@ hi VertSplit cterm=NONE ctermbg=DarkGray ctermfg=Black gui=NONE guibg=DarkGray g
 
 " 'ColorColumn' Line configuration
 set colorcolumn=+1 " Set the color column to appear at the text-width's setting
-hi ColorColumn term=reverse ctermbg=234 guibg=#222222 ctermfg=NONE guifg=NONE
+hi ColorColumn term=reverse ctermbg=234 guibg=#1c1c1c ctermfg=NONE guifg=NONE
+
+" Line number configuration
+set cursorline
+set cursorlineopt=number
+hi LineNr ctermbg=232 ctermfg=159 guibg=#080808 guifg=LightBlue
+hi CursorLineNr cterm=bold ctermfg=14 gui=bold guifg=Cyan
 
 
 "
