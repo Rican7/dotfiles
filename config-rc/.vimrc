@@ -136,6 +136,11 @@ let mapleader=" "
 " for incrementing while using tmux/screen with a `Ctrl-a` leader
 nnoremap <C-s> <C-a>
 
+" Set current directory to the path of the current file
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" Set current directory of the window to the path of the current file
+nnoremap <leader>CD :lcd %:p:h<CR>:pwd<CR>
+
 " Tab mappings
 nmap <C-t> :tabnew<CR>
 nmap <S-t> :tabclose<CR>
