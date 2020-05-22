@@ -101,8 +101,10 @@ set colorcolumn=+1 " Set the color column to appear at the text-width's setting
 hi ColorColumn term=reverse ctermbg=234 guibg=#1c1c1c ctermfg=NONE guifg=NONE
 
 " Line number configuration
-set cursorline
-set cursorlineopt=number
+if exists("&cursorlineopt")
+    set cursorline
+    set cursorlineopt=number
+endif
 hi LineNr ctermbg=232 ctermfg=159 guibg=#080808 guifg=LightBlue
 hi CursorLineNr cterm=bold ctermfg=14 gui=bold guifg=Cyan
 
