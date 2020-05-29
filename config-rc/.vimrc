@@ -76,6 +76,11 @@ set tags+=./tags.vendor;/ " Add tag files for vendor dependencies, again with re
 " Terminal
 set termwinsize=10x0
 
+" Set the QuickFix and LocationList windows to toggle opening/closing after a
+" command/result that would open them runs. (Open on results, close when empty)
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
 syntax on
 
 " Colorscheme
