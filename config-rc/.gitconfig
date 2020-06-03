@@ -46,8 +46,12 @@
 	fall = fetch --all
 	pullbase = pull --rebase
 	remoteclean = remote prune # No shorter, but more semantic.... at least to me. :P
-	merged = !git branch --merged | grep -v '^\\*'
-	localclean = !git merged | xargs --no-run-if-empty git branch -d
+	merged = branch --no-contains HEAD --merged HEAD
+	notmerged = branch --no-contains HEAD --no-merged HEAD
+	squashmerged = !git notmerged --format='%(refname:short)' | xargs --no-run-if-empty -I{} sh -c 'MERGE_BASE=$(git merge-base HEAD {}) && [[ $(git cherry HEAD $(git commit-tree $(git rev-parse {}^{tree}) -p $MERGE_BASE -m _)) == "-"* ]] && echo {}'
+	localcleanmerged = !git merged --format='%(refname:short)' | xargs --no-run-if-empty git branch -d
+	localcleansquashmerged = !git squashmerged | xargs --no-run-if-empty git branch -D
+	localclean = !git localcleanmerged && git localcleansquashmerged
 	subsync = submodule sync --recursive
 	subupdate = submodule update --init --recursive --checkout
 	syncup = !git checkout master && git pullbase upstream master && git subsync && git subupdate
