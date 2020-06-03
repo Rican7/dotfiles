@@ -153,16 +153,16 @@
 	url = https://github.com/reedes/vim-pencil.git
 [submodule ".vim/bundle/vim-php-refactoring-toolbox"]
 	path = .vim/bundle/vim-php-refactoring-toolbox
-	url = https://github.com/adoy/vim-php-refactoring-toolbox
+	url = https://github.com/adoy/vim-php-refactoring-toolbox.git
 [submodule ".vim/bundle/ale"]
 	path = .vim/bundle/ale
-	url = https://github.com/w0rp/ale
+	url = https://github.com/w0rp/ale.git
 [submodule ".vim/bundle/vim-vue"]
 	path = .vim/bundle/vim-vue
-	url = git@github.com:posva/vim-vue.git
+	url = https://github.com/posva/vim-vue.git
 [submodule ".vim/bundle/typescript-vim"]
 	path = .vim/bundle/typescript-vim
-	url = git@github.com:leafgarland/typescript-vim.git
+	url = https://github.com/leafgarland/typescript-vim.git
 [submodule ".vim/bundle/vim-hack"]
 	path = .vim/bundle/vim-hack
-	url = git@github.com:hhvm/vim-hack.git
+	url = https://github.com/hhvm/vim-hack.git
