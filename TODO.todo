@@ -1,0 +1,25 @@
+- [ ] Cleanup Vim modules
+  - [ ] Add `vim-polyglot` module to Vim for basic language support (https://github.com/sheerun/vim-polyglot)
+  - [ ] Remove one-off language modules, in favor of `vim-polyglot`
+  - [ ] Move away from using `Pathogen` in-favor of using native Vim "packages" (`:help packages`)
+- [ ] Cleanup Vim config
+  - [ ] Split ~/.vimrc into multiple files
+- [ ] Improve Vim Tagbar setup for Go
+  - [ ] Find a better config for `g:tagbar_type_go`
+  - [ ] Maybe make a pull request to `vim-go` with the better config?
+- [ ] Improve multiple-cursor setup in Vim
+  - [ ] Look into updating `vim-multiple-cursors` (https://github.com/terryma/vim-multiple-cursors)
+  - [ ] Look into `vim-visual-multi` (https://github.com/mg979/vim-visual-multi)
+    - [ ] Potentially remove `vim-multiple-cursors`
+- [ ] Improve "pager" setup
+  - [ ] Set a `PAGER` environment variable for common tools
+  - [ ] Install `delta` (https://github.com/dandavison/delta) and set it up as the Git pager
+    - [ ] Maybe create a `GIT_PAGER` environment variable, rather than using the git config, so that it can be dynamic based on what tools are installed?
+  - [ ] Find a better method of installing `vimpager` and using that as the default `PAGER` for certain tools (https://github.com/rkitover/vimpager)
+  - [ ] Cleanup git config values that manually define the pager used to instead use the set `GIT_PAGER`
+- [ ] Improve Markdown setup
+  - [ ] Look into `preview-markdown.vim` (https://github.com/skanehira/preview-markdown.vim)
+  - [X] Install `glow` (https://github.com/charmbracelet/glow)
+- [ ] Improve `config-rc` installation
+  - [ ] Move `config` file to `.ssh/config`
+  - [ ] Come up with a way to improve the Windows admin-level requirements of the Windows-file symlinking
