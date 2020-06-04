@@ -166,3 +166,6 @@
 [submodule ".vim/bundle/vim-hack"]
 	path = .vim/bundle/vim-hack
 	url = https://github.com/hhvm/vim-hack.git
+[submodule ".vim/bundle/vim-todo-lists"]
+	path = .vim/bundle/vim-todo-lists
+	url = https://github.com/aserebryakov/vim-todo-lists.git
