@@ -7,6 +7,14 @@
 - [ ] Improve Vim Tagbar setup for Go
   - [ ] Find a better config for `g:tagbar_type_go`
   - [ ] Maybe make a pull request to `vim-go` with the better config?
+- [ ] Look into adding `EditorConfig` support to Vim
+  - [ ] EditorConfig Vim Plugin (https://github.com/editorconfig/editorconfig-vim)
+- [ ] Improve fuzzy-finding support in Vim
+  - [ ] Look into installing `fzf` (https://github.com/junegunn/fzf)
+    - [ ] This needs to work cross platform (macOS, Linux, WSL)
+  - [ ] Look into installing `fzf.vim` (https://github.com/junegunn/fzf.vim)
+  - [ ] Look into mapping Ctrl-p to `fzf` if `fzf` is installed
+    - [ ] Potentially remove `ctrlp` module if all works as intended?
 - [ ] Improve multiple-cursor setup in Vim
   - [ ] Look into updating `vim-multiple-cursors` (https://github.com/terryma/vim-multiple-cursors)
   - [ ] Look into `vim-visual-multi` (https://github.com/mg979/vim-visual-multi)
