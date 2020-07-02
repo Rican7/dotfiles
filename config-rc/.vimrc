@@ -88,7 +88,7 @@ set background=dark
 colorscheme railscasts
 
 " Color basics, regardless of theme
-highlight Normal guibg=Black guifg=#f2f2f2 ctermbg=NONE ctermfg=NONE
+highlight Normal ctermbg=NONE ctermfg=NONE guibg=Black guifg=#f2f2f2
 
 " Status line badassery
 set laststatus=2
