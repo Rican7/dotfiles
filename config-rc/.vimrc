@@ -113,6 +113,12 @@ endif
 hi LineNr ctermbg=232 ctermfg=159 guibg=#080808 guifg=LightBlue
 hi CursorLineNr cterm=bold ctermfg=14 gui=bold guifg=Cyan
 
+" Change highlight colors for vimdiff
+hi DiffAdd term=bold ctermbg=22 guibg=DarkGreen
+hi DiffDelete term=bold ctermbg=52 guibg=Brown
+hi DiffChange term=bold ctermbg=58 guibg=DarkOrange
+hi DiffText term=reverse cterm=bold ctermbg=DarkRed gui=bold guibg=DarkRed
+
 
 "
 " Folding Options
@@ -445,14 +451,6 @@ let g:ale_linters = {
 \}
 let g:ale_php_phpcs_standard = 'PSR2' " Use the PSR-2 standard for PHP Code Sniffer
 let g:ale_go_golint_options = '-min_confidence=0.3' " Set a lower minimum confidence than default on `golint`
-
-
-
-" Change highlight colors for vimdiff
-highlight DiffAdd cterm=NONE ctermfg=black ctermbg=Green gui=NONE guifg=black guibg=Green
-highlight DiffDelete cterm=NONE ctermfg=black ctermbg=Red gui=NONE guifg=black guibg=Red
-highlight DiffChange cterm=NONE ctermfg=black ctermbg=Yellow gui=NONE guifg=black guibg=Yellow
-highlight DiffText cterm=NONE ctermfg=black ctermbg=Magenta gui=NONE guifg=black guibg=Magenta
 
 
 "
