@@ -114,10 +114,10 @@ hi LineNr ctermbg=232 ctermfg=159 guibg=#080808 guifg=LightBlue
 hi CursorLineNr cterm=bold ctermfg=14 gui=bold guifg=Cyan
 
 " Change highlight colors for vimdiff
-hi DiffAdd term=bold ctermbg=22 guibg=DarkGreen
-hi DiffDelete term=bold ctermbg=52 guibg=Brown
-hi DiffChange term=bold ctermbg=58 guibg=DarkOrange
-hi DiffText term=reverse cterm=bold ctermbg=DarkRed gui=bold guibg=DarkRed
+hi DiffAdd term=bold ctermbg=22 ctermfg=NONE guibg=DarkGreen guifg=NONE
+hi DiffDelete term=bold ctermbg=52 ctermfg=NONE guibg=Brown guifg=NONE
+hi DiffChange term=bold ctermbg=58 ctermfg=NONE guibg=DarkOrange guifg=NONE
+hi DiffText term=reverse cterm=bold ctermbg=DarkRed ctermfg=NONE gui=bold guibg=DarkRed guifg=NONE
 
 
 "
