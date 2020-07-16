@@ -104,8 +104,8 @@ if [ -n "$session_id" ]; then
 else
 	# See if we have any existing sessions
 	if session_exists; then
-		# Just list our sessions
-		exec tmux list-sessions
+		# Attach to the most recent session and interactively list our sessions
+		exec tmux attach-session\; choose-tree -s -Z
 
 	# No existing sessions
 	else
