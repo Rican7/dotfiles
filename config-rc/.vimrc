@@ -67,8 +67,13 @@ set formatoptions+=croqjl
 " See https://vi.stackexchange.com/q/9118/7236
 set textwidth=80
 
-" http://marc.info/?t=108316584200005&r=1&w=2
-set backupcopy=yes
+" Change how Vim writes files
+"
+" See :help backup-table
+" See http://marc.info/?t=108316584200005&r=1&w=2
+set nobackup
+set writebackup
+set backupcopy=yes " Prevent attributes from being lost on some OSs (eg Windows)
 
 " Set new split default locations
 set splitright
