@@ -53,6 +53,14 @@ set nofoldenable
 set t_Co=256
 set ffs=unix,dos,mac
 
+" Set more useful default auto-format options
+"
+"  - `croq` makes comment formatting much more natural
+"  - `l` helps prevent formatting entire lines when making an edit to an existing
+" long line.
+"  - `j` helps joining existing lines with comment leaders
+set formatoptions+=croqjl
+
 " Set a useful default for the textwidth, rather than the default of `0`, which
 " effectively comes out to`79`
 "
