@@ -1,7 +1,8 @@
-# -- MacOS X --
+# -- macOS --
 .DS_Store?
 .DS_Store
-Icon?
+# (macOS "Icon" must end with two \r characters: https://stackoverflow.com/a/33974028/852382)
+Icon[]
 
 # -- TextMate --
 *.tmproj
