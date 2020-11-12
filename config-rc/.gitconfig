@@ -66,6 +66,7 @@
 	revision = rev-parse HEAD
 	revisionshort = rev-parse --short HEAD
 	root = rev-parse --show-toplevel
+	latesttag = !git describe --tags "$(git rev-list --tags --max-count=1)"
 	releasename = !git describe --exact-match --abbrev=0 2>/dev/null || git rev-parse --short HEAD
 	branchliststatus = !git remote update && git branch --list -vv
 	branchls = !git branchliststatus --color=always | sed --posix 's/].*/]/g'
