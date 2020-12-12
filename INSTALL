@@ -223,7 +223,7 @@ do
 done;
 
 # Check if we're running CYGWIN or "Bash on Windows"
-if [[ $OSTYPE == "cygwin" ]] || grep -q Microsoft /proc/version ; then
+if [[ $OSTYPE == "cygwin" ]] || grep -qi Microsoft /proc/version ; then
 	# Create a quick counter, to keep our two cygFile arrays aligned
 	count=0
 	windowsOutputSuppressor=''
