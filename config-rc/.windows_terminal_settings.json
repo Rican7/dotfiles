@@ -53,6 +53,13 @@
                 "commandline": "powershell.exe",
                 "colorScheme": "Campbell Powershell",
                 "cursorShape": "underscore"
+            },
+            {
+                "guid": "{7cf7cbfb-0237-5aeb-9357-22c79077edaa}",
+                "name": "WSL - Ubuntu20.04",
+                "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+                "startingDirectory": "\\\\wsl$\\Ubuntu20.04\\home\\Rican7",
+                "commandline": "wsl.exe -d Ubuntu20.04"
             }
         ]
     },
