@@ -35,11 +35,11 @@
 	excluded = ls-files --others --ignored --exclude-standard
 	untracked = ls-files --others --exclude-standard
 	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	lgbranch = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --first-parent --no-merges master..HEAD
+	lgbranch = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --first-parent --no-merges "$(git defaultbranchname)"..HEAD
 	mergelog = log --pretty=oneline --abbrev-commit --merges
 	mergelogpr = !git mergelog -i --grep 'pull request'
 	worklog = log --pretty=' - %s%n%n%w(0,4,4)%-b' --reverse --no-merges
-	worklogbranch = !git worklog --first-parent master..HEAD
+	worklogbranch = !git worklog --first-parent "$(git defaultbranchname)"..HEAD
 	authors = !git log --pretty='%ae (%ce)' | sort -u
 	pushhead = push origin HEAD
 	pushup = push upstream HEAD
@@ -55,7 +55,7 @@
 	localclean = !git localcleanmerged && git localcleansquashmerged
 	subsync = submodule sync --recursive
 	subupdate = submodule update --init --recursive --checkout
-	syncup = !git checkout master && git pullbase upstream master && git subsync && git subupdate
+	syncup = !git checkout "$(git defaultbranchname)" && git pullbase upstream "$(git defaultbranchname)" && git subsync && git subupdate
 	syncthis = !git pullbase origin `git branchname` && git subsync && git subupdate
 	syncthisup = !git pullbase upstream `git branchname` && git subsync && git subupdate
 	syncstate = !git fall && git syncthis && git remoteclean origin
