@@ -61,7 +61,7 @@ readonly CYGFILEDESTINATIONS=(
 # Create a function to echo out errors
 error() {
 	# Let's get our arguments
-	local readonly message=$1
+	local -r message=$1
 
 	# Echo out our message
 	echo -e "\033[00;31mERROR:\033[00m $message"
@@ -70,7 +70,7 @@ error() {
 # Create a function to remove the passed target
 removeTarget() {
 	# The target should be the first (only) argument
-	local readonly TARGET=$1
+	local -r TARGET=$1
 
 	# Define some local variables
 	local recursive=false # Whether we should remove recursively or not
@@ -153,8 +153,8 @@ symLink() {
 	local status=1
 
 	# Let's get our arguments
-	local readonly SOURCE=$1
-	local readonly TARGET=$2
+	local -r SOURCE=$1
+	local -r TARGET=$2
 
 	# Let's make SURE that the target doesn't already exist... or we might make a recursive symlink (AH!)
 	if [ ! -e "$TARGET" ] ; then
