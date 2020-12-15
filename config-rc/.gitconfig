@@ -55,6 +55,7 @@
 	localclean = !git localcleanmerged && git localcleansquashmerged
 	subsync = submodule sync --recursive
 	subupdate = submodule update --init --recursive --checkout
+	syncremoterefs = !git fall --prune && git remote show | xargs --no-run-if-empty -I{} git remote set-head {} --auto
 	syncup = !git checkout "$(git defaultbranchname)" && git pullbase upstream "$(git defaultbranchname)" && git subsync && git subupdate
 	syncthis = !git pullbase origin "$(git branchname)" && git subsync && git subupdate
 	syncthisup = !git pullbase upstream "$(git branchname)" && git subsync && git subupdate
