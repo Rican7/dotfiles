@@ -37,6 +37,12 @@ if $emux ; then
     alias tmux-this='emux-this'
 fi
 
+# Function to expand and return a defined alias.
+#
+# Useful for building upon other aliases and for calling aliases in subshells
+# (ex: `sh -c "$(expandalias my_alias_name_here)"`)
+expandalias() { echo "${BASH_ALIASES["$1"]}"; }
+
 alias la="ls -la"
 alias vi="vim"
 alias view="vim -R"
