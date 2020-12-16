@@ -89,6 +89,12 @@ set tags+=./tags.vendor;/ " Add tag files for vendor dependencies, again with re
 " Terminal
 set termwinsize=10x0
 
+" When Vim is started by reading from stdin (`echo 'foo' | vim -`), flag it as
+" such, so that we can optionally configure and execute other behaviors with
+" this in mind.
+let g:stdin_mode = 0
+autocmd StdinReadPre * let g:stdin_mode = 1
+
 " Set the QuickFix and LocationList windows to toggle opening/closing after a
 " command/result that would open them runs. (Open on results, close when empty)
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -489,7 +495,7 @@ let NERDTreeIgnore=['^tags$[[file]]', '^tags\.vendor$[[file]]']
 nmap <F2> :NERDTreeToggle<CR>
 
 " Open NERDTree if no files were specified on opening VIM
-autocmd vimenter * if !argc() | NERDTree | endif
+autocmd vimenter * if !argc() && !g:stdin_mode | NERDTree | endif
 
 " Close VIM if the only open buffer left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
