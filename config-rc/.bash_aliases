@@ -40,6 +40,7 @@ fi
 alias la="ls -la"
 alias vi="vim"
 alias view="vim -R"
+alias vimless="$({ find /usr/local/share/vim -name 'less.sh' 2>/dev/null || find /usr/share/vim -name 'less.sh' ; } | sort -nr | head -n1)"
 alias pack="ack --pager='less -R'"
 alias src="source ~/.bash_profile"
 alias srcg="source /etc/profile"
