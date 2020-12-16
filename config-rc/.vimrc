@@ -100,6 +100,10 @@ autocmd StdinReadPre * let g:stdin_mode = 1
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
+" Set the LocationList window to automatically close after the corresponding
+" buffer has been closed
+autocmd QuitPre * if empty(&buftype) | lclose | endif
+
 syntax on
 
 " Colorscheme
