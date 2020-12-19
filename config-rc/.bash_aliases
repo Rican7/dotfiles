@@ -1,7 +1,9 @@
+# bash
+# (NOTE: Don't modify the above line... it tells Vim which "sh" type is in use)
+# vim: syntax=sh filetype=sh
 #
 # Function aliases
 #
-# vim: syntax=sh filetype=sh
 
 # Let's define what commands exist
 hash sass      2>/dev/null && sass=true || sass=false

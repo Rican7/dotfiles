@@ -1,7 +1,9 @@
+# bash
+# (NOTE: Don't modify the above line... it tells Vim which "sh" type is in use)
+# vim: syntax=sh filetype=sh
 #
 # Cygwin (Windows) function aliases
 #
-# vim: syntax=sh filetype=sh
 
 # Let's define what commands exist
 hash apt-cyg   2>/dev/null && aptcyg=true || aptcyg=false

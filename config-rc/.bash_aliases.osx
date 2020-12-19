@@ -1,7 +1,9 @@
+# bash
+# (NOTE: Don't modify the above line... it tells Vim which "sh" type is in use)
+# vim: syntax=sh filetype=sh
 #
 # Darwin/OS X Function aliases
 #
-# vim: syntax=sh filetype=sh
 
 # Don't use our custom "open" script; Fall back to stock
 alias open="/usr/bin/open"

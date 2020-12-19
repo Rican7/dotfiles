@@ -1,6 +1,8 @@
+# bash
+# (NOTE: Don't modify the above line... it tells Vim which "sh" type is in use)
+# vim: syntax=sh filetype=sh
 #
 # Windows/WSL function aliases
 #
-# vim: syntax=sh filetype=sh
 
 alias explore="open ."
