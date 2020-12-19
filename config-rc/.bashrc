@@ -3,13 +3,17 @@
 # vim: syntax=sh filetype=sh
 
 #
-# Source global definitions
+# Source system definitions
 #
-if [ -f /etc/bashrc ]; then
-    source /etc/bashrc
-elif [ -f /etc/bash.bashrc ]; then
-    source /etc/bash.bashrc
-fi
+for filename in /etc/bashrc /etc/bash.bashrc
+do
+  if [ -f "$filename" ]; then
+    source "$filename"
+    export SYSTEM_BASHRC="$filename"
+    break
+  fi
+done;
+unset filename # Don't keep this around in shells
 
 # User specific aliases and functions
 umask 002;
@@ -47,7 +51,7 @@ if [ ! -e "${HISTDIR}" ]; then
     mkdir -m 700 -p "$HISTDIR"
 fi
 
-readonly HISTFILES=("${HISTPARENTDIR}"/**/**/*/"${HISTFILEBASENAME}")
+HISTFILES=("${HISTPARENTDIR}"/**/**/*/"${HISTFILEBASENAME}")
 
 #
 # Improve history by loading multiple of our latest history files
@@ -58,7 +62,7 @@ readonly HISTFILES=("${HISTPARENTDIR}"/**/**/*/"${HISTFILEBASENAME}")
 #
 if [ ${#HISTFILES[@]} -gt 0 ]; then
     # Make a temporary pipe to collect history from multiple pipes
-    readonly TMP_HISTFILE="$(mktemp)"
+    TMP_HISTFILE="$(mktemp)"
 
     # Cat all of the history files, limit based on the defined history size, and
     # store them into the temporary history file
@@ -87,6 +91,7 @@ do
     # Source the file (add the autocompletion scheme to bash "complete")
     source "$filename"
 done;
+unset filename # Don't keep this around in shells
 
 # Autocomplete my SSH hosts
 # Originally found here: https://coderwall.com/p/ezpvpa
