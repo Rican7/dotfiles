@@ -2,6 +2,8 @@
 # (NOTE: Don't modify the above line... it tells Vim which "sh" type is in use)
 # vim: syntax=sh filetype=sh
 
+export USER_RCFILE="$BASH_SOURCE"
+
 #
 # Source system definitions
 #
@@ -9,7 +11,7 @@ for filename in /etc/bashrc /etc/bash.bashrc
 do
   if [ -f "$filename" ]; then
     source "$filename"
-    export SYSTEM_BASHRC="$filename"
+    export SYSTEM_RCFILE="$filename"
     break
   fi
 done;
