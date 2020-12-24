@@ -45,7 +45,7 @@ fi
 # (ex: `sh -c "$(expandalias my_alias_name_here)"`)
 expandalias() { echo "${BASH_ALIASES["$1"]}"; }
 
-alias incognito="bash --rcfile <(echo '[ -f \"$SYSTEM_RCFILE\" ] && . \"$SYSTEM_RCFILE\" ; . \"${USER_RCFILE:-~/.bashrc}\" ; set +o history')"
+alias incognito="bash --rcfile <(echo '[ -f \"$SYSTEM_RCFILE\" ] && . \"$SYSTEM_RCFILE\" ; . \"${USER_RCFILE:-~/.bashrc}\" ; set +o history ; export PS1=\"\[\e[0;37m\](incognito)\[\e[m\] $PS1\"')"
 alias la="ls -la"
 alias vi="vim"
 alias view="vim -R"
