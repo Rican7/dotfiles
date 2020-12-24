@@ -49,7 +49,7 @@
 	remoteclean = remote prune # No shorter, but more semantic.... at least to me. :P
 	merged = branch --no-contains HEAD --merged HEAD
 	notmerged = branch --no-contains HEAD --no-merged HEAD
-	squashmerged = !git notmerged --format='%(refname:short)' | xargs --no-run-if-empty -I{} sh -c 'MERGE_BASE=$(git merge-base HEAD {}) && [[ $(git cherry HEAD $(git commit-tree $(git rev-parse {}^{tree}) -p $MERGE_BASE -m _)) == "-"* ]] && echo {}'
+	squashmerged = "!git notmerged --format='%(refname:short)' | xargs --no-run-if-empty -I{} sh -c 'MERGE_BASE=\"$(git merge-base HEAD {})\" && case \"$(git cherry HEAD \"$(git commit-tree \"$(git rev-parse {}^{tree})\" -p \"$MERGE_BASE\" -m _)\")\" in \"-\"*) echo {};; esac'"
 	localcleanmerged = !git merged --format='%(refname:short)' | xargs --no-run-if-empty git branch -d
 	localcleansquashmerged = !git squashmerged | xargs --no-run-if-empty git branch -D
 	localclean = !git localcleanmerged && git localcleansquashmerged
