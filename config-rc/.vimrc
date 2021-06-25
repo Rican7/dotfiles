@@ -532,20 +532,8 @@ let g:detectindent_preferred_indent = 4
 " Disable reporting `go fmt` errors. Let ALE handle it instead
 let g:go_fmt_fail_silently = 1
 
-" Specify the command to use for auto-formatting
-let g:go_fmt_command = "goimports"
-
-" Specify some options to pass to the `godoc` command
-let g:go_doc_options = '-analysis="type"'
-
 " Use the `popup` window for documentation presentation
 let g:go_doc_popup_window = 1
-
-" Use `gopls` for `:GoDef`
-let g:go_def_mode='gopls'
-
-" Use `gopls` for `:GoInfo`
-let g:go_info_mode='gopls'
 
 " Enable showing type information automatically
 let g:go_auto_type_info = 1
