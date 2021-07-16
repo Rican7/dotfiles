@@ -14,9 +14,6 @@
 	diffc = diff --cached
 	dfc = diff --cached
 	dftc = difftool --cached
-	diffpager = !git diff --color=always | less -R
-	diffp = !git diffpager
-	dfp = !git diffpager
 	s = status -s
 	branchname = rev-parse --abbrev-ref HEAD
 	defaultbranchname = "!{ git symbolic-ref -q --short refs/remotes/origin/HEAD || git rev-parse --abbrev-ref --verify refs/heads/master 2>/dev/null || git config --get init.defaultBranch ; } | sed 's/^\\(.*\\/\\)\\{0,1\\}origin\\///g'"
