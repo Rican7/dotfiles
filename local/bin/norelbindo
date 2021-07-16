@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# norelbindo - "No relative bin do"
+#
+# Script to execute a given command without a relative bin in the PATH.
+#
+#
+
+readonly NORELBINPATH="$(echo "$PATH" | sed 's/\.\/bin://')"
+
+PATH="$NORELBINPATH" exec "$@"
+
+exit $?
