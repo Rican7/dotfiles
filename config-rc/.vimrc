@@ -24,12 +24,9 @@ end
 " (see :help directory)
 let &directory = substitute(&directory, '\(\\\|\/\/\)*$', '\/\/', "")
 
-" Set nocompatible BEFORE trying to use Pathogen (Use Vim defaults = much better!)
+" Set nocompatible BEFORE most other settings
+" (Use Vim defaults = much better!)
 set nocompatible
-
-" Pathogen! https://github.com/tpope/vim-pathogen
-call pathogen#infect()
-call pathogen#helptags()
 
 " Packages (`:help packages`)
 packadd! matchit
