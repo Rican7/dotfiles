@@ -1,5 +1,5 @@
 [submodule ".vim/bundle/railscasts"]
-	path = .vim/pack/plugins/start/railscasts
+	path = .vim/pack/themes/start/railscasts
 	url = https://github.com/vim-scripts/Railscasts-Theme-GUIand256color.git
 [submodule ".vim/bundle/php-stuff"]
 	path = .vim/pack/plugins/start/php-stuff
@@ -128,16 +128,16 @@
 	path = .vim/pack/plugins/start/vim-indexed-search
 	url = https://github.com/henrik/vim-indexed-search.git
 [submodule ".vim/bundle/vim-coffee"]
-	path = .vim/pack/plugins/start/vim-coffee
+	path = .vim/pack/themes/start/vim-coffee
 	url = https://github.com/duythinht/vim-coffee.git
 [submodule ".vim/bundle/vim-sorcerer"]
-	path = .vim/pack/plugins/start/vim-sorcerer
+	path = .vim/pack/themes/start/vim-sorcerer
 	url = https://github.com/adlawson/vim-sorcerer.git
 [submodule ".vim/bundle/vim-monokai"]
-	path = .vim/pack/plugins/start/vim-monokai
+	path = .vim/pack/themes/start/vim-monokai
 	url = https://github.com/sickill/vim-monokai.git
 [submodule ".vim/bundle/vim-tomorrow-theme"]
-	path = .vim/pack/plugins/start/vim-tomorrow-theme
+	path = .vim/pack/themes/start/vim-tomorrow-theme
 	url = https://github.com/chriskempson/vim-tomorrow-theme.git
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/pack/plugins/start/vim-fugitive
