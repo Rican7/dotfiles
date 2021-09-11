@@ -101,18 +101,26 @@ autocmd QuickFixCmdPost    l* nested lwindow
 " buffer has been closed
 autocmd QuitPre * if empty(&buftype) | lclose | endif
 
-syntax on
-
-" Colorscheme
-set background=dark
-colorscheme railscasts
-
-" Color basics, regardless of theme
-highlight Normal ctermbg=NONE ctermfg=NONE guibg=Black guifg=#f2f2f2
-
 " Status line badassery
 set laststatus=2
 set statusline=%f%m%r%h%w\ %<%=[Ln\ %l,\ Col\ %v](%p%%)\ -\ %{&l:expandtab?'Spaces':'Tabs'}\ %{shiftwidth()}\ -\ %Y\ (%{&ff}\|%{&fenc})
+
+" 'ColorColumn' Line configuration
+set colorcolumn=+1 " Set the color column to appear at the text-width's setting
+
+" Line number configuration
+if exists("&cursorlineopt")
+    set cursorline
+    set cursorlineopt=number
+endif
+
+" Colorscheme
+syntax on
+set background=dark
+colorscheme railscasts
+
+" Color theme overrides
+highlight Normal ctermbg=NONE ctermfg=NONE guibg=Black guifg=#f2f2f2
 
 " Set our status line's colors
 hi StatusLine cterm=bold ctermbg=LightGray ctermfg=Black gui=bold guibg=LightGray guifg=Black
@@ -121,15 +129,10 @@ hi StatusLineTerm cterm=bold ctermbg=Cyan ctermfg=Black gui=bold guibg=Cyan guif
 hi StatusLineTermNC cterm=NONE ctermbg=DarkCyan ctermfg=Black gui=bold guibg=DarkCyan guifg=Black
 hi VertSplit cterm=NONE ctermbg=DarkGray ctermfg=Black gui=NONE guibg=DarkGray guifg=Black
 
-" 'ColorColumn' Line configuration
-set colorcolumn=+1 " Set the color column to appear at the text-width's setting
+" 'ColorColumn' Line colors
 hi ColorColumn term=reverse ctermbg=234 guibg=#1c1c1c ctermfg=NONE guifg=NONE
 
-" Line number configuration
-if exists("&cursorlineopt")
-    set cursorline
-    set cursorlineopt=number
-endif
+" Line number colors
 hi LineNr ctermbg=232 ctermfg=159 guibg=#080808 guifg=LightBlue
 hi CursorLineNr cterm=bold ctermfg=14 gui=bold guifg=Cyan
 
@@ -372,6 +375,12 @@ function! OrderUseStatements ()
     " Restore our undo history
     silent! execute 'rundo ' . tmpundofile
     call delete(tmpundofile)
+endfunction
+
+" Function for changing theme colors to a 'true black'.
+" Useful for changing dark themes to actual black.
+function! TrueBlack ()
+    highlight Normal ctermbg=Black ctermfg=NONE guibg=Black guifg=#f2f2f2
 endfunction
 
 
