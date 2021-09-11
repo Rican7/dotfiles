@@ -1,7 +1,3 @@
-- [ ] Cleanup Vim modules
-  - [ ] Add `vim-polyglot` module to Vim for basic language support (https://github.com/sheerun/vim-polyglot)
-  - [ ] Remove one-off language modules, in favor of `vim-polyglot`
-  - [X] Move away from using `Pathogen` in-favor of using native Vim "packages" (`:help packages`)
 - [ ] Cleanup Vim config
   - [ ] Split ~/.vimrc into multiple files
 - [ ] Improve Vim Tagbar setup for Go
@@ -31,3 +27,7 @@
 - [ ] Improve `config-rc` installation
   - [ ] Move `config` file to `.ssh/config`
   - [ ] Come up with a way to improve the Windows admin-level requirements of the Windows-file symlinking
+- [X] Cleanup Vim modules
+  - [X] Move away from using `Pathogen` in-favor of using native Vim "packages" (`:help packages`)
+  - [X] Add `vim-polyglot` module to Vim for basic language support (https://github.com/sheerun/vim-polyglot)
+  - [X] Remove one-off language modules, in favor of `vim-polyglot`
