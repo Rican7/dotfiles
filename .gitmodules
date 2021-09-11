@@ -1,169 +1,169 @@
-[submodule ".vim/bundle/php-stuff"]
+[submodule ".vim/pack/plugins/start/php-stuff"]
 	path = .vim/pack/plugins/start/php-stuff
 	url = https://github.com/paulyg/Vim-PHP-Stuff.git
-[submodule ".vim/bundle/tagbar"]
+[submodule ".vim/pack/plugins/start/tagbar"]
 	path = .vim/pack/plugins/start/tagbar
 	url = https://github.com/majutsushi/tagbar.git
-[submodule ".vim/bundle/tcomment"]
+[submodule ".vim/pack/plugins/start/tcomment"]
 	path = .vim/pack/plugins/start/tcomment
 	url = https://github.com/vim-scripts/tComment.git
-[submodule ".vim/bundle/surround"]
+[submodule ".vim/pack/plugins/start/surround"]
 	path = .vim/pack/plugins/start/surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule ".vim/bundle/vim-snipmate"]
+[submodule ".vim/pack/plugins/start/vim-snipmate"]
 	path = .vim/pack/plugins/start/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate.git
-[submodule ".vim/bundle/tlib"]
+[submodule ".vim/pack/plugins/start/tlib"]
 	path = .vim/pack/plugins/start/tlib
 	url = https://github.com/tomtom/tlib_vim.git
-[submodule ".vim/bundle/addon-mw-utils"]
+[submodule ".vim/pack/plugins/start/addon-mw-utils"]
 	path = .vim/pack/plugins/start/addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule ".vim/bundle/vim-snippets"]
+[submodule ".vim/pack/plugins/start/vim-snippets"]
 	path = .vim/pack/plugins/start/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
-[submodule ".vim/bundle/nerdtree"]
+[submodule ".vim/pack/plugins/start/nerdtree"]
 	path = .vim/pack/plugins/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".vim/bundle/vim-markdown"]
+[submodule ".vim/pack/plugins/start/vim-markdown"]
 	path = .vim/pack/plugins/start/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
-[submodule ".vim/bundle/vim-numbertoggle"]
+[submodule ".vim/pack/plugins/start/vim-numbertoggle"]
 	path = .vim/pack/plugins/start/vim-numbertoggle
 	url = https://github.com/jeffkreeftmeijer/vim-numbertoggle.git
-[submodule ".vim/bundle/php-doc-modded"]
+[submodule ".vim/pack/plugins/start/php-doc-modded"]
 	path = .vim/pack/plugins/start/php-doc-modded
 	url = https://github.com/Rican7/php-doc-modded.git
-[submodule ".vim/bundle/ctrlp"]
+[submodule ".vim/pack/plugins/start/ctrlp"]
 	path = .vim/pack/plugins/start/ctrlp
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
-[submodule ".vim/bundle/vim-jquery"]
+[submodule ".vim/pack/plugins/start/vim-jquery"]
 	path = .vim/pack/plugins/start/vim-jquery
 	url = https://github.com/itspriddle/vim-jquery.git
-[submodule ".vim/bundle/vim-json"]
+[submodule ".vim/pack/plugins/start/vim-json"]
 	path = .vim/pack/plugins/start/vim-json
 	url = https://github.com/leshill/vim-json.git
-[submodule ".vim/bundle/vim-javascript"]
+[submodule ".vim/pack/plugins/start/vim-javascript"]
 	path = .vim/pack/plugins/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
-[submodule ".vim/bundle/vim-php-namespace"]
+[submodule ".vim/pack/plugins/start/vim-php-namespace"]
 	path = .vim/pack/plugins/start/vim-php-namespace
 	url = https://github.com/arnaud-lb/vim-php-namespace.git
-[submodule ".vim/bundle/vim-abolish"]
+[submodule ".vim/pack/plugins/start/vim-abolish"]
 	path = .vim/pack/plugins/start/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule ".vim/bundle/tabular"]
+[submodule ".vim/pack/plugins/start/tabular"]
 	path = .vim/pack/plugins/start/tabular
 	url = https://github.com/godlygeek/tabular.git
-[submodule ".vim/bundle/vim-haml"]
+[submodule ".vim/pack/plugins/start/vim-haml"]
 	path = .vim/pack/plugins/start/vim-haml
 	url = https://github.com/tpope/vim-haml.git
-[submodule ".vim/bundle/html5.vim"]
+[submodule ".vim/pack/plugins/start/html5.vim"]
 	path = .vim/pack/plugins/start/html5.vim
 	url = https://github.com/othree/html5.vim.git
-[submodule ".vim/bundle/vim-jinja"]
+[submodule ".vim/pack/plugins/start/vim-jinja"]
 	path = .vim/pack/plugins/start/vim-jinja
 	url = https://github.com/lepture/vim-jinja.git
-[submodule ".vim/bundle/detectindent"]
+[submodule ".vim/pack/plugins/start/detectindent"]
 	path = .vim/pack/plugins/start/detectindent
 	url = https://github.com/ciaranm/detectindent.git
-[submodule ".vim/bundle/vim-less"]
+[submodule ".vim/pack/plugins/start/vim-less"]
 	path = .vim/pack/plugins/start/vim-less
 	url = https://github.com/groenewege/vim-less.git
-[submodule ".vim/bundle/vim-coffee-script"]
+[submodule ".vim/pack/plugins/start/vim-coffee-script"]
 	path = .vim/pack/plugins/start/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule ".vim/bundle/php-indenting-for-vim"]
+[submodule ".vim/pack/plugins/start/php-indenting-for-vim"]
 	path = .vim/pack/plugins/start/php-indenting-for-vim
 	url = https://github.com/2072/PHP-Indenting-for-VIm.git
-[submodule ".vim/bundle/vim-multiple-cursors"]
+[submodule ".vim/pack/plugins/start/vim-multiple-cursors"]
 	path = .vim/pack/plugins/start/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
-[submodule ".vim/bundle/webapi-vim"]
+[submodule ".vim/pack/plugins/start/webapi-vim"]
 	path = .vim/pack/plugins/start/webapi-vim
 	url = https://github.com/mattn/webapi-vim.git
-[submodule ".vim/bundle/gist-vim"]
+[submodule ".vim/pack/plugins/start/gist-vim"]
 	path = .vim/pack/plugins/start/gist-vim
 	url = https://github.com/mattn/gist-vim.git
-[submodule ".vim/bundle/phpcomplete-vim"]
+[submodule ".vim/pack/plugins/start/phpcomplete-vim"]
 	path = .vim/pack/plugins/start/phpcomplete-vim
 	url = https://github.com/shawncplus/phpcomplete.vim.git
-[submodule ".vim/bundle/dart-vim-plugin"]
+[submodule ".vim/pack/plugins/start/dart-vim-plugin"]
 	path = .vim/pack/plugins/start/dart-vim-plugin
 	url = https://github.com/dart-lang/dart-vim-plugin.git
-[submodule ".vim/bundle/xterm-color-table.vim"]
+[submodule ".vim/pack/plugins/start/xterm-color-table.vim"]
 	path = .vim/pack/plugins/start/xterm-color-table.vim
 	url = https://github.com/guns/xterm-color-table.vim.git
-[submodule ".vim/bundle/tagbar-phpctags.vim"]
+[submodule ".vim/pack/plugins/start/tagbar-phpctags.vim"]
 	path = .vim/pack/plugins/start/tagbar-phpctags.vim
 	url = https://github.com/vim-php/tagbar-phpctags.vim.git
 [submodule "local/modules/vimpager"]
 	path = local/modules/vimpager
 	url = https://github.com/rkitover/vimpager.git
-[submodule ".vim/bundle/vim-android"]
+[submodule ".vim/pack/plugins/start/vim-android"]
 	path = .vim/pack/plugins/start/vim-android
 	url = https://github.com/hsanson/vim-android.git
-[submodule ".vim/bundle/vim-go"]
+[submodule ".vim/pack/plugins/start/vim-go"]
 	path = .vim/pack/plugins/start/vim-go
 	url = https://github.com/fatih/vim-go.git
-[submodule ".vim/bundle/vim-better-whitespace"]
+[submodule ".vim/pack/plugins/start/vim-better-whitespace"]
 	path = .vim/pack/plugins/start/vim-better-whitespace
 	url = https://github.com/ntpeters/vim-better-whitespace.git
-[submodule ".vim/bundle/ack.vim"]
+[submodule ".vim/pack/plugins/start/ack.vim"]
 	path = .vim/pack/plugins/start/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-[submodule ".vim/bundle/vim-easytags"]
+[submodule ".vim/pack/plugins/start/vim-easytags"]
 	path = .vim/pack/plugins/start/vim-easytags
 	url = https://github.com/xolox/vim-easytags.git
-[submodule ".vim/bundle/vim-misc"]
+[submodule ".vim/pack/plugins/start/vim-misc"]
 	path = .vim/pack/plugins/start/vim-misc
 	url = https://github.com/xolox/vim-misc.git
-[submodule ".vim/bundle/vim-puppet"]
+[submodule ".vim/pack/plugins/start/vim-puppet"]
 	path = .vim/pack/plugins/start/vim-puppet
 	url = https://github.com/rodjek/vim-puppet.git
-[submodule ".vim/bundle/vim-indexed-search"]
+[submodule ".vim/pack/plugins/start/vim-indexed-search"]
 	path = .vim/pack/plugins/start/vim-indexed-search
 	url = https://github.com/henrik/vim-indexed-search.git
-[submodule ".vim/bundle/vim-coffee"]
+[submodule ".vim/pack/themes/start/vim-coffee"]
 	path = .vim/pack/themes/start/vim-coffee
 	url = https://github.com/duythinht/vim-coffee.git
-[submodule ".vim/bundle/vim-sorcerer"]
+[submodule ".vim/pack/themes/start/vim-sorcerer"]
 	path = .vim/pack/themes/start/vim-sorcerer
 	url = https://github.com/adlawson/vim-sorcerer.git
-[submodule ".vim/bundle/vim-monokai"]
+[submodule ".vim/pack/themes/start/vim-monokai"]
 	path = .vim/pack/themes/start/vim-monokai
 	url = https://github.com/sickill/vim-monokai.git
-[submodule ".vim/bundle/vim-tomorrow-theme"]
+[submodule ".vim/pack/themes/start/vim-tomorrow-theme"]
 	path = .vim/pack/themes/start/vim-tomorrow-theme
 	url = https://github.com/chriskempson/vim-tomorrow-theme.git
-[submodule ".vim/bundle/vim-fugitive"]
+[submodule ".vim/pack/plugins/start/vim-fugitive"]
 	path = .vim/pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/clam.vim"]
+[submodule ".vim/pack/plugins/start/clam.vim"]
 	path = .vim/pack/plugins/start/clam.vim
 	url = https://github.com/sjl/clam.vim.git
-[submodule ".vim/bundle/vim-marked"]
+[submodule ".vim/pack/plugins/start/vim-marked"]
 	path = .vim/pack/plugins/start/vim-marked
 	url = https://github.com/itspriddle/vim-marked.git
-[submodule ".vim/bundle/vim-pencil"]
+[submodule ".vim/pack/plugins/start/vim-pencil"]
 	path = .vim/pack/plugins/start/vim-pencil
 	url = https://github.com/reedes/vim-pencil.git
-[submodule ".vim/bundle/vim-php-refactoring-toolbox"]
+[submodule ".vim/pack/plugins/start/vim-php-refactoring-toolbox"]
 	path = .vim/pack/plugins/start/vim-php-refactoring-toolbox
 	url = https://github.com/adoy/vim-php-refactoring-toolbox.git
-[submodule ".vim/bundle/ale"]
+[submodule ".vim/pack/plugins/start/ale"]
 	path = .vim/pack/plugins/start/ale
 	url = https://github.com/w0rp/ale.git
-[submodule ".vim/bundle/vim-vue"]
+[submodule ".vim/pack/plugins/start/vim-vue"]
 	path = .vim/pack/plugins/start/vim-vue
 	url = https://github.com/posva/vim-vue.git
-[submodule ".vim/bundle/typescript-vim"]
+[submodule ".vim/pack/plugins/start/typescript-vim"]
 	path = .vim/pack/plugins/start/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
-[submodule ".vim/bundle/vim-hack"]
+[submodule ".vim/pack/plugins/start/vim-hack"]
 	path = .vim/pack/plugins/start/vim-hack
 	url = https://github.com/hhvm/vim-hack.git
-[submodule ".vim/bundle/vim-todo-lists"]
+[submodule ".vim/pack/plugins/start/vim-todo-lists"]
 	path = .vim/pack/plugins/start/vim-todo-lists
 	url = https://github.com/aserebryakov/vim-todo-lists.git
 [submodule ".vim/pack/themes/start/vim-railscasts-theme"]
