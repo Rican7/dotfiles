@@ -1,6 +1,3 @@
-[submodule ".vim/bundle/railscasts"]
-	path = .vim/pack/themes/start/railscasts
-	url = https://github.com/vim-scripts/Railscasts-Theme-GUIand256color.git
 [submodule ".vim/bundle/php-stuff"]
 	path = .vim/pack/plugins/start/php-stuff
 	url = https://github.com/paulyg/Vim-PHP-Stuff.git
@@ -169,3 +166,6 @@
 [submodule ".vim/bundle/vim-todo-lists"]
 	path = .vim/pack/plugins/start/vim-todo-lists
 	url = https://github.com/aserebryakov/vim-todo-lists.git
+[submodule ".vim/pack/themes/start/vim-railscasts-theme"]
+	path = .vim/pack/themes/start/vim-railscasts-theme
+	url = https://github.com/jpo/vim-railscasts-theme.git
