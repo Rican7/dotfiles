@@ -1,5 +1,3 @@
-- [ ] Cleanup Vim config
-  - [ ] Split ~/.vimrc into multiple files
 - [ ] Improve Vim Tagbar setup for Go
   - [ ] Find a better config for `g:tagbar_type_go`
   - [ ] Maybe make a pull request to `vim-go` with the better config?
@@ -31,3 +29,5 @@
   - [X] Move away from using `Pathogen` in-favor of using native Vim "packages" (`:help packages`)
   - [X] Add `vim-polyglot` module to Vim for basic language support (https://github.com/sheerun/vim-polyglot)
   - [X] Remove one-off language modules, in favor of `vim-polyglot`
+- [X] Cleanup Vim config
+  - [X] Split ~/.vimrc into multiple files
