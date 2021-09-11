@@ -169,3 +169,6 @@
 [submodule ".vim/pack/themes/start/vim-railscasts-theme"]
 	path = .vim/pack/themes/start/vim-railscasts-theme
 	url = https://github.com/jpo/vim-railscasts-theme.git
+[submodule ".vim/pack/plugins/start/vim-polyglot"]
+	path = .vim/pack/plugins/start/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
