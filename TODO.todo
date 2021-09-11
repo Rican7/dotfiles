@@ -1,7 +1,7 @@
 - [ ] Cleanup Vim modules
   - [ ] Add `vim-polyglot` module to Vim for basic language support (https://github.com/sheerun/vim-polyglot)
   - [ ] Remove one-off language modules, in favor of `vim-polyglot`
-  - [ ] Move away from using `Pathogen` in-favor of using native Vim "packages" (`:help packages`)
+  - [X] Move away from using `Pathogen` in-favor of using native Vim "packages" (`:help packages`)
 - [ ] Cleanup Vim config
   - [ ] Split ~/.vimrc into multiple files
 - [ ] Improve Vim Tagbar setup for Go
