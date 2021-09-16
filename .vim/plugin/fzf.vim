@@ -8,9 +8,10 @@ if (executable('fzf') == 0)
     augroup WarnNoFzf
         autocmd!
         autocmd VimEnter * echohl WarningMsg
+        autocmd VimEnter * redraw
         autocmd VimEnter * echom 'WARNING: No `fzf` command found.'
-        autocmd VimEnter * echom 'Falling back to using "ctrlp" plugin.'
-        autocmd VimEnter * echom 'Install fzf via `:call fzf#install()`.'
+                    \ . ' Falling back to using `ctrlp` plugin.'
+                    \ . ' Install fzf via `:call fzf#install()`.'
         autocmd VimEnter * echohl None
     augroup END
 
