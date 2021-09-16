@@ -135,6 +135,7 @@ fi
 hash phpenv    2>/dev/null && phpenv=true || phpenv=false
 hash rbenv     2>/dev/null && rbenv=true || rbenv=false
 hash jump      2>/dev/null && jump=true || jump=false
+hash fd        2>/dev/null && fd=true || fd=false
 
 # Initialize phpenv
 if $phpenv ; then
@@ -149,6 +150,11 @@ fi
 # Initialize jump
 if $jump ; then
     eval "$(jump shell)"
+fi
+
+if $fd ; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
 # SSH Agent at Login
