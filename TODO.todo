@@ -7,10 +7,6 @@
     - [X] This needs to work cross platform (macOS, Linux, WSL)
   - [X] Look into mapping Ctrl-p to `fzf` if `fzf` is installed
     - [X] Potentially remove `ctrlp` module if all works as intended?
-- [ ] Improve multiple-cursor setup in Vim
-  - [ ] Look into updating `vim-multiple-cursors` (https://github.com/terryma/vim-multiple-cursors)
-  - [ ] Look into `vim-visual-multi` (https://github.com/mg979/vim-visual-multi)
-    - [ ] Potentially remove `vim-multiple-cursors`
 - [ ] Improve "pager" setup
   - [ ] Set a `PAGER` environment variable for common tools
   - [ ] Install `delta` (https://github.com/dandavison/delta) and set it up as the Git pager
@@ -31,3 +27,7 @@
   - [X] Split ~/.vimrc into multiple files
 - [X] Look into adding `EditorConfig` support to Vim
   - [X] EditorConfig Vim Plugin (https://github.com/editorconfig/editorconfig-vim)
+- [X] Improve multiple-cursor setup in Vim
+  - [X] Look into updating `vim-multiple-cursors` (https://github.com/terryma/vim-multiple-cursors)
+  - [X] Look into `vim-visual-multi` (https://github.com/mg979/vim-visual-multi)
+    - [X] Potentially remove `vim-multiple-cursors`
