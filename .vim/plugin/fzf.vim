@@ -23,6 +23,26 @@ endif
 " (TODO: Remove this once the ctrlp plugin is removed)
 let g:loaded_ctrlp = 1
 
+" If our fzf command uses `fd`
+"
+" See: https://github.com/sharkdp/fd
+if ($FZF_DEFAULT_COMMAND =~# '^fd ')
+    " Add some exclusions
+    let $FZF_DEFAULT_COMMAND = $FZF_DEFAULT_COMMAND . ' --exclude *.min.*'
+                \ . ' --exclude *.dat'
+                \ . ' --exclude *.exe'
+                \ . ' --exclude *.gif'
+                \ . ' --exclude *.png'
+                \ . ' --exclude *.jpeg'
+                \ . ' --exclude *.jpg'
+                \ . ' --exclude *.ico'
+                \ . ' --exclude *.bmp'
+                \ . ' --exclude *.zip'
+                \ . ' --exclude *.gz'
+                \ . ' --exclude *.7z'
+                \ . ' --exclude *.rar'
+endif
+
 " Enable history
 let g:fzf_history_dir = '~/.cache/fzf/history'
 
