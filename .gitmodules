@@ -142,3 +142,6 @@
 [submodule ".vim/pack/plugins/start/fzf"]
 	path = .vim/pack/plugins/start/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule ".vim/pack/plugins/start/vim-visual-multi"]
+	path = .vim/pack/plugins/start/vim-visual-multi
+	url = https://github.com/mg979/vim-visual-multi.git
