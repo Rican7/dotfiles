@@ -31,7 +31,8 @@ let g:ale_fixers = {
 \   'go': [],
 \   'hack': ['hackfmt'],
 \   'typescript': ['deno'],
-\   'json': ['jq'],
+\   'javascript': ['prettier', 'eslint'],
+\   'json': ['jq', 'prettier'],
 \   'sh': ['shfmt'],
 \}
 
