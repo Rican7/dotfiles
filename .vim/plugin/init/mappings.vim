@@ -74,7 +74,7 @@ vnoremap / "hy/<C-r>h
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Source our vimrc
-nmap <leader>s :source ~/.vimrc<CR>
+nmap <leader>s :source $MYVIMRC<CR>
 
 " Superuser Write! Woot! Thanks to @borkweb and reddit
 cnoremap w!! w !sudo dd of=%
