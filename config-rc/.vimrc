@@ -12,6 +12,15 @@
 " Check the aforementioned paths for a complete config.
 "
 
+" Define a local/device vimrc
+" Useful for device-specific configurations that I don't want to sync with my
+" portable configurations.
+if has("win32") || has("win64")
+    let s:device_vimrc = $HOME."/_vim_device_rc"
+else
+    let s:device_vimrc = $HOME."/.vim_device_rc"
+end
+
 
 " Windows vs Mac GUI settings
 if has("win32") || has("win64")
@@ -200,3 +209,8 @@ set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc
 " NOTE: Using a check here to make sure that window-specific location-lists
 " aren't effected, as they use the same `FileType` as quickfix-lists.
 autocmd FileType qf if (getwininfo(win_getid())[0].loclist != 1) | wincmd J | endif
+
+" Potentially load a device vimrc
+if filereadable(s:device_vimrc)
+    exec "source " . escape(s:device_vimrc, ' ')
+endif
