@@ -40,6 +40,7 @@ shopt -u dotglob # Undo the allowing of * to match hidden files
 # Define an array of Windows/Cygwin ONLY files/directories
 readonly CYGFILELOCATIONS=(
 	"$HOME/_vimrc"
+	"$HOME/_gvimrc"
 	"$HOME/vimfiles"
 	"$HOME/.sift.conf"
 	"$HOME/.ConEmu.xml"
@@ -51,6 +52,7 @@ readonly CYGFILELOCATIONS=(
 # MUST ALIGN WITH 'CYGFILELOCATIONS'
 readonly CYGFILEDESTINATIONS=(
 	"$CONFIGDIR/.vimrc"
+	"$CONFIGDIR/.gvimrc"
 	".vim"
 	"$CONFIGDIR/.sift.conf"
 	"$CONFIGDIR/.ConEmu.xml"
