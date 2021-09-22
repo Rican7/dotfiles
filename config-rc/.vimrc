@@ -12,13 +12,18 @@
 " Check the aforementioned paths for a complete config.
 "
 
-" Define a local/device vimrc
+" Define a local/device vimrc and runtimepath.
+"
 " Useful for device-specific configurations that I don't want to sync with my
 " portable configurations.
 if has("win32") || has("win64")
     let s:device_vimrc = $HOME."/_vim_device_rc"
+    set runtimepath+=$HOME/vimfiles_device
+    set runtimepath+=$HOME/vimfiles_device/after
 else
     let s:device_vimrc = $HOME."/.vim_device_rc"
+    set runtimepath+=$HOME/.vim_device
+    set runtimepath+=$HOME/.vim_device/after
 end
 
 
