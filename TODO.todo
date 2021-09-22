@@ -17,8 +17,8 @@
   - [ ] Look into `preview-markdown.vim` (https://github.com/skanehira/preview-markdown.vim)
   - [X] Install `glow` (https://github.com/charmbracelet/glow)
 - [ ] Improve `config-rc` installation
-  - [ ] Move `config` file to `.ssh/config`
   - [ ] Come up with a way to improve the Windows admin-level requirements of the Windows-file symlinking
+  - [X] Move `config` file to `.ssh/config`
 - [X] Cleanup Vim modules
   - [X] Move away from using `Pathogen` in-favor of using native Vim "packages" (`:help packages`)
   - [X] Add `vim-polyglot` module to Vim for basic language support (https://github.com/sheerun/vim-polyglot)
