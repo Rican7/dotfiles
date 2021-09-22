@@ -201,14 +201,14 @@ windowsPath() {
 # Let's loop through each file/directory
 for target in "${FILESANDDIRECTORIES[@]}"
 do
-	# Get the basename
-	baseName="$(basename "$target")"
+	# Get the path relative to the stored directory
+	gitBoxPath="${target#"$HOME"/}"
 
 	# Use the removeTarget function and pass the target as an argument
 	removeTarget "$target"
 
 	# Relink the file
-	symLink "$GITBOXDIR/$baseName" "$target"
+	symLink "$GITBOXDIR/$gitBoxPath" "$target"
 done;
 
 # Let's loop through each config file
@@ -267,7 +267,7 @@ if [[ $OSTYPE == "cygwin" ]] || grep -qi Microsoft /proc/version ; then
 fi
 
 # Let's change the permissions of some files
-chmod 600 ./config
+chmod 600 ./.ssh/config
 
 # Exit gracefully (positive/good exit code)
 exit 0
