@@ -229,6 +229,7 @@ if [[ $OSTYPE == "cygwin" ]] || grep -qi Microsoft /proc/version ; then
 	# Create a quick counter, to keep our two cygFile arrays aligned
 	count=0
 	windowsOutputSuppressor=''
+	directoryFlag=''
 
 	# Not using verbose output?
 	if [ "$verbose" != true ] ; then
@@ -239,6 +240,15 @@ if [[ $OSTYPE == "cygwin" ]] || grep -qi Microsoft /proc/version ; then
 	# Let's loop through each file/directory
 	for cygTarget in "${CYGFILELOCATIONS[@]}"
 	do
+		cygDestination="$GITBOXDIR/${CYGFILEDESTINATIONS[$count]}"
+
+		# If the target is a directory
+		if [ -d "$cygDestination" ] ; then
+			directoryFlag='/d '
+		else
+			directoryFlag=''
+		fi
+
 		# Use the removeTarget function and pass the target as an argument
 		removeTarget "$cygTarget"
 
@@ -246,10 +256,10 @@ if [[ $OSTYPE == "cygwin" ]] || grep -qi Microsoft /proc/version ; then
 		windowsTargetPath="$(windowsPath "$cygTarget")";
 
 		# Get the windows destination path
-		windowsDestinationPath="$(windowsPath "$GITBOXDIR\\${CYGFILEDESTINATIONS[$count]}")";
+		windowsDestinationPath="$(windowsPath "$cygDestination")";
 
 		# Use cmd (windows native command prompt) to setup Windows NT Symbolic Links
-		cmd.exe /c mklink "$windowsTargetPath" "$windowsDestinationPath" $windowsOutputSuppressor
+		cmd.exe /c mklink $directoryFlag"$windowsTargetPath" "$windowsDestinationPath" $windowsOutputSuppressor
 
 		# Increment the counter
 		((count++))
