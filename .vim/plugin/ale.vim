@@ -31,9 +31,12 @@ let g:ale_fixers = {
 \   'go': [],
 \   'hack': ['hackfmt'],
 \   'typescript': ['deno'],
-\   'javascript': ['prettier', 'eslint'],
+\   'javascript': ['eslint', 'prettier'],
+\   'html': ['prettier'],
+\   'css': ['stylelint', 'prettier'],
 \   'json': ['jq', 'prettier'],
 \   'sh': ['shfmt'],
+\   'svelte': ['prettier'],
 \}
 
 " Specific options for linters/fixers
