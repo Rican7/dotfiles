@@ -8,8 +8,14 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave =  0
 let g:ale_lint_on_enter = 0
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
+
+" Completion
+"
+" Autocompletion disabled until different LSP issues are solved:
+" https://github.com/dense-analysis/ale/issues/3555
+let g:ale_completion_enabled = 0
 let g:ale_completion_autoimport = 1
+set omnifunc=ale#completion#OmniFunc " Set the omnifunc to use ALE's completion
 
 " Linters
 "
