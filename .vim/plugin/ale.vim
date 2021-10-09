@@ -41,6 +41,7 @@ let g:ale_fixers = {
 \   'html': ['prettier'],
 \   'css': ['stylelint', 'prettier'],
 \   'json': ['jq', 'prettier'],
+\   'xml': ['xmllint'],
 \   'sh': ['shfmt'],
 \   'svelte': ['prettier'],
 \}
