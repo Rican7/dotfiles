@@ -15,7 +15,7 @@ Icon[]
 *.perspectivev3
 *.pbxuser
 
-# Other SVC
+# -- Other SVC --
 .hg
 .svn
 CVS
@@ -43,3 +43,6 @@ php-docs/
 
 # -- TODOs and task lists --
 .todos
+
+# -- Environment specific configurations --
+.env
