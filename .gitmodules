@@ -142,3 +142,6 @@
 [submodule ".vim/pack/plugins/start/vim-visual-multi"]
 	path = .vim/pack/plugins/start/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
+[submodule ".vim/pack/plugins/start/vim-localvimrc"]
+	path = .vim/pack/plugins/start/vim-localvimrc
+	url = https://github.com/embear/vim-localvimrc.git
