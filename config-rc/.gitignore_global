@@ -46,3 +46,6 @@ php-docs/
 
 # -- Environment specific configurations --
 .env
+
+# -- Local Editor Configs --
+.lvimrc
