@@ -49,3 +49,4 @@ let g:ale_fixers = {
 " Specific options for linters/fixers
 let g:ale_php_phpcs_standard = 'PSR2' " Use the PSR-2 standard for PHP Code Sniffer
 let g:ale_go_golint_options = '-min_confidence=0.3' " Set a lower minimum confidence than default on `golint`
+let g:ale_javascript_eslint_suppress_eslintignore = 1 " Stop warning about ignored files
