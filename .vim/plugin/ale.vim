@@ -50,3 +50,23 @@ let g:ale_fixers = {
 let g:ale_php_phpcs_standard = 'PSR2' " Use the PSR-2 standard for PHP Code Sniffer
 let g:ale_go_golint_options = '-min_confidence=0.3' " Set a lower minimum confidence than default on `golint`
 let g:ale_javascript_eslint_suppress_eslintignore = 1 " Stop warning about ignored files
+
+" Mappings
+function ALELSPMappings()
+    let lsp_found=0
+
+    for linter in ale#linter#Get(&filetype)
+        if !empty(linter.lsp)
+            let lsp_found=1
+            break
+        endif
+    endfor
+
+    if (lsp_found)
+        nnoremap <buffer> <silent> gd :ALEGoToDefinition<cr>
+        nnoremap <buffer> <silent> <C-]> :ALEGoToDefinition<cr>
+        nnoremap <buffer> <silent> <C-w><C-]> :<C-u>vsplit<CR>:ALEGoToDefinition<CR>
+        nnoremap <buffer> <silent> <C-w><C-\> :<C-u>split<CR>:ALEGoToDefinition<CR>
+    endif
+endfunction
+autocmd BufRead,FileType * call ALELSPMappings()
