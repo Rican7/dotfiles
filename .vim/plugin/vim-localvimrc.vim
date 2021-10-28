@@ -11,7 +11,26 @@ let g:localvimrc_persistent = 2 " Don't ask to load the same known config file
 " Perform some operations based on events
 augroup LocalVimRC
     autocmd!
-    autocmd User LocalVimRCPost echom 'Loaded local vimrc: ' . g:localvimrc_script
+
+    function! PrintLoadedRC()
+        let l:message = 'Loaded local vimrc'
+        if g:localvimrc_script_unresolved == g:localvimrc_script
+            echom printf(
+                \'%s: "%s"',
+                \l:message,
+                \g:localvimrc_script
+            \)
+        elseif g:localvimrc_script_unresolved != g:localvimrc_script
+            echom printf(
+                \'%s: "%s" ("%s")',
+                \l:message,
+                \g:localvimrc_script_unresolved,
+                \g:localvimrc_script
+            \)
+        endif
+    endfunction
+
+    autocmd User LocalVimRCPost call PrintLoadedRC()
 augroup END
 
 " TODO: Remove once VimEnter events are solved
