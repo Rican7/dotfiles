@@ -159,14 +159,9 @@ fi
 
 # SSH Agent at Login
 # Thanks to http://mah.everybody.org/docs/ssh#run-ssh-agent
-SSH_ENV="$HOME/.ssh/environment"
-function start_agent() {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    source "${SSH_ENV}" > /dev/null
-
+readonly SSH_ENV="$HOME/.ssh/environment"
+readonly SSH_IDENTITY_FILES="$HOME/.ssh/id_*"
+function ssh_add_identities() {
     # If on macOS
     if [[ $OSTYPE == darwin* ]] ; then
         /usr/bin/ssh-add -A; # Add all from "Keychain"
@@ -174,16 +169,42 @@ function start_agent() {
         /usr/bin/ssh-add;
     fi
 }
+function ssh_start_agent() {
+    printf "Initialising new SSH agent... "
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    printf "Succeeded!\n"
+    chmod 600 "${SSH_ENV}"
+    source "${SSH_ENV}" > /dev/null
+
+    ssh_add_identities;
+}
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
     source "${SSH_ENV}" > /dev/null
 
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep "${SSH_AGENT_PID}" | grep 'ssh-agent$' > /dev/null || {
-        start_agent;
-    }
+    # If the SSH agent is running
+    #
+    # NOTE: ps ${SSH_AGENT_PID} doesn't work under cywgin
+    if ps -ef | grep "${SSH_AGENT_PID}" | grep 'ssh-agent$' > /dev/null ; then
+
+      # If our agent has no identities, and identity files exist...
+      #
+      # NOTE: This was added because newer versions of macOS will start an
+      # ssh-agent at startup, yet won't necessarily add existing (or keychained)
+      # identities. So, while the SSH agent will report as running, we still
+      # want to add our own identities.
+      #
+      # This is a more resilient strategy anyway, although it does require an
+      # additional check on each bash instance start.
+      if ! ssh-add -l >/dev/null && stat -t "${SSH_IDENTITY_FILES}" >/dev/null 2>&1 ; then
+        ssh_add_identities
+      fi
+
+    else
+        ssh_start_agent;
+    fi
 else
-    start_agent;
+    ssh_start_agent;
 fi
 
 # Let's source an optional device-specific bash config file
