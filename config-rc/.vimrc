@@ -53,7 +53,7 @@ set backspace=indent,eol,start " Backspace/delete like most apps
 set tabstop=4 softtabstop=4 shiftwidth=4
 set autoindent
 set expandtab smarttab
-set history=750 " Set the command history size
+set history=5000 " Set the command history size
 set showcmd
 set ruler
 set hidden
