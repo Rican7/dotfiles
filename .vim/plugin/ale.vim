@@ -8,6 +8,13 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave =  0
 let g:ale_lint_on_enter = 0
 let g:ale_fix_on_save = 1
+let g:ale_hover_to_floating_preview = 1
+
+" If UTF-8 is supported
+if &encoding == "utf-8"
+    " Make the floating window a little nicer looking
+    let g:ale_floating_window_border = ['│', '─', '┌', '┐', '┘', '└']
+endif
 
 " Completion
 "
@@ -67,6 +74,9 @@ function ALELSPMappings()
         nnoremap <buffer> <silent> <C-]> :ALEGoToDefinition<cr>
         nnoremap <buffer> <silent> <C-w><C-]> :<C-u>vsplit<CR>:ALEGoToDefinition<CR>
         nnoremap <buffer> <silent> <C-w><C-\> :<C-u>split<CR>:ALEGoToDefinition<CR>
+
+        " keywordprg doesn't allow vim commands, so just map K
+        nnoremap <buffer> <silent> K :ALEHover<CR>
     endif
 endfunction
 autocmd BufRead,FileType * call ALELSPMappings()
