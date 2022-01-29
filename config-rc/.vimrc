@@ -120,7 +120,7 @@ autocmd QuitPre * if empty(&buftype) | lclose | endif
 
 " Status line badassery
 set laststatus=2
-set statusline=%f%m%r%h%w\ %<%=[Ln\ %l,\ Col\ %v](%p%%)\ -\ %{&l:expandtab?'Spaces':'Tabs'}\ %{shiftwidth()}\ -\ %Y\ (%{&ff}\|%{&fenc})
+set statusline=%f%m%r%h%w\ (%n)\ %<%=[Ln\ %l,\ Col\ %v](%p%%)\ -\ %{&l:expandtab?'Spaces':'Tabs'}\ %{shiftwidth()}\ -\ %Y\ (%{&ff}\|%{&fenc})
 
 " 'ColorColumn' Line configuration
 set colorcolumn=+1 " Set the color column to appear at the text-width's setting
