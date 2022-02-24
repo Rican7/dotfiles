@@ -1,0 +1,120 @@
+tap "aybabtme/tap"
+tap "hhvm/hhvm"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "jesseduffield/lazydocker"
+tap "mutagen-io/mutagen"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Programmable completion for Bash 3.2
+brew "bash-completion"
+# Core application library for C
+brew "glib"
+# Cross-platform make
+brew "cmake", link: false
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Reimplementation of ctags(1)
+brew "ctags"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Collection of GNU find, xargs, and locate
+brew "findutils"
+# Monitor a directory for changes and run a shell command
+brew "fswatch"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Distributed revision control system
+brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Git extension for versioning large files
+brew "git-lfs"
+# Render markdown on the CLI
+brew "glow"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Library to render SVG files using Cairo
+brew "librsvg"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# Text-based UI library
+brew "ncurses"
+# Improved top (interactive process viewer)
+brew "htop"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Domain specific configuration language for defining JSON data
+brew "jsonnet"
+# Helps you navigate your file system faster by learning your habits
+brew "jump"
+# Template-free customization of Kubernetes YAML manifests
+brew "kustomize"
+# GNOME XML library
+brew "libxml2"
+# Powerful, clean, object-oriented scripting language
+brew "ruby"
+# GUI for vim, made for macOS
+brew "macvim", link: false
+# CLI for MySQL with auto-completion and syntax highlighting
+brew "mycli"
+# Object-relational database system
+brew "postgresql"
+# Protocol buffers (Google's data interchange format)
+brew "protobuf"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.8"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Fast and powerful open source alternative to grep
+brew "sift"
+# SOcket CAT: netcat on steroids
+brew "socat"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Rich and complete approach to parallelism in C++
+brew "tbb"
+# Traceroute implementation using TCP packets
+brew "tcptraceroute"
+# Tool to build, change, and version infrastructure
+brew "terraform"
+# Terminal multiplexer
+brew "tmux"
+# Execute commands when watched files change
+brew "watchexec"
+# Watch files and take action when they change
+brew "watchman"
+# Internet file retriever
+brew "wget"
+brew "aybabtme/tap/humanlog"
+# JIT compiler and runtime for the Hack language
+brew "hhvm/hhvm/hhvm-4.102", link: false
+# JIT compiler and runtime for the Hack language
+brew "hhvm/hhvm/hhvm-4.109", link: false
+# JIT compiler and runtime for the Hack language
+brew "hhvm/hhvm/hhvm-4.39"
+# JIT compiler and runtime for the Hack language
+brew "hhvm/hhvm/hhvm-4.56"
+# JIT compiler and runtime for the Hack language
+brew "hhvm/hhvm/hhvm-4.80"
+# A simple terminal UI for docker, written in Go
+brew "jesseduffield/lazydocker/lazydocker"
+# Fast file synchronization and network forwarding for remote development
+brew "mutagen-io/mutagen/mutagen"
+# JDK from the Java User Group (JUG)
+cask "adoptopenjdk"
+# Universal database tool and SQL client
+cask "dbeaver-community"
+# Text editor
+cask "macvim"
+# File system integration
+cask "osxfuse"
