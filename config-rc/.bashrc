@@ -164,7 +164,12 @@ readonly SSH_IDENTITY_FILES="$HOME/.ssh/id_*"
 function ssh_add_identities() {
     # If on macOS
     if [[ $OSTYPE == darwin* ]] ; then
+      # The `-A` switch has been deprecated in macOS Monterey (Darwin 21.0.0)
+      if [ "$(echo "$(uname -r | cut -d'.' -f1) >= 21" | bc)" = 1 ] ; then
+        /usr/bin/ssh-add --apple-load-keychain;
+      else
         /usr/bin/ssh-add -A; # Add all from "Keychain"
+      fi
     else
         /usr/bin/ssh-add;
     fi
