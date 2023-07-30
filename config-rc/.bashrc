@@ -33,6 +33,8 @@ export PATH="./bin:$PATH" # Local executable binaries
 
 # Create some useful identifiers
 export HOSTNAME_SHORT="${HOSTNAME%%.*}"
+export GITHUB_USERNAME="Rican7"
+export GITHUB_USER_URL="github.com/${GITHUB_USERNAME}"
 
 #
 # Enhance and "fix" bash command history
