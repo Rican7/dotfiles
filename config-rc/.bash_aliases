@@ -56,7 +56,8 @@ alias srcg="source /etc/profile"
 alias stripbinary="tr -cd '[:print:]\n'"
 
 # Go(lang) aliases
-alias gomodulename="echo \${GITHUB_USER_URL}/\$(basename \$(pwd))"
+alias gogenmodulename="echo \${GITHUB_USER_URL}/\$(basename \$(pwd))"
+alias gomodulename="if [[ \$(go list -m -f '{{ .GoMod }}') == '' ]] ; then gogenmodulename; else go list -m -f '{{ .Path }}'; fi"
 alias golisttypes="sift --no-group --filename --no-line-number --ext='go' --exclude-files='*_test.go' '^(\s)?type .*'"
 alias goliststructs="sift --no-group --filename --no-line-number --ext='go' --exclude-files='*_test.go' 'type .* struct {'"
 alias golistinterfaces="sift --no-group --filename --no-line-number --ext='go' --exclude-files='*_test.go' 'type .* interface {'"
