@@ -58,7 +58,7 @@ set showcmd
 set ruler
 set hidden
 set showmatch matchtime=3
-set wrap
+set wrap linebreak
 set incsearch ignorecase hlsearch
 set updatecount=50
 set modeline modelines=5
