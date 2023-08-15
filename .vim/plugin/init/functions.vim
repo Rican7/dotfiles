@@ -26,14 +26,14 @@ endfunction
 
 " Function for toggling showing numbers between multiple types of display (relative, normal, off)
 function! ToggleShowNumbers ()
-    if (&number)
+    if (&relativenumber)
+        set norelativenumber
+        echo "disabling relative numbers"
+    elseif (&number)
         set nonumber
         echo "disabling numbers"
-    elseif exists("*NumberToggle")
-        call NumberToggle()
-        echo "toggling relative/normal numbers"
     else
-        set number
+        set relativenumber number
         echo "enabling numbers"
     endif
 endfunction
