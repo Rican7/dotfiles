@@ -64,7 +64,9 @@ function ALELSPMappings()
 
     for linter in ale#linter#Get(&filetype)
         if !empty(linter.lsp)
-            let lsp_found=1
+            let lsp_executable = ale#linter#GetExecutable(bufnr("%"), linter)
+            let lsp_found=executable(lsp_executable) " Only if the LSP is executable
+
             break
         endif
     endfor
