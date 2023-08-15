@@ -83,12 +83,6 @@ cnoremap w!! w !sudo dd of=%
 map <leader>q gqap
 vnoremap <leader>q gq
 
-" go back # words
-map <leader>b :b#<CR>
-
-" go forward # words
-map <leader>w :w#<CR>
-
 " Re-map the quick split key-binds to create new buffers
 map <C-w>v :vnew<CR>
 map <C-w>s :new<CR>
@@ -103,7 +97,6 @@ map <leader><Up> 10<C-W>+
 map <leader><Down> 10<C-W>-
 
 " Turn off the line-deleting functions. They're annoying when you make a mistake
-map K <Nop>
 map J <Nop>
 
 " Center our screen on the found item when moving through search results
