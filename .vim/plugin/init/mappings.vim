@@ -3,10 +3,10 @@
 "
 
 " Let the spacebar work as a leader without still moving forward a char
-nnoremap <SPACE> <Nop>
+nnoremap <Space> <Nop>
 
 " Define my leader
-let mapleader=" "
+let mapleader="\<Space>"
 
 " Un-map ctrl-n on start
 autocmd VimEnter * nunmap <C-n>
@@ -88,13 +88,13 @@ map <C-w>v :vnew<CR>
 map <C-w>s :new<CR>
 
 " makes the current vsplit window wider by 10 characters
-map <leader><Right> 10<C-W>>
+nmap <leader><Right> 10<C-w>>
 " makes the current vsplit window smaller by 10 characters
-map <leader><Left> 10<C-W><
+nmap <leader><Left> 10<C-w><
 " makes the current hsplit window larger by 10 characters
-map <leader><Up> 10<C-W>+
+nmap <leader><Up> 10<C-w>+
 " makes the current hsplit window smaller by 10 characters
-map <leader><Down> 10<C-W>-
+nmap <leader><Down> 10<C-w>-
 
 " Turn off the line-deleting functions. They're annoying when you make a mistake
 map J <Nop>
