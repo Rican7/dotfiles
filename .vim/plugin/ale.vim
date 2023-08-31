@@ -31,6 +31,7 @@ set omnifunc=ale#completion#OmniFunc " Set the omnifunc to use ALE's completion
 let g:ale_linters = {
 \   'go': ['go build', 'gofmt', 'golint'],
 \   'php': ['php', 'phpcs', 'phpstan'],
+\   'javascript': ['standard'],
 \}
 
 " Fixers
@@ -44,7 +45,7 @@ let g:ale_fixers = {
 \   'go': [],
 \   'hack': ['hackfmt'],
 \   'typescript': ['deno'],
-\   'javascript': ['eslint', 'prettier'],
+\   'javascript': ['standard'],
 \   'html': ['prettier'],
 \   'css': ['stylelint', 'prettier'],
 \   'json': ['jq', 'prettier'],
@@ -57,6 +58,7 @@ let g:ale_fixers = {
 let g:ale_php_phpcs_standard = 'PSR2' " Use the PSR-2 standard for PHP Code Sniffer
 let g:ale_go_golint_options = '-min_confidence=0.3' " Set a lower minimum confidence than default on `golint`
 let g:ale_javascript_eslint_suppress_eslintignore = 1 " Stop warning about ignored files
+let g:ale_javascript_standard_executable = 'semistandard' " Use the `semistandard` executable for `standard`
 
 " Mappings
 function ALELSPMappings()
