@@ -84,7 +84,7 @@ fi
 
 # Copy/remake of "http://rage.thewaffleshop.net/"
 # Originally found from @abackstrom (https://twitter.com/abackstrom/status/232898857837662208)
-alias fuck="curl -s rage.metroserve.me/?format=plain"
+alias fuck="curl -Ls rage.metroserve.me/?format=plain"
 
 if [[ $OSTYPE == "cygwin" ]] && [ -f ~/.bash_aliases.cyg ] ; then
     # Cygwin specific aliases
