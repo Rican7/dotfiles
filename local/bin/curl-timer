@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Report the full HTTP request/response time to for the provided URL
 # using a cache buster to ensure that we're measuring cold-cache performance
@@ -6,9 +6,21 @@
 # Based on the similar `curl-ttfb`
 
 while (($#)); do
+    url="$1"
+    param="$(date +%s)"
+
+    case "$url" in
+      *\?*)
+          url="$url&$param"
+        ;;
+      *)
+          url="$url?$param"
+        ;;
+    esac
+
     curl -so /dev/null -L -H "Pragma: no-cache" -H "Cache-Control: no-cache" \
         -w "%{http_code} %{url_effective}\n\nName Lookup:\t%{time_namelookup}\nConnect:\t%{time_connect}\nApp Connect:\t%{time_appconnect}\nPre-Transfer:\t%{time_pretransfer}\nRedirect:\t%{time_redirect}\nStart Transfer:\t%{time_starttransfer}\n\nTotal:\t\t%{time_total} seconds\nSize:\t\t%{size_download} bytes\n" \
-        "$1?`date +%s`"
+        "$url"
     shift
 
     # Add a visual break if we still have arguments left

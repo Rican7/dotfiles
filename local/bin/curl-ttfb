@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Report time to first byte for the provided URL using a cache buster to ensure
 # that we're measuring full cold-cache performance
@@ -6,9 +6,23 @@
 # Thank you @acdha - https://gist.github.com/1402514/a6314c9ccea217ee010cc3b91529197e9207e3cc
 
 while (($#)); do
-    echo $1
+    url="$1"
+    param="$(date +%s)"
+
+    case "$url" in
+      *\?*)
+          url="$url&$param"
+        ;;
+      *)
+          url="$url?$param"
+        ;;
+    esac
+
+    echo "$url"
+
     curl -so /dev/null -H "Pragma: no-cache" -H "Cache-Control: no-cache" \
         -w "%{http_code}\tPre-Transfer: %{time_pretransfer}\tStart Transfer: %{time_starttransfer}\tTotal: %{time_total}\tSize: %{size_download}\n" \
-        "$1?`date +%s`"
+        "$url"
+
     shift
 done
