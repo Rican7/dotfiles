@@ -145,3 +145,7 @@
 [submodule ".vim/pack/plugins/start/vim-localvimrc"]
 	path = .vim/pack/plugins/start/vim-localvimrc
 	url = https://github.com/embear/vim-localvimrc.git
+[submodule "dev-notes"]
+	path = dev-notes
+	url = https://github.com/Rican7/dev-notes.git
+	branch = main
