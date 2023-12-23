@@ -84,6 +84,8 @@
 	interactive = auto
 	ui = true
 	pager = true
+[format]
+	pretty = fuller
 [merge]
 	ff = false
 [diff]
