@@ -31,8 +31,8 @@
 	showlast-stat = show --stat HEAD^!
 	excluded = ls-files --others --ignored --exclude-standard
 	untracked = ls-files --others --exclude-standard
-	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	lgbranch = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --first-parent --no-merges "$(git defaultbranchname)"..HEAD
+	lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lgbranch = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --first-parent --no-merges "$(git defaultbranchname)"..HEAD
 	mergelog = log --pretty=oneline --abbrev-commit --merges
 	mergelogpr = !git mergelog -i --grep 'pull request'
 	worklog = log --pretty=' - %s%n%n%w(0,4,4)%-b' --reverse --no-merges
