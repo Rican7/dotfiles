@@ -1,0 +1,49 @@
+tap "homebrew/bundle"
+tap "humanlogio/tap"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Programmable completion for Bash 3.2
+brew "bash-completion"
+# Cross-platform make
+brew "cmake"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Reimplementation of ctags(1)
+brew "ctags"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Collection of GNU find, xargs, and locate
+brew "findutils"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Distributed revision control system
+brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Git extension for versioning large files
+brew "git-lfs"
+# Core application library for C
+brew "glib"
+# Render markdown on the CLI
+brew "glow"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Helps you navigate your file system faster by learning your habits
+brew "jump"
+# Lazier way to manage everything docker
+brew "lazydocker"
+# GUI for vim, made for macOS
+brew "macvim"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Fast and powerful open source alternative to grep
+brew "sift"
+# Terminal multiplexer
+brew "tmux"
+# Watch files and take action when they change
+brew "watchman"
+# Internet file retriever
+brew "wget"
+brew "humanlogio/tap/humanlog"
