@@ -2,6 +2,17 @@
 # (NOTE: Don't modify the above line... it tells Vim which "sh" type is in use)
 # vim: syntax=sh filetype=sh
 
+#
+# Check BASH version and warn if it's old
+#
+if (( BASH_VERSINFO < 4 )); then
+  printf -- "\n------------------------------------------------------------------------------------------\n"
+  echo "WARNING! You're running Bash version '${BASH_VERSION}'."
+  echo ''
+  echo "Version 4 or later is expected by '${BASH_SOURCE}' and it's sub-scripts!"
+  printf -- "------------------------------------------------------------------------------------------\n\n"
+fi
+
 export USER_RCFILE="$BASH_SOURCE"
 
 #
