@@ -75,7 +75,6 @@
 	defaultBranch = main
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = less -FRSX
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [color]
 	diff = auto

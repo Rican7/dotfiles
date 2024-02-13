@@ -128,6 +128,9 @@ export SVN_EDITOR="vim"
 # Change bash prompt and color
 export PS1="\[\e[0;36m\]\u\[\e[m\]\[\e[0;34m\]@\h\[\e[m\] \[\e[0;32m\]\W\[\e[m\] \$ "
 
+# Define a common "PAGER" for other utilities
+export PAGER='less -FRSX'
+
 # Suppress our DOS file warnings when running Cygwin
 export CYGWIN="nodosfilewarning"
 
