@@ -30,6 +30,16 @@ readonly FILESANDDIRECTORIES=(
 	"$HOME/.ssh/config"
 	"$HOME/.vim"
 	"$HOME/local"
+
+	# XDG Base Directory Specification paths
+	#
+	# See https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+	#
+	# We shouldn't HAVE to do this, and rather just define the environment
+	# variables ("$XDG_CONFIG_HOME", etc), but some apps just hard-code the XDG
+	# paths and abuse the whole spec... which is a massive bummer... so we'll
+	# just symlink them like we do the others.
+	"$HOME/.config"
 );
 
 # Define an array for all of the config-rc files
