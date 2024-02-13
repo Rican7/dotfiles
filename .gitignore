@@ -23,3 +23,8 @@ local/rbenv
 .config/go/telemetry
 .config/hub
 .config/ngrok
+.config/jesseduffield/lazydocker/*.log
+.config/astro
+.config/pgcli/*
+!.config/pgcli/config
+.config/psysh
