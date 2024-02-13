@@ -5,3 +5,14 @@
 # -- rbenv and phpenv --
 local/phpenv
 local/rbenv
+
+#
+# A lot of apps abuse the XDG Base Directory Specification directories,
+# including device-specific or stateful data, which is really annoying since
+# that defeats the whole purpose, so we'll ignore some things here so that we
+# can still have our XDG directories live together but just not track those
+# files for changes to this repo... Ugh.
+#
+.config/htop
+.config/iterm2
+.config/op
