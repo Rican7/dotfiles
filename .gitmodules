@@ -149,3 +149,6 @@
 	path = dev-notes
 	url = https://github.com/Rican7/dev-notes.git
 	branch = main
+[submodule ".config/bat/themes/sublime-theme-railscasts"]
+	path = .config/bat/themes/sublime-theme-railscasts
+	url = https://github.com/tdm00/sublime-theme-railscasts.git
