@@ -16,3 +16,10 @@ local/rbenv
 .config/htop
 .config/iterm2
 .config/op
+.config/composer
+.config/configstore
+.config/gcloud/*
+!.config/gcloud/configurations
+.config/go/telemetry
+.config/hub
+.config/ngrok
