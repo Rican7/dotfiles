@@ -9,6 +9,7 @@
 hash sass      2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
 hash emux      2>/dev/null && emux=true || emux=false
+hash bat       2>/dev/null && bat=true || bat=false
 
 
 # Make sass try to watch a default file (style.scss) by default
@@ -54,6 +55,10 @@ alias pack="ack --pager='less -R'"
 alias src="source ~/.bash_profile"
 alias srcg="source /etc/profile"
 alias stripbinary="tr -cd '[:print:]\n'"
+
+if $bat ; then
+    alias ccat="bat --style=plain --paging=never"
+fi
 
 # Go(lang) aliases
 alias gogenmodulename="echo \${GITHUB_USER_URL}/\$(basename \$(pwd))"
