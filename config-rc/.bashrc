@@ -2,6 +2,44 @@
 # (NOTE: Don't modify the above line... it tells Vim which "sh" type is in use)
 # vim: syntax=sh filetype=sh
 
+# Bash "Run Commands (RC)" (or configuration)
+#
+# This is where initialization commands go to setup our Bash shell.
+#
+# This file is executed, if located at `~/.bashrc`, when Bash is invoked:
+#  - As an interactive, non-login shell
+#    (and not in POSIX mode or via an `sh` name/alias)
+#  - When Bash detects that it's being run via a remote shell daemon (rshd/sshd)
+#
+# See https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html
+
+export STARTUP_FILE_LOADED_BASHRC=true
+
+#
+# Check that our profile has been loaded, since our config depends on it.
+#
+# NOTE: This is here because startup file loading semantics are confusing,
+# non-intuitive, and can be application-specific.
+#
+# Notably, this configuration file (`~/.bashrc`) is loaded, but the profile
+# (`~/.bash_profile`) file is NOT loaded, when a command is given to `ssh` OR
+# during an `scp` operation, even though those are NOT "interactive" shell
+# contexts!
+#
+# See:
+#  - https://unix.stackexchange.com/q/332531
+#  - https://unix.stackexchange.com/a/587218
+#
+# The intention of this setup is to load these files more consistently.
+#
+if [ "$STARTUP_FILE_LOADED_BASH_PROFILE" != true ]; then
+  # Source our profile
+  source ~/.bash_profile
+
+  # Return to prevent recursion, as our profile also loads this file!
+  return
+fi
+
 #
 # Check BASH version and warn if it's old
 #

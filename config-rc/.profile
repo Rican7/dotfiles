@@ -8,6 +8,8 @@
 #
 # See: https://help.ubuntu.com/community/EnvironmentVariables#A.2BAH4-.2F.profile
 
+export STARTUP_FILE_LOADED_DOTPROFILE=true
+
 # We attempt to use BASH_SOURCE, since it works when sourced, but we fallback
 # for other shells with POSIX variable substitution compatibility.
 SCRIPT="${BASH_SOURCE:-$0}"
