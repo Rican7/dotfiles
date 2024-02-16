@@ -47,6 +47,7 @@ set nocompatible
 
 " Packages (`:help packages`)
 packadd! matchit
+packadd! editorconfig
 
 " Behavior settings
 set backspace=indent,eol,start " Backspace/delete like most apps
