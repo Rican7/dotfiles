@@ -10,6 +10,7 @@ hash sass      2>/dev/null && sass=true || sass=false
 hash dircolors 2>/dev/null && dircolors=true || dircolors=false
 hash emux      2>/dev/null && emux=true || emux=false
 hash bat       2>/dev/null && bat=true || bat=false
+hash batcat    2>/dev/null && batcat=true || batcat=false
 
 
 # Make sass try to watch a default file (style.scss) by default
@@ -55,6 +56,11 @@ alias pack="ack --pager='less -R'"
 alias src="source ~/.bash_profile"
 alias srcg="source /etc/profile"
 alias stripbinary="tr -cd '[:print:]\n'"
+
+# Debian/Ubuntu Apt has a package name clash with `bat`, so bin may be `batcat`
+if $batcat ; then
+    alias bat='batcat'
+fi
 
 if $bat ; then
     alias ccat="bat --style=plain --paging=never"
