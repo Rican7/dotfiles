@@ -4,6 +4,8 @@
 # regardless of shell-type (not just for Bash), or even graphical environments,
 # as some linux display managers will execute this also.
 #
+# NOTE: The commands used here should attempt to be POSIX compliant.
+#
 # See: https://help.ubuntu.com/community/EnvironmentVariables#A.2BAH4-.2F.profile
 
 # We attempt to use BASH_SOURCE, since it works when sourced, but we fallback
@@ -33,5 +35,5 @@ fi
 
 # Source an optional device-specific profile file
 if [ -f ~/.device_profile ]; then
-    source ~/.device_profile
+    . ~/.device_profile
 fi
