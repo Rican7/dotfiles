@@ -68,10 +68,10 @@ nnoremap <silent> N :set hlsearch<CR>N
 map <silent> <leader>n :call ToggleShowNumbers()<CR>
 
 " Search for currently selected text
-vnoremap / "hy/<C-r>h
+vnoremap / y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Search and replace for currently selected text
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+vnoremap <C-r> ""y:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>
 
 " Source our vimrc
 nmap <leader>s :source $MYVIMRC<CR>
