@@ -28,3 +28,4 @@ local/rbenv
 .config/pgcli/*
 !.config/pgcli/config
 .config/psysh
+.config/nvm
