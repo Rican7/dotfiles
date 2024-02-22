@@ -172,6 +172,17 @@ export PAGER='less -FRSX'
 # Suppress our DOS file warnings when running Cygwin
 export CYGWIN="nodosfilewarning"
 
+# Suppress NPM funding messages
+#
+# Use an environment variable instead of the `~/.npmrc` file, because that file
+# can contain auth details that shouldn't live in my dotfiles or in a repo.
+#
+# See:
+#  - https://blog.npmjs.org/post/188841555980/updates-to-community-docs-more
+#  - https://github.com/npm/cli/issues/595#issuecomment-565929067
+#  - https://docs.npmjs.com/cli/v10/using-npm/config#environment-variables
+export npm_config_fund=false
+
 # Guard for interactive shells
 #
 # The commands executed herein are only safe for interactive shells
