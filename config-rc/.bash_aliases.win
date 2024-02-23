@@ -4,3 +4,7 @@
 #
 
 alias explore="open ."
+
+# Clipboard consistency with other environments
+alias clipcopy="clip.exe"
+alias clippaste="powershell.exe -Command 'Get-Clipboard' | sed 's/\r$//' | sed -z '$ s/\n$//'"
