@@ -186,14 +186,19 @@ filetype indent on
 filetype plugin on
 
 " Filetypes based on file extension
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
-autocmd BufRead,BufNewFile *.sass set filetype=css
-autocmd BufRead,BufNewFile *.scss set filetype=css
-autocmd BufRead,BufNewFile .*rc set filetype=sh
-autocmd BufRead,BufNewFile .*virc,.*vimrc set filetype=vim
-autocmd BufRead,BufNewFile *.markdown,*.mdown,*.mkd,*.mkdn,*.md set filetype=markdown
-autocmd BufRead,BufNewFile *.gradle set filetype=groovy
+"
+" These should normally be handled by Vim's dist/built-in file-type detection
+" (`:help :filetype`) or through language pack plugins.
+"
+" NOTE: Only add handling here for edge-cases or non-standard file names.
+"
+" NOTE: We use `sh`, rather than `bash`, as `bash` is just an alias and it can
+" mess up other tooling that doesn't expect the usage of that alias.
+autocmd BufNewFile,BufRead {.,_}vim_device_rc setfiletype vim
+autocmd BufNewFile,BufRead {.,_}bash_* let b:is_bash=1 | setfiletype sh
+autocmd BufNewFile,BufRead {.,_}device_profile let b:is_posix=1 | setfiletype sh
+autocmd BufNewFile,BufRead {.,_}gitconfig_device setfiletype gitconfig
+autocmd BufNewFile,BufRead */{.,_}ssh/config_device setfiletype sshconfig
 
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc
 
