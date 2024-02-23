@@ -36,6 +36,11 @@ elif $windows ; then
 
 	path="$*"
 
+	if [ -z "$path" ]; then
+		echo 'Usage: open <path>'
+		exit 1
+	fi
+
 	if $wslpath ; then
 		path="$(wslpath -w "$path")"
 	fi
