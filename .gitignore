@@ -18,8 +18,7 @@ local/rbenv
 .config/op
 .config/composer
 .config/configstore
-.config/gcloud/*
-!.config/gcloud/configurations
+.config/gcloud
 .config/go/telemetry
 .config/hub
 .config/ngrok
