@@ -21,3 +21,4 @@ Charset=UTF-8
 BoldAsColour=no
 ForegroundColour=242,242,242
 ThemeFile=mintty
+AllowSetSelection=yes
