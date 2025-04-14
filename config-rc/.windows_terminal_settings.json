@@ -50,6 +50,7 @@
                 "size": 10
             },
             "historySize": 10000,
+            "intenseTextStyle": "all",
             "opacity": 95,
             "padding": "1, 1, 1, 1",
             "scrollbarState": "hidden",
@@ -97,7 +98,7 @@
             "brightRed": "#FF4040",
             "brightWhite": "#FFFFFF",
             "brightYellow": "#FFFF40",
-            "cursorColor": "#FFFFFF",
+            "cursorColor": "#7F7F7F",
             "cyan": "#00BFBF",
             "foreground": "#F2F2F2",
             "green": "#00BF00",
@@ -113,5 +114,6 @@
     "showTerminalTitleInTitlebar": false,
     "snapToGridOnResize": true,
     "theme": "system",
-    "themes": []
+    "themes": [],
+    "useAcrylicInTabRow": true
 }
