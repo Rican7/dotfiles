@@ -1,118 +1,117 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-
-    "theme": "system",
-    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-
-    "initialCols": 150,
-    "initialRows": 42,
+    "actions": [],
     "alwaysShowTabs": true,
-    "showTabsInTitlebar": true,
-    "showTerminalTitleInTitlebar": false,
     "copyOnSelect": true,
-    "snapToGridOnResize": true,
-
-    "disabledProfileSources": [
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+    "disabledProfileSources": 
+    [
         "Windows.Terminal.Azure"
     ],
-
-    "profiles": {
-        "defaults": {
+    "initialCols": 150,
+    "initialRows": 42,
+    "keybindings": 
+    [
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+shift+c"
+        },
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "shift+insert"
+        },
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+shift+v"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
+        }
+    ],
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "closeOnExit": "graceful",
             "colorScheme": "Mintty",
             "cursorShape": "filledBox",
-            "fontFace": "Source Code Pro",
-            "fontSize": 10,
-            "padding": "1, 1, 1, 1",
-            "useAcrylic": false,
-            "acrylicOpacity": 0.95,
-            "startingDirectory": "%HOME%",
+            "font": 
+            {
+                "cellHeight": "1.225",
+                "face": "Source Code Pro",
+                "size": 10
+            },
             "historySize": 10000,
+            "opacity": 95,
+            "padding": "1, 1, 1, 1",
             "scrollbarState": "hidden",
             "snapOnInput": true,
-            "closeOnExit": "graceful"
+            "startingDirectory": "%HOME%",
+            "useAcrylic": false
         },
-        "list": [
+        "list": 
+        [
             {
+                "commandline": "wsl.exe",
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
                 "name": "WSL",
-                "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
-                "commandline": "wsl.exe"
+                "source": "Windows.Terminal.Wsl"
             },
             {
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "name": "cmd",
-                "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
-                "commandline": "cmd.exe",
                 "colorScheme": "Campbell",
-                "cursorShape": "vintage"
+                "cursorShape": "vintage",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+                "name": "cmd"
             },
             {
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "name": "Windows PowerShell",
-                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
-                "commandline": "powershell.exe",
                 "colorScheme": "Campbell Powershell",
-                "cursorShape": "underscore"
-            },
-            {
-                "guid": "{7cf7cbfb-0237-5aeb-9357-22c79077edaa}",
-                "name": "WSL - Ubuntu20.04",
-                "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
-                "startingDirectory": "\\\\wsl$\\Ubuntu20.04\\home\\Rican7",
-                "commandline": "wsl.exe -d Ubuntu20.04"
+                "cursorShape": "underscore",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "name": "Windows PowerShell"
             }
         ]
     },
-
-    "schemes": [
+    "schemes": 
+    [
         {
-            "name": "Mintty",
             "background": "#000000",
-            "foreground": "#F2F2F2",
-            "cursorColor": "#FFFFFF",
             "black": "#000000",
-            "red": "#BF0000",
-            "green": "#00BF00",
-            "yellow": "#BFBF00",
             "blue": "#0000BF",
-            "purple": "#BF00BF",
-            "cyan": "#00BFBF",
-            "white": "#BFBFBF",
             "brightBlack": "#404040",
-            "brightRed": "#FF4040",
-            "brightGreen": "#40FF40",
-            "brightYellow": "#FFFF40",
             "brightBlue": "#6060FF",
-            "brightPurple": "#FF40FF",
             "brightCyan": "#40FFFF",
-            "brightWhite": "#FFFFFF"
+            "brightGreen": "#40FF40",
+            "brightPurple": "#FF40FF",
+            "brightRed": "#FF4040",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFFF40",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#00BFBF",
+            "foreground": "#F2F2F2",
+            "green": "#00BF00",
+            "name": "Mintty",
+            "purple": "#BF00BF",
+            "red": "#BF0000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#BFBFBF",
+            "yellow": "#BFBF00"
         }
     ],
-
-    "keybindings": [
-        {
-            "command": "copy",
-            "keys": [
-                "ctrl+shift+c"
-            ]
-        },
-        {
-            "command": "paste",
-            "keys": [
-                "ctrl+shift+v"
-            ]
-        },
-        {
-            "command": "paste",
-            "keys": [
-                "shift+insert"
-            ]
-        },
-        {
-            "command": "find",
-            "keys": [
-                "ctrl+shift+f"
-            ]
-        }
-    ]
+    "showTabsInTitlebar": true,
+    "showTerminalTitleInTitlebar": false,
+    "snapToGridOnResize": true,
+    "theme": "system",
+    "themes": []
 }
