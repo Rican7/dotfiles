@@ -164,6 +164,9 @@ export SVN_EDITOR="vim"
 # Change bash prompt and color
 export PS1="\[\e[0;36m\]\u\[\e[m\]\[\e[0;34m\]@\h\[\e[m\] \[\e[0;32m\]\W\[\e[m\] \$ "
 
+# Disable cursor blink, regardless of OS settings
+printf '\e[?12l'
+
 # Define a common "PAGER" for other utilities
 export PAGER='less -FRSX'
 
