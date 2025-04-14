@@ -5,13 +5,13 @@
     "alwaysShowTabs": true,
     "copyOnSelect": true,
     "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-    "disabledProfileSources": 
+    "disabledProfileSources":
     [
         "Windows.Terminal.Azure"
     ],
     "initialCols": 150,
     "initialRows": 42,
-    "keybindings": 
+    "keybindings":
     [
         {
             "id": "Terminal.CopyToClipboard",
@@ -30,20 +30,20 @@
             "keys": "ctrl+shift+f"
         }
     ],
-    "newTabMenu": 
+    "newTabMenu":
     [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "closeOnExit": "graceful",
             "colorScheme": "Mintty",
             "cursorShape": "filledBox",
-            "font": 
+            "font":
             {
                 "cellHeight": "1.225",
                 "face": "Source Code Pro",
@@ -51,14 +51,17 @@
             },
             "historySize": 10000,
             "intenseTextStyle": "all",
-            "opacity": 95,
+            "opacity": 100,
             "padding": "1, 1, 1, 1",
             "scrollbarState": "hidden",
             "snapOnInput": true,
             "startingDirectory": "%HOME%",
-            "useAcrylic": false
+            "useAcrylic": false,
+            "unfocusedAppearance": {
+                "opacity": 90
+            }
         },
-        "list": 
+        "list":
         [
             {
                 "commandline": "wsl.exe",
@@ -84,7 +87,7 @@
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#000000",
