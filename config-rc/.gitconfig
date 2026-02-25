@@ -103,13 +103,14 @@
 	prompt = false
 [hub]
 	protocol = ssh
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-[include]
-	# Source an optional device-specific config file
-	path = ~/.gitconfig_device
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[include]
+	# Source an optional device-specific config file
+	path = ~/.gitconfig_device
+[url "git@github.com:"]
+	# IMPORTANT: Keep at the bottom so that device/local "insteadOf" configs won't get clobbered.
+	insteadOf = https://github.com/
