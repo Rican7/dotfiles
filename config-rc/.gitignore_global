@@ -47,5 +47,6 @@ php-docs/
 # -- Environment specific configurations --
 .env
 
-# -- Local Editor Configs --
+# -- Local Tool Configs --
 .lvimrc
+**/.claude/settings.local.json
