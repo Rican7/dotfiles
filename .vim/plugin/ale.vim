@@ -29,7 +29,7 @@ set omnifunc=ale#completion#OmniFunc " Set the omnifunc to use ALE's completion
 " Most languages and their tools are automatically found and enabled, and
 " therefore don't need to be configured here.
 let g:ale_linters = {
-\   'go': ['go build', 'gofmt', 'golint'],
+\   'go': ['go build', 'gofmt', 'gopls', 'golangci-lint'],
 \   'php': ['php', 'phpcs', 'phpstan'],
 \   'javascript': ['standard'],
 \}
@@ -40,9 +40,9 @@ let g:ale_linters = {
 " configured for each language here.
 "
 " Notes:
-"  - None for Go, as we'll use vim-go to handle fixing/formatting
+"  - Go has additional that are handled by `vim-go`
 let g:ale_fixers = {
-\   'go': [],
+\   'go': ['gofumpt', 'gopls', 'golangci_lint'],
 \   'hack': ['hackfmt'],
 \   'typescript': ['deno'],
 \   'javascript': ['standard'],
