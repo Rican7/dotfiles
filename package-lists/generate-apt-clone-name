@@ -22,8 +22,12 @@ fi
 apt_clone_name="$(hostname -s)"
 
 # Are we on Windows/WSL?
-if [ -f /proc/version ] && grep -q 'Microsoft' /proc/version ; then
-    apt_clone_name="${apt_clone_name}.windows"
+if [ -f /proc/version ] && grep -qi 'Microsoft' /proc/version ; then
+    if grep -qi 'WSL2' /proc/version; then
+        apt_clone_name="${apt_clone_name}.windows-wsl2"
+    else
+        apt_clone_name="${apt_clone_name}.windows-wsl1"
+    fi
 fi
 
 apt_clone_name="${apt_clone_name}.${release_name}.${release_version}"
