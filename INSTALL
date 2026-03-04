@@ -234,8 +234,8 @@ do
 	symLink "$GITBOXDIR/$target" "$HOME/$baseName"
 done;
 
-# Check if we're running CYGWIN or "Bash on Windows"
-if [[ $OSTYPE == "cygwin" ]] || [ -e /proc/version ] && grep -qi Microsoft /proc/version ; then
+# Check if we're running CYGWIN or WSL1 ("Bash on Windows"), but NOT WSL2.
+if [[ $OSTYPE == "cygwin" ]] || { [ -e /proc/version ] && grep -qi 'Microsoft' /proc/version && ! grep -qi 'WSL2' /proc/version; }; then
 	# Create a quick counter, to keep our two cygFile arrays aligned
 	count=0
 	windowsOutputSuppressor=''
