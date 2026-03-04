@@ -201,6 +201,7 @@ fi
 hash phpenv    2>/dev/null && phpenv=true || phpenv=false
 hash rbenv     2>/dev/null && rbenv=true || rbenv=false
 hash jump      2>/dev/null && jump=true || jump=false
+hash fzf        2>/dev/null && fzf=true || fzf=false
 hash fd        2>/dev/null && fd=true || fd=false
 
 # Initialize phpenv
@@ -216,6 +217,11 @@ fi
 # Initialize jump
 if $jump ; then
     eval "$(jump shell)"
+fi
+
+# Initialize fzf
+if $fzf ; then
+    eval "$(fzf --bash)"
 fi
 
 if $fd ; then
