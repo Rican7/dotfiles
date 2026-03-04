@@ -21,7 +21,7 @@ Since the various machines that I use, use different operating systems, the proc
 ... Or just generate it more simply, since `apt-clone` is kind of tricky to actually use, like so:
 
 ```bash
-apt list --installed 2>/dev/null | sed 's/\/.*//g > packages'
+apt list --installed 2>/dev/null | sed 's/\/.*//g' > packages
 ```
 
 ### macOS/Homebrew:
