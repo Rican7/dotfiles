@@ -289,7 +289,7 @@ fi
 # SSH Agent at Login
 # Thanks to http://mah.everybody.org/docs/ssh#run-ssh-agent
 readonly SSH_ENV="$HOME/.ssh/environment"
-readonly SSH_IDENTITY_FILES="$HOME/.ssh/id_*"
+readonly SSH_IDENTITY_FILES=("$HOME"/.ssh/id_*)
 function ssh_add_identities() {
     # If on macOS
     if [[ $OSTYPE == darwin* ]] ; then
@@ -330,7 +330,7 @@ if [ -f "${SSH_ENV}" ]; then
       #
       # This is a more resilient strategy anyway, although it does require an
       # additional check on each bash instance start.
-      if ! ssh-add -l >/dev/null && stat -t "${SSH_IDENTITY_FILES}" >/dev/null 2>&1 ; then
+      if ! ssh-add -l >/dev/null && stat -t "${SSH_IDENTITY_FILES[@]}" >/dev/null 2>&1 ; then
         ssh_add_identities
       fi
 
