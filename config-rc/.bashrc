@@ -102,7 +102,9 @@ if [ ! -e "${HISTDIR}" ]; then
     mkdir -m 700 -p "$HISTDIR"
 fi
 
+shopt -s nullglob # Enable nullglob to turn unmatched globs into empty strings
 HISTFILES=("${HISTPARENTDIR}"/**/**/*/"${HISTFILEBASENAME}")
+shopt -u nullglob # Revert to normal behavior (safer and POSIX compliant)
 
 #
 # Improve history by loading multiple of our latest history files
