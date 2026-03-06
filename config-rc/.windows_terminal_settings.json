@@ -58,9 +58,9 @@
             "startingDirectory": "%HOME%",
             "unfocusedAppearance": 
             {
-                "opacity": 90,
+                "cursorColor": "#7F7F7F",
                 "cursorShape": "emptyBox",
-                "cursorColor": "#7F7F7F"
+                "opacity": 90
             },
             "useAcrylic": false
         },
@@ -72,7 +72,16 @@
                 "hidden": false,
                 "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
                 "name": "WSL",
-                "source": "Windows.Terminal.Wsl"
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "\\\\wsl.localhost\\Ubuntu\\home\\Rican7"
+            },
+            {
+                "commandline": "wsl.exe -d UbuntuWSL1",
+                "guid": "{16311dfd-04bf-4629-b354-22623f4e39d9}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+                "name": "WSL (UbuntuWSL1)",
+                "pathTranslationStyle": "wsl"
             },
             {
                 "colorScheme": "Campbell",
