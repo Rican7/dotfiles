@@ -203,6 +203,7 @@ hash rbenv     2>/dev/null && rbenv=true || rbenv=false
 hash jump      2>/dev/null && jump=true || jump=false
 hash fzf        2>/dev/null && fzf=true || fzf=false
 hash fd        2>/dev/null && fd=true || fd=false
+hash go        2>/dev/null && go=true || go=false
 
 # Initialize phpenv
 if $phpenv ; then
@@ -227,6 +228,60 @@ fi
 if $fd ; then
   export FZF_DEFAULT_COMMAND="fd --type f --hidden --no-ignore --follow --exclude '.git'"
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+if $go ; then
+  if [ -z "$GOROOT" ]; then
+    # If GOROOT isn't set yet, we'll try and find the "best" go, from top
+    # (likely best) to bottom (likely worst).
+    golocations=(
+      "$HOME/.local/bin/go"
+      "$HOME/.bin/go"
+      "$HOME/local/bin/go"
+      "$HOME/bin/go"
+      '/opt/homebrew/bin/go'
+      '/usr/local/go/bin/go'
+      '/usr/local/bin/go'
+      '/usr/go/bin/go'
+      '/usr/bin/go'
+      '/go/bin/go'
+      '/bin/go'
+    )
+    bestgo="go"
+
+    for go in "${golocations[@]}"; do
+      if [[ -x "$go" ]]; then
+        bestgo="$go"
+        break
+      fi
+    done
+
+    # Try inferring our GOROOT from Go. (Default to whatever Go is in our PATH)
+    # (GOROOT doesn't have to be set, but we'll need it for next steps...)
+    export GOROOT="$(${bestgo:-go} env GOROOT)"
+
+    if [ -d "$GOROOT" ]; then
+      # Add our GOROOT bin to our PATH
+      export PATH="$GOROOT/bin:$PATH"
+    fi
+  fi
+
+  if [ -z "$GOPATH" ]; then
+    # If GOPATH isn't set yet, try inferring it from Go, or use a sane default.
+    # (GOPATH doesn't have to be set, but we'll need it for next steps...)
+    export GOPATH=$(goenvgopath="$(go env GOPATH)"; echo "${goenvgopath:-"$HOME/go"}")
+
+    # Expand a multi-GOPATH (colon-seprated) to a "bin" paths, by replacing the
+    # `:` separators with `/bin:`, and then appending `/bin` to the final one.
+    gopath_bins="${GOPATH//:/\/bin:}/bin"
+
+    # Add all of our GOPATH bins to our PATH
+    export PATH="$gopath_bins:$PATH"
+  fi
+
+  if [ -d "$GOBIN" ]; then
+    export PATH="$GOBIN:$GOPATH"
+  fi
 fi
 
 # SSH Agent at Login
