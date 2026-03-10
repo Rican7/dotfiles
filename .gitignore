@@ -30,3 +30,5 @@ local/rbenv
 .config/nvm
 .config/jump/*
 !.config/jump/settings.json
+.config/gh/*
+!.config/gh/config.yml
