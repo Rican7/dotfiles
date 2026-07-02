@@ -299,9 +299,11 @@ function ssh_add_identities() {
       else
         /usr/bin/ssh-add -A; # Add all from "Keychain"
       fi
-    else
-        /usr/bin/ssh-add;
     fi
+
+    # Always use the default no-argument version to attempt to load the default
+    # key files in ~/.ssh
+    /usr/bin/ssh-add;
 }
 function ssh_start_agent() {
     printf "Initialising new SSH agent... "
