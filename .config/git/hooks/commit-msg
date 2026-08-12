@@ -1,0 +1,165 @@
+#!/bin/sh
+#
+# Enforces the 50/72 rule: subjects at most 50 characters, bodies wrapped at
+# 72 and wrapped GREEDILY, so a line that stops early when the next word would
+# have fit is a failure too.
+#
+# Installed globally via core.hooksPath, so it applies to every repository on
+# this machine. `git commit --no-verify` skips it.
+
+set -u
+
+MSG_FILE="$1"
+
+# A global core.hooksPath REPLACES .git/hooks everywhere, so a repository with
+# a commit-msg hook of its own would silently stop running it. Run theirs
+# first and honour its verdict. `--git-common-dir` rather than `--git-dir` so
+# this finds the real hooks directory from inside a linked worktree.
+COMMON_DIR=$(git rev-parse --git-common-dir 2>/dev/null) || COMMON_DIR=""
+if [ -n "$COMMON_DIR" ] && [ -x "$COMMON_DIR/hooks/commit-msg" ]; then
+	LOCAL_HOOK=$(readlink -f "$COMMON_DIR/hooks/commit-msg" 2>/dev/null || echo "")
+	SELF=$(readlink -f "$0" 2>/dev/null || echo "")
+	# Guard against calling ourselves, in case a repository points its own
+	# hooks path back here.
+	if [ -n "$LOCAL_HOOK" ] && [ "$LOCAL_HOOK" != "$SELF" ]; then
+		"$COMMON_DIR/hooks/commit-msg" "$@" || exit $?
+	fi
+fi
+
+# Merges and reverts carry generated subjects that are routinely over 50 and
+# are not ours to rewrite.
+if [ -n "$COMMON_DIR" ] && [ -f "$COMMON_DIR/MERGE_HEAD" ]; then
+	exit 0
+fi
+
+# Without python3 the checks cannot run. Let the commit through rather than
+# blocking work on a missing interpreter.
+if ! command -v python3 >/dev/null 2>&1; then
+	echo "commit-msg: python3 not found, skipping the 50/72 check" >&2
+	exit 0
+fi
+
+exec python3 - "$MSG_FILE" <<'PYTHON'
+import re
+import sys
+import textwrap
+
+SUBJECT_LIMIT = 50
+BODY_LIMIT = 72
+
+# Generated subjects we do not control.
+EXEMPT_SUBJECT = re.compile(r'^(Merge\b|Revert\b|fixup!|squash!|amend!)')
+
+# Lines whose shape carries meaning, so reflowing them would corrupt them.
+STRUCTURAL = re.compile(r'^(\s|```|[-*+] |\d+\. |>|\|)')
+
+# `Key: value` trailers are one per line by definition. Joining them into a
+# paragraph would be wrong, so they are never reflowed.
+TRAILER = re.compile(r'^[A-Za-z][A-Za-z-]*: ')
+
+# A list marker, so a bullet holding a single URL is measured on the URL.
+LIST_MARKER = re.compile(r'^\s*(?:[-*+] |\d+\. )?')
+
+
+def unwrappable(line):
+	"""True when the line has no whitespace to break at, e.g. a bare URL."""
+	return ' ' not in LIST_MARKER.sub('', line).strip()
+
+
+def paragraphs(body):
+	"""Yield (first line number, lines) for each blank-line-separated block."""
+	current, start = [], 0
+	for offset, line in enumerate(body):
+		if line.strip() == '':
+			if current:
+				yield start, current
+			current, start = [], offset + 1
+		else:
+			if not current:
+				start = offset
+			current.append(line)
+	if current:
+		yield start, current
+
+
+def main(path):
+	with open(path, encoding='utf-8') as handle:
+		raw = handle.read()
+
+	lines = []
+	for line in raw.split('\n'):
+		# Everything below the scissors is git's own commentary.
+		if line.startswith('#') and '>8' in line:
+			break
+		if line.startswith('#'):
+			continue
+		lines.append(line)
+
+	while lines and lines[-1].strip() == '':
+		lines.pop()
+
+	# An empty message is git's problem, not ours.
+	if not lines:
+		return 0
+
+	subject, body = lines[0], lines[1:]
+
+	if EXEMPT_SUBJECT.match(subject):
+		return 0
+
+	problems = []
+
+	if len(subject) > SUBJECT_LIMIT:
+		problems.append(
+			f'Subject is {len(subject)} characters, {SUBJECT_LIMIT} max:\n'
+			f'    {subject[:SUBJECT_LIMIT]}|{subject[SUBJECT_LIMIT:]}'
+		)
+
+	if body and body[0].strip() != '':
+		problems.append('Line 2 must be blank, separating the subject from the body.')
+
+	for offset, line in enumerate(body):
+		if len(line) > BODY_LIMIT and not unwrappable(line):
+			problems.append(
+				f'Line {offset + 2} is {len(line)} characters, {BODY_LIMIT} max:\n'
+				f'    {line[:BODY_LIMIT]}|{line[BODY_LIMIT:]}'
+			)
+
+	for start, para in paragraphs(body):
+		if any(STRUCTURAL.match(line) or TRAILER.match(line) for line in para):
+			continue
+		if any(len(line) > BODY_LIMIT for line in para):
+			# Already reported above; reflowing advice would just repeat it.
+			continue
+		filled = textwrap.wrap(
+			' '.join(para), width=BODY_LIMIT, break_long_words=False, break_on_hyphens=False
+		)
+		if filled != para:
+			for offset, (was, should) in enumerate(zip(para, filled)):
+				if was != should:
+					problems.append(
+						f'Line {start + offset + 2} wraps early at {len(was)} characters. '
+						f'The paragraph fills to:\n'
+						+ '\n'.join(f'    {line}' for line in filled)
+					)
+					break
+			else:
+				problems.append(
+					f'Line {start + 2} onward does not fill to {BODY_LIMIT}. It fills to:\n'
+					+ '\n'.join(f'    {line}' for line in filled)
+				)
+
+	if not problems:
+		return 0
+
+	print('\ncommit-msg: this message breaks the 50/72 rule.\n', file=sys.stderr)
+	for problem in problems:
+		print(f'  * {problem}\n', file=sys.stderr)
+	print('The message is kept at .git/COMMIT_EDITMSG.', file=sys.stderr)
+	print('Commit with --no-verify to bypass this check.\n', file=sys.stderr)
+	return 1
+
+
+if __name__ == '__main__':
+	sys.exit(main(sys.argv[1]))
+PYTHON

@@ -77,6 +77,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	hooksPath = ~/.config/git/hooks
 [color]
 	diff = auto
 	status = auto
