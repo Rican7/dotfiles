@@ -50,3 +50,6 @@ php-docs/
 # -- Local Tool Configs --
 .lvimrc
 **/.claude/settings.local.json
+
+# -- AI/LLM/Agentic caches and files --
+.aider.*
