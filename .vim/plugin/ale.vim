@@ -32,6 +32,7 @@ let g:ale_linters = {
 \   'go': ['go build', 'gofmt', 'gopls', 'golangci-lint'],
 \   'php': ['php', 'phpcs', 'phpstan'],
 \   'javascript': ['standard'],
+\   'typescript': ['tsserver', 'tslint', 'deno'],
 \}
 
 " Fixers
