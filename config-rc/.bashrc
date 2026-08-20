@@ -70,13 +70,46 @@ umask 002;
 ##########################
 ## Modify PATH Variable ##
 ##########################
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:$HOME/.local/bin:$HOME/local/bin:/usr/bin:/usr/sbin:$PATH"
-export PATH="/usr/local/heroku/bin:$PATH" # "heroku" - Heroku CLI
-export PATH="$HOME/.phpenv/bin:$HOME/.phpenv/shims:$PATH" # "phpenv" - PHP Environment
-export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH" # "rbenv" - Ruby Environment
-export PATH="$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:$PATH" # Global composer package executable binaries
-export PATH="vendor/bin:$PATH" # Local composer package executable binaries
-export PATH="./bin:$PATH" # Local executable binaries
+prepend_to_path() {
+    # 1. Flatten all arguments into a single colon-separated string
+    # 2. Use IFS=':' to split them into a temporary array
+    IFS=':' read -r -a input_array <<< "$(IFS=:; echo "$*")"
+
+    # Loop through the array in reverse order to preserve priority
+    for (( i=${#input_array[@]}-1; i>=0; i-- )); do
+        local dir="${input_array[$i]}"
+
+        # Skip if the directory doesn't exist (optional safety check)
+        [ -d "$dir" ] || continue
+
+        # Prepend only if it is not already in $PATH
+        if [[ ":$PATH:" != *":$dir:"* ]]; then
+            PATH="$dir:$PATH"
+        fi
+    done
+}
+
+paths=(
+  "/usr/local/bin"
+  "/usr/local/sbin"
+  "/usr/local/mysql/bin"
+  "/opt/local/bin"
+  "/opt/local/sbin"
+  "$HOME/.local/bin"
+  "$HOME/local/bin"
+  "/usr/bin"
+  "/usr/sbin"
+  "/usr/local/heroku/bin" # "heroku" - Heroku CLI
+  "$HOME/.phpenv/bin" # "phpenv" - PHP Environment
+  "$HOME/.phpenv/shims" # "phpenv" - PHP Environment
+  "$HOME/.rbenv/bin" # "rbenv" - Ruby Environment
+  "$HOME/.rbenv/shims" # "rbenv" - Ruby Environment
+  "$HOME/.composer/vendor/bin"
+  "$HOME/.config/composer/vendor/bin" # Global composer package executable binaries
+  "vendor/bin" # Local composer and other dependency package executable binaries
+  "./bin" # Local executable binaries
+)
+prepend_to_path "${paths[@]}"
 
 # Create some useful identifiers
 export HOSTNAME_SHORT="${HOSTNAME%%.*}"
@@ -264,7 +297,7 @@ if $go ; then
 
     if [ -d "$GOROOT" ]; then
       # Add our GOROOT bin to our PATH
-      export PATH="$GOROOT/bin:$PATH"
+      prepend_to_path "$GOROOT/bin"
     fi
   fi
 
@@ -278,11 +311,11 @@ if $go ; then
     gopath_bins="${GOPATH//:/\/bin:}/bin"
 
     # Add all of our GOPATH bins to our PATH
-    export PATH="$gopath_bins:$PATH"
+    prepend_to_path "$gopath_bins"
   fi
 
   if [ -d "$GOBIN" ]; then
-    export PATH="$GOBIN:$GOPATH"
+	prepend_to_path "$GOBIN"
   fi
 fi
 
