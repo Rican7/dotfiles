@@ -199,9 +199,6 @@ export SVN_EDITOR="vim"
 # Change bash prompt and color
 export PS1="\[\e[0;36m\]\u\[\e[m\]\[\e[0;34m\]@\h\[\e[m\] \[\e[0;32m\]\W\[\e[m\] \$ "
 
-# Disable cursor blink, regardless of OS settings
-printf '\e[?12l'
-
 # Define a common "PAGER" for other utilities
 export PAGER='less -FRSX'
 
@@ -230,6 +227,16 @@ if [[ $- = *i* ]]; then
     # disable XON/XOFF flow control
     # (stop `ctrl+s` from freezing output)
     stty -ixon
+
+    # Disable cursor blink, regardless of OS settings
+    #
+    # NOTE: This MUST stay guarded. It writes a terminal escape sequence to
+    # stdout, and a non-interactive session (an `ssh <host> <command>` or an
+    # `scp` transfer) has no terminal of its own to configure. Worse, `scp`
+    # reads the first 4 bytes of stdout as an SFTP packet length, so these 6
+    # bytes break every transfer with "Received message too long 458964785"
+    # (0x1B5B3F31 == the leading `ESC [ ? 1` of the sequence below).
+    printf '\e[?12l'
 fi
 
 # Let's define what commands exist
@@ -315,7 +322,7 @@ if $go ; then
   fi
 
   if [ -d "$GOBIN" ]; then
-	prepend_to_path "$GOBIN"
+    prepend_to_path "$GOBIN"
   fi
 fi
 
@@ -339,41 +346,50 @@ function ssh_add_identities() {
     /usr/bin/ssh-add;
 }
 function ssh_start_agent() {
-    printf "Initialising new SSH agent... "
+    # NOTE: We print to stderr so we're not polluting stdout for info/debug logs
+    printf "Initialising new SSH agent... " >&2
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    printf "Succeeded!\n"
+    printf "Succeeded!\n" >&2
     chmod 600 "${SSH_ENV}"
     source "${SSH_ENV}" > /dev/null
 
     ssh_add_identities;
 }
 # Source SSH settings, if applicable
+#
+# NOTE: This is intentionally left UNGUARDED, so that non-interactive sessions
+# still inherit SSH_AUTH_SOCK from an agent a previous interactive session
+# started. Agent-backed git/ssh operations in scripts depend on it.
 if [ -f "${SSH_ENV}" ]; then
     source "${SSH_ENV}" > /dev/null
+fi
 
-    # If the SSH agent is running
+# Guard for interactive shells
+#
+# Starting an agent and adding identities are only safe for interactive shells:
+# `ssh-add` may need to prompt for a passphrase, and a non-interactive session
+# (an `ssh <host> <command>` or an `scp` transfer) has no terminal to prompt on,
+# so it stalls or fails. Agent startup also emits progress output, and any stray
+# stdout corrupts the `scp`/SFTP protocol stream.
+if [[ $- = *i* ]]; then
+    # If we have no agent settings, or the agent they point at isn't running
     #
     # NOTE: ps ${SSH_AGENT_PID} doesn't work under cywgin
-    if ps -ef | grep "${SSH_AGENT_PID}" | grep 'ssh-agent$' > /dev/null ; then
-
-      # If our agent has no identities, and identity files exist...
-      #
-      # NOTE: This was added because newer versions of macOS will start an
-      # ssh-agent at startup, yet won't necessarily add existing (or keychained)
-      # identities. So, while the SSH agent will report as running, we still
-      # want to add our own identities.
-      #
-      # This is a more resilient strategy anyway, although it does require an
-      # additional check on each bash instance start.
-      if ! ssh-add -l >/dev/null && stat -t "${SSH_IDENTITY_FILES[@]}" >/dev/null 2>&1 ; then
-        ssh_add_identities
-      fi
-
-    else
+    if [ ! -f "${SSH_ENV}" ] || ! ps -ef | grep "${SSH_AGENT_PID}" | grep 'ssh-agent$' > /dev/null ; then
         ssh_start_agent;
+
+    # If our agent has no identities, and identity files exist...
+    #
+    # NOTE: This was added because newer versions of macOS will start an
+    # ssh-agent at startup, yet won't necessarily add existing (or keychained)
+    # identities. So, while the SSH agent will report as running, we still want
+    # to add our own identities.
+    #
+    # This is a more resilient strategy anyway, although it does require an
+    # additional check on each bash instance start.
+    elif ! ssh-add -l >/dev/null && stat -t "${SSH_IDENTITY_FILES[@]}" >/dev/null 2>&1 ; then
+        ssh_add_identities
     fi
-else
-    ssh_start_agent;
 fi
 
 # Let's source an optional device-specific bash config file
