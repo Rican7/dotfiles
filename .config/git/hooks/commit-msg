@@ -2,7 +2,8 @@
 #
 # Enforces the 50/72 rule: subjects at most 50 characters, bodies wrapped at
 # 72 and wrapped GREEDILY, so a line that stops early when the next word would
-# have fit is a failure too.
+# have fit is a failure too. Also rejects AI attribution (a Claude co-author
+# trailer), in every commit, merges included.
 #
 # Installed globally via core.hooksPath, so it applies to every repository on
 # this machine. `git commit --no-verify` skips it.
@@ -24,6 +25,20 @@ if [ -n "$COMMON_DIR" ] && [ -x "$COMMON_DIR/hooks/commit-msg" ]; then
 	if [ -n "$LOCAL_HOOK" ] && [ "$LOCAL_HOOK" != "$SELF" ]; then
 		"$COMMON_DIR/hooks/commit-msg" "$@" || exit $?
 	fi
+fi
+
+# No AI attribution: a Claude co-author trailer, or the "Generated with Claude
+# Code" line. Checked before the merge exemption, as a merge message can carry
+# them too, and in shell, so it holds without python3. Comments and anything
+# below the scissors (the verbose diff) are git's own, so they're skipped, or
+# committing a change that mentions the trailer would trip it.
+ATTRIBUTION=$(sed -e '/^# .*>8/,$d' -e '/^#/d' "$MSG_FILE" \
+	| grep -inE '^[[:space:]]*co-authored-by:.*(claude|anthropic\.com)|generated with \[?claude code')
+if [ -n "$ATTRIBUTION" ]; then
+	printf '\ncommit-msg: this message carries AI attribution:\n\n' >&2
+	printf '%s\n' "$ATTRIBUTION" | sed 's/^\([0-9]*\):/    line \1: /' >&2
+	printf '\nRemove it. The message is kept at .git/COMMIT_EDITMSG.\n\n' >&2
+	exit 1
 fi
 
 # Merges and reverts carry generated subjects that are routinely over 50 and
