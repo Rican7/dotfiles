@@ -71,7 +71,7 @@
 	releasename = !git describe --exact-match --abbrev=0 2>/dev/null || git rev-parse --short HEAD
 	branchliststatus = !git remote update && git branch --list -vv
 	branchls = !git branchliststatus --color=always | sed 's/].*/]/g'
-	datenow = "!git filter-branch -f --setup 'NOW_DATE=$(date)' --env-filter 'GIT_AUTHOR_DATE=\"$NOW_DATE\"; GIT_COMMITTER_DATE=\"$NOW_DATE\";' $1..HEAD #"
+	datenow = "!git rebase --ignore-date --exec 'sleep 1' \"${1:-$(git defaultbranchname)}\" #"
 [init]
 	defaultBranch = main
 [core]
