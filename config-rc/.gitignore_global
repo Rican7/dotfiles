@@ -28,9 +28,11 @@ CVS
 *.bak
 *~
 
-# -- Tag Files --
+# -- Tag Files (Not directories, since blog and CMS platforms use them) --
 tags
+!tags/
 tags.vendor
+.tags/
 
 # -- VIM Files --
 .netrwhist
